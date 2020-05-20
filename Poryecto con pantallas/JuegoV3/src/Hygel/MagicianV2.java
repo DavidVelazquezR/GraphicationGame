@@ -34,6 +34,7 @@ public class MagicianV2 extends JFrame implements GLEventListener,
     Clip clip=null;
     private int in = 0;
     static DrawMagician mage = new DrawMagician();
+    static Moneda moneda = new Moneda();
     GL gl;
     public static char tec = ' ';
     public static boolean fw = true;
@@ -82,7 +83,7 @@ static Thread caer = new Thread(new Runnable() {
     }
 
     public void init(GLAutoDrawable drawable) {
-        caer.start();
+        //caer.start();
         GL gl = drawable.getGL();
         System.err.println("INIT GL IS: " + gl.getClass().getName());
         gl.setSwapInterval(1);
@@ -142,13 +143,14 @@ static Thread caer = new Thread(new Runnable() {
         //gl.glRotatef(60, 0.0f,1.0f, 0.0f);
         //gl.glRotatef(view_rotx, 0.0f, 1.0f, 0.0f);
         //gl.glRotatef(view_roty, -1.0f, 0.0f, 0.0f);
-        if (in==0) {
-            mage.rot = 60;
-            in=1;
-        }
+//        if (in==0) {
+//            mage.rot = 60;
+//            in=1;
+//        }
         mage.draw_mage(gl, tec);
+        //moneda.draw_moneda(gl);
         gl.glFlush();
-
+        
     }
 
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
