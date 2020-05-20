@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 public class Inicio extends javax.swing.JFrame {
     int xy, xx;//pantalla barra
-    boolean musicf=false;
+    boolean musicf=true;
     private int lvl = 0;
     Clip ambient=null;
     Clip clip=null;
@@ -915,7 +915,8 @@ public class Inicio extends javax.swing.JFrame {
             System.out.println("personaje:"+personaje);
             switch(lvl){
                 case 1:
-                    new levelOne().setVisible(true);
+                    levelOne nv1 = new levelOne();
+                    nv1.main();
                     break;
                 case 2:
                     

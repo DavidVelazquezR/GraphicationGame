@@ -71,7 +71,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     private boolean newTexture = true;
 
     //Variables para el control de las Coordenadas de las figuras 3D
-    public static float coordXPersonaje = 7.0f;
+    public static float coordXPersonaje = -19.5f;
     public static float coordYPersonaje = -5.2f;
 
     //primera caja
@@ -210,7 +210,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     File clic = new File("src/sonidos/08.wav");
     Clip clip;
 
-    public static void main(String[] args) throws IOException {
+    public void main()  {
         final Frame frame = new Frame("Level One");
         GLCanvas canvas = new GLCanvas();
 
