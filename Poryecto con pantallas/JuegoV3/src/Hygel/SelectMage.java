@@ -87,7 +87,7 @@ public class SelectMage extends JFrame implements GLEventListener{
         gl.glRotatef(view_rotx, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_roty, -1.0f, 0.0f, 0.0f);
         
-        mage.draw_mage(gl, 'D');
+        mage.draw_mage(gl, 'D',1);
         gl.glFlush();
 
     }

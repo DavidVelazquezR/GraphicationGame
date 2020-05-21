@@ -47,9 +47,9 @@ import sun.audio.AudioStream;
  *
  * @author TOSHIBA
  */
-public class levelOne extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
-
-    public levelOne(int per) {
+public class levelTwo extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
+    public levelTwo(int per, JFrame j) {
+        frame=j;
         typeCharacter = per;
     }
 
@@ -217,31 +217,32 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     File clic = new File("src/sonidos/08.wav");
     Clip clip, clip2;
     JFrame frame;
-    public void main(int per) {
-        frame = new JFrame("Level One");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        GLCanvas canvas = new GLCanvas();
-        typeCharacter = per;
-        System.out.println("typecharacter: " + typeCharacter);
-        canvas.addGLEventListener(new levelOne(per)); //con la clase en la que este el personaje
-        frame.add(canvas);
-        frame.setSize(820, 573);
-        final Animator animator = new Animator(canvas);
-
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                new Thread(new Runnable() {
-                    public void run() {
-                        animator.stop();
-                    }
-                }).start();
-            }
-        });
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        animator.start();
-    }
+    
+//    public void main(int per) {
+//        frame = new JFrame("Level One");
+//        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        GLCanvas canvas = new GLCanvas();
+//        typeCharacter = per;
+//        System.out.println("typecharacter: " + typeCharacter);
+//        canvas.addGLEventListener(new levelTwo(per)); //con la clase en la que este el personaje
+//        frame.add(canvas);
+//        frame.setSize(820, 573);
+//        final Animator animator = new Animator(canvas);
+//
+//        frame.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosing(WindowEvent e) {
+//                new Thread(new Runnable() {
+//                    public void run() {
+//                        animator.stop();
+//                    }
+//                }).start();
+//            }
+//        });
+//        frame.setLocationRelativeTo(null);
+//        frame.setVisible(true);
+//        animator.start();
+//    }
 
     public void init(GLAutoDrawable drawable) {
         caer.start();
@@ -443,7 +444,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     }
 
     public void texturaFondo(GL gl) {
-        arch1 = new File("src/fondos/aLandscape1.jpg");
+        arch1 = new File("src/fondos/aLandscape2.jpg");
         arch2 = new File("src/fondos/texture_floor1.jpg");
         if (newTexture) {
             newTexture = false;
@@ -637,7 +638,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                                         coordYPersonaje = coordYPersonaje + 0.01f;
 
                                     } catch (InterruptedException ex) {
-                                        Logger.getLogger(levelOne.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.getLogger(levelTwo.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
 
@@ -673,7 +674,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                                         coordYPersonaje = coordYPersonaje + 0.01f;
 
                                     } catch (InterruptedException ex) {
-                                        Logger.getLogger(levelOne.class.getName()).log(Level.SEVERE, null, ex);
+                                        Logger.getLogger(levelTwo.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
                                 up = true;

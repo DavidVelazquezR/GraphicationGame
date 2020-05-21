@@ -147,7 +147,7 @@ static Thread caer = new Thread(new Runnable() {
 //            mage.rot = 60;
 //            in=1;
 //        }
-        mage.draw_mage(gl, tec);
+        mage.draw_mage(gl, tec,2);
         //moneda.draw_moneda(gl);
         gl.glFlush();
         

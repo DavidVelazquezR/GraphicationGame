@@ -2,8 +2,10 @@ package pantallas;
 
 import Aria.SelectAria;
 import Aria.levelOne;
+import Aria.levelTwo;
 import Flogat.SelectFlog;
 import Hygel.SelectMage;
+import Hygel.lvl2;
 import Terluks.SelectJF;
 import com.sun.opengl.util.Animator;
 import java.awt.Color;
@@ -42,6 +44,17 @@ public class Inicio extends javax.swing.JFrame {
         jPOverlayCre.setBackground(new Color(223, 227, 238, 150));
         jpventanas.add(jlp);
         setpane(jpprincipal);
+        if (musicf) {
+            ambientacion("03");
+        }
+    }
+    public Inicio(int f) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        jPOverlay.setBackground(new Color(223, 227, 238, 150));
+        jPOverlayCre.setBackground(new Color(223, 227, 238, 150));
+        jpventanas.add(jlp);
+        setpane(jpselectlv);
         if (musicf) {
             ambientacion("03");
         }
@@ -915,10 +928,13 @@ public class Inicio extends javax.swing.JFrame {
             System.out.println("personaje:"+personaje);
             switch(lvl){
                 case 1:
-                    levelOne nv1 = new levelOne();
-                    nv1.main();
+                    if(ambient.isRunning()) ambient.stop();
+                    levelOne nv1 = new levelOne(personaje);
+                    nv1.main(personaje);
                     break;
                 case 2:
+                    if(ambient.isRunning()) ambient.stop();
+                    lvl2 nv2 = new lvl2(personaje);
                     
                     break;
                 case 3:

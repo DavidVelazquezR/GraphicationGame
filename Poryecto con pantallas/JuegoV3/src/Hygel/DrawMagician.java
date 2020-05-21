@@ -70,15 +70,16 @@ public class DrawMagician {
     public DrawMagician() {
     }
 
-    public void draw_mage(GL gl, char m) {
+    public void draw_mage(GL gl, char m, int pantalla) {
         GLU glu = new GLU();
         q = glu.gluNewQuadric();
         glu.gluQuadricDrawStyle(q, GLU.GLU_FILL);
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
-        up = getZ_POSITION() > 0;
-        gl.glTranslatef(getY_POSITION(), getZ_POSITION(),getX_POSITION());
-        gl.glRotatef(rot, 0.0f,1.0f, 0.0f);
+        //up = getZ_POSITION() > 0;
+        if(pantalla!=1){
+            gl.glTranslatef(getX_POSITION(), getY_POSITION()+0.5f,getZ_POSITION());
+        }
         
         if(m=='D' || m =='A'){
             if (mvt % 20 + 10 > 20) {
