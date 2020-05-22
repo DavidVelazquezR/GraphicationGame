@@ -61,7 +61,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     //variable que controla la rotacion de la figura *vista perfil*
     public int rotFigure = 90;
     //variable que se encaga de realizar movimientos en las instancias de personajes
-    public static char controlActions='O';
+    public static char controlActions = 'O';
     //variable que se encarga de escoger un perosnaje a usar en el nivel
 
     //textures utilizada para cargara imagenes
@@ -70,6 +70,11 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     private File arch1;
     private File arch2;
     private boolean newTexture = true;
+
+    //Variables Camara
+    public float cameraX = 15.0f;
+    static public float cameraY = 0.0f;
+    public float cameraZ = 0.0f;
 
     //Variables para el control de las Coordenadas de las figuras 3D
     public static float coordXPersonaje = -19.5f;
@@ -130,6 +135,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 if (up) {
                     controlActions = 'O';
                     coordYPersonaje = coordYPersonaje - 0.01f;
+                    cameraY = cameraY + 0.01f;
                     if (coordYPersonaje <= -5.2f) {
                         up = false;
                         flag = 0.0f;
@@ -298,6 +304,9 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 0.0f, 1.0f, 0.0f
         );
 
+        //Posiscionar camara en un lugar concreto
+        gl.glTranslatef(cameraX, cameraY, cameraZ);
+        
         //Matriz con el angulo y cordenadas (X, Y, Z)
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
@@ -388,7 +397,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             //Retorno al origen
             gl.glPopMatrix();
         }
-            gl.glPushMatrix();
+        gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
             //Mueve la escena en la psoicion de la matriz
@@ -398,7 +407,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         } else if (typeCharacter == 2) {
             gl.glTranslatef(coordXPersonaje, coordYPersonaje, 0.0f);
             gl.glRotatef(rotFigure, 0.0f, 1.0f, 0.0f);
-            mage.accionesHygel(gl, controlActions,2);
+            mage.accionesHygel(gl, controlActions, 2);
         }
         gl.glPopMatrix();
         if (terminado & f != 1) {
@@ -439,7 +448,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         //Seleccionamos la matrix de proyeccion
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
-        glu.gluPerspective(80.0f, h, 5.0, 20.0);
+        glu.gluPerspective(50.0f, h, 5.0, 20.0);
         gl.glMatrixMode(gl.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
@@ -491,13 +500,13 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             texture1.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords1.left(), coords1.bottom());
-            gl.glVertex3f(30f, -10f, -3f);
+            gl.glVertex3f(50f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.bottom());
-            gl.glVertex3f(-30f, -10f, -3f);
+            gl.glVertex3f(-30f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.top());
-            gl.glVertex3f(-30f, 10f, -3f);
+            gl.glVertex3f(-30f, 20f, -3f);
             gl.glTexCoord2f(coords1.left(), coords1.top());
-            gl.glVertex3f(30f, 10f, -3f);
+            gl.glVertex3f(50f, 20f, -3f);
             gl.glEnd();
             texture1.disable();
 
@@ -506,13 +515,13 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             texture2.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords2.left(), coords2.bottom());
-            gl.glVertex3f(30f, -6f, -5f);
+            gl.glVertex3f(50f, -6f, -10f);
             gl.glTexCoord2f(coords2.right(), coords2.bottom());
-            gl.glVertex3f(-30f, -6f, -5f);
+            gl.glVertex3f(-30f, -6f, -10f);
             gl.glTexCoord2f(coords2.right(), coords2.top());
-            gl.glVertex3f(-30f, -6f, 5f);
+            gl.glVertex3f(-30f, -6f, 10f);
             gl.glTexCoord2f(coords2.left(), coords2.top());
-            gl.glVertex3f(30f, -6f, 5f);
+            gl.glVertex3f(50f, -6f, 10f);
             gl.glEnd();
 
             texture2.disable();
@@ -565,6 +574,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                         Sound("nod");
                     } else {
                         coordXPersonaje = coordXPersonaje - 0.5f;
+                        cameraX = cameraX + 0.5f;
                         rotFigure = 270;
                     }
                 }
@@ -605,6 +615,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 } else {
                     if (coordXPersonaje < 19.5) {
                         coordXPersonaje = coordXPersonaje + 0.5f;
+                        cameraX = cameraX - 0.5f;
                         rotFigure = 90;
                     } else if (coordXPersonaje >= 19.5) {
                         rotFigure = 270;
@@ -631,7 +642,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                                     Thread.sleep(1);
                                     controlActions = 'W';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
-
+                                    cameraY = cameraY - 0.01f;
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(levelOne.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -659,9 +670,9 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     public void keyReleased(KeyEvent ke) {
         if (controlActions != 'D' || controlActions != 'A' || controlActions != 'W') {
             //se hace if para especificar que perosnaje se usa y asi estblecer variables dependiendo de que perosnaje se eligio
-            
-                controlActions = 'O';
-            
+
+            controlActions = 'O';
+
         }
     }
 

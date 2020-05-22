@@ -90,6 +90,7 @@ public class Inicio extends javax.swing.JFrame {
             setLocationRelativeTo(null);
             setVisible(true);
             anmin.start();
+            
     }
 
     @SuppressWarnings("unchecked")
