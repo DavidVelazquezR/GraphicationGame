@@ -40,7 +40,7 @@ public class CorreF extends JFrame implements GLEventListener,
     private static final float X_POSITION = 0f;
     private static final float Y_POSITION = -0.08f;
     private static final float Z_POSITION = 0f;
-    public char tecla = 'W';
+
     public static void main(String[] args)
     {
 
@@ -153,7 +153,13 @@ public class CorreF extends JFrame implements GLEventListener,
         gl.glRotatef(90, 0.0f, 0.0f, 1.0f);
         //we draw Stan in the window
         Flog stan = new Flog();
-        stan.dibujaFlog(gl,tecla,2);
+        stan.dibujaFlog(gl, keys['W'], keys['J'], keys['D'], keys['Q'], keys['E'],
+                keys['R'], keys['T'], keys['L'], keys['X'], keys['Y'],
+                keys['Z'], keys['O'], keys['C'], keys['V'], keys['M'], keys['F'], keys['N']);
+//        stan.pintaNivel(gl, keys['V'],keys['M'], keys['F'], keys['N']);
+
+//                keys['T'], keys['A'], keym,s['X'], keys['Y'], keys['Z'], keys['O'], keys['P']);
+        // Flush all drawing operations to the graphics card
         gl.glFlush();
     }
 
@@ -213,10 +219,60 @@ public class CorreF extends JFrame implements GLEventListener,
     {
         if (ke.getKeyCode() < 250 && keys[ke.getKeyCode()] == false)
         {
+            keys['O'] = false;
+            keys['W'] = false;
+            keys['Q'] = false;
+            keys['E'] = false;
+            keys['R'] = false;
+            keys['J'] = false;
+            keys['T'] = false;
+            keys['A'] = false;
+            keys['X'] = false;
+            keys['Y'] = false;
+            keys['Z'] = false;
+            keys['P'] = false;
+
+//            keys['W'] = false;//caminar
+//            keys['J'] = false;//saltar
+//            keys['D'] = false;//saltar con manos abajo
+//            keys['Q'] = false;//caminar a la izquierda
+//            keys['E'] = false;//caminar a la derecha
+//            keys['R'] = false;//rotar
+//            keys['T'] = false;//traslacion
+//            keys['L'] = false;//escalacion
+//            keys['X'] = false;//reflexionx
+//            keys['Y'] = false;//reflexion y
+//            keys['Z'] = false;//reflexion z
+//            keys['O'] = false;//original
+//            keys['C'] = false;//colicion
+//            keys['V'] = false;//nivel1 verde
+//            keys['M'] = false;//nivel 2 morado
+//            keys['F'] = false;//nivel 3cafe
+//            keys['N'] = false;
+
+            keys[ke.getKeyCode()] = true;
             System.out.println("Key press " + ke.getKeyChar());
             switch (ke.getKeyCode())
             {
                 case 'J':
+//
+////                    reproducir(j2);
+////                    break;
+////                case 'W':
+////                case 'Q':
+////                case 'E':
+////                    clip.close();
+////                    Sonido(clic);
+////                    reproducir(walk);
+////                    break;
+////                case 'D':
+////                    clip.close();
+////                    reproducir(d);
+////                    break;
+////                case 'R':
+////                    clip.close();
+////                    Sonido(clic);
+////                    reproducir(ret);
                     break;
                 default:
                     break;

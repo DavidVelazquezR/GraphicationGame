@@ -5,7 +5,6 @@
  */
 package Aria;
 
-import Flogat.Flog;
 import Hygel.GLRenderHygel;
 import Hygel.Moneda;
 import com.sun.opengl.util.Animator;
@@ -72,6 +71,11 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     private File arch2;
     private boolean newTexture = true;
 
+    //Variables Camara
+    public float cameraX = 15.0f;
+    static public float cameraY = 0.0f;
+    public float cameraZ = 0.0f;
+
     //Variables para el control de las Coordenadas de las figuras 3D
     public static float coordXPersonaje = -19.5f;
     public static float coordYPersonaje = -5.2f;
@@ -131,6 +135,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 if (up) {
                     controlActions = 'O';
                     coordYPersonaje = coordYPersonaje - 0.01f;
+                    cameraY = cameraY + 0.01f;
                     if (coordYPersonaje <= -5.2f) {
                         up = false;
                         flag = 0.0f;
@@ -207,7 +212,6 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     static GLRenderAria ariaCharacter = new GLRenderAria();
     static GLRenderHygel mage = new GLRenderHygel();
-    static Flog flog = new Flog();
     public int typeCharacter = 0;
     boolean terminado = false;
     int f = 0;
@@ -300,6 +304,9 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 0.0f, 1.0f, 0.0f
         );
 
+        //Posiscionar camara en un lugar concreto
+        gl.glTranslatef(cameraX, cameraY, cameraZ);
+        
         //Matriz con el angulo y cordenadas (X, Y, Z)
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
@@ -390,16 +397,6 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             //Retorno al origen
             gl.glPopMatrix();
         }
-        //enemigo
-        gl.glPushMatrix();
-        gl.glTranslated(5f, -5.2f, 0f);
-        flog.dibujaFlog(gl, 'O', 1);
-        gl.glTranslated(-5f, 5.2f, 0f);
-        gl.glPopMatrix();
-        
-        enemigo_cerca(5, -5.2f);
-        
-
         gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
@@ -435,15 +432,8 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             flagmoneda[fmo] = false;
             return false;
         }
-        return true;
-    }
 
-    public void enemigo_cerca(float xmons, float ymons) {
-        if (coordXPersonaje >= xmons - 1f && coordXPersonaje <= xmons + 1f
-                && coordYPersonaje <= ymons + 0.5) {
-            Sound("uuh");
-            coordXPersonaje = -19.5f;
-        }
+        return true;
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -458,7 +448,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         //Seleccionamos la matrix de proyeccion
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
-        glu.gluPerspective(80.0f, h, 5.0, 20.0);
+        glu.gluPerspective(50.0f, h, 5.0, 20.0);
         gl.glMatrixMode(gl.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
@@ -510,13 +500,13 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             texture1.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords1.left(), coords1.bottom());
-            gl.glVertex3f(30f, -10f, -3f);
+            gl.glVertex3f(50f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.bottom());
-            gl.glVertex3f(-30f, -10f, -3f);
+            gl.glVertex3f(-30f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.top());
-            gl.glVertex3f(-30f, 10f, -3f);
+            gl.glVertex3f(-30f, 20f, -3f);
             gl.glTexCoord2f(coords1.left(), coords1.top());
-            gl.glVertex3f(30f, 10f, -3f);
+            gl.glVertex3f(50f, 20f, -3f);
             gl.glEnd();
             texture1.disable();
 
@@ -525,13 +515,13 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             texture2.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords2.left(), coords2.bottom());
-            gl.glVertex3f(30f, -6f, -5f);
+            gl.glVertex3f(50f, -6f, -10f);
             gl.glTexCoord2f(coords2.right(), coords2.bottom());
-            gl.glVertex3f(-30f, -6f, -5f);
+            gl.glVertex3f(-30f, -6f, -10f);
             gl.glTexCoord2f(coords2.right(), coords2.top());
-            gl.glVertex3f(-30f, -6f, 5f);
+            gl.glVertex3f(-30f, -6f, 10f);
             gl.glTexCoord2f(coords2.left(), coords2.top());
-            gl.glVertex3f(30f, -6f, 5f);
+            gl.glVertex3f(50f, -6f, 10f);
             gl.glEnd();
 
             texture2.disable();
@@ -584,6 +574,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                         Sound("nod");
                     } else {
                         coordXPersonaje = coordXPersonaje - 0.5f;
+                        cameraX = cameraX + 0.5f;
                         rotFigure = 270;
                     }
                 }
@@ -624,6 +615,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 } else {
                     if (coordXPersonaje < 19.5) {
                         coordXPersonaje = coordXPersonaje + 0.5f;
+                        cameraX = cameraX - 0.5f;
                         rotFigure = 90;
                     } else if (coordXPersonaje >= 19.5) {
                         rotFigure = 270;
@@ -650,7 +642,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                                     Thread.sleep(1);
                                     controlActions = 'W';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
-
+                                    cameraY = cameraY - 0.01f;
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(levelOne.class.getName()).log(Level.SEVERE, null, ex);
                                 }

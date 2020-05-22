@@ -1,5 +1,6 @@
 package Flogat;
 
+import Hygel.*;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
 import com.sun.opengl.util.texture.TextureIO;
@@ -27,11 +28,7 @@ public class SelectFlog extends JFrame implements GLEventListener{
     private File arch;
     private Texture texture;
     private boolean newTexture = true;
-    public char tecla = 'W';
-    public int lvl=0;
-    public SelectFlog(int lv) {
-        lvl=lv;
-    }
+
 
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
@@ -56,6 +53,7 @@ public class SelectFlog extends JFrame implements GLEventListener{
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+
         GL gl = drawable.getGL();
         GLU glu = new GLU();
         if (height <= 0) { // avoid a divide by zero error!
@@ -90,7 +88,7 @@ public class SelectFlog extends JFrame implements GLEventListener{
         gl.glRotatef(view_rotx, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_roty, -1.0f, 0.0f, 0.0f);
         
-        Flog.dibujaFlog(gl,tecla, lvl);
+        Flog.dibujaFlog(gl, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
         gl.glFlush();
 
     }
