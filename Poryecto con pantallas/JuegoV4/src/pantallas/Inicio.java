@@ -74,7 +74,7 @@ public class Inicio extends javax.swing.JFrame {
         setVisible(true);
         animaria.start();
         
-        flog = new SelectFlog();
+        flog = new SelectFlog(lvl);
         glpenemigo2areli.addGLEventListener(flog);///flogat
         anim = new Animator(glpenemigo2areli);
         setLocationRelativeTo(null);
@@ -84,7 +84,8 @@ public class Inicio extends javax.swing.JFrame {
         if(lvl==4){
             glpenemigo1alan.addGLEventListener(jf);//cangrejo
         }else{
-             glpenemigo1alan.addGLEventListener(flog);//are
+            SelectFlog flog2 = new SelectFlog(lvl);
+            glpenemigo1alan.addGLEventListener(flog2);//are
         }
         anmin = new Animator(glpenemigo1alan);
             setLocationRelativeTo(null);

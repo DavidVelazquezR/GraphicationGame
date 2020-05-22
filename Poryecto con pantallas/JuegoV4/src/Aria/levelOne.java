@@ -5,6 +5,7 @@
  */
 package Aria;
 
+import Flogat.Flog;
 import Hygel.GLRenderHygel;
 import Hygel.Moneda;
 import com.sun.opengl.util.Animator;
@@ -210,8 +211,34 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         }
     });
 
+    public static float enemigoX=5.5f;
+    public static float rotenemigo=270;
+    public static boolean izquierda = false;
+    static Thread moverenemigo = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            do {
+                if(enemigoX>=8.2||enemigoX<=2.6){
+                    izquierda=!izquierda;
+                    rotenemigo+=180;
+                }
+                if (enemigoX<=8.2f && izquierda) {
+                    enemigoX+=0.01;
+                }else if(enemigoX>=2.6f && !izquierda){
+                    enemigoX-=0.01;
+                }
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException ex) {
+                }
+            } while (true);
+
+        }
+    });
+
     static GLRenderAria ariaCharacter = new GLRenderAria();
     static GLRenderHygel mage = new GLRenderHygel();
+    static Flog flog = new Flog();
     public int typeCharacter = 0;
     boolean terminado = false;
     int f = 0;
@@ -225,9 +252,10 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         typeCharacter = per;
     }
 
+    @Override
     public void init(GLAutoDrawable drawable) {
         caer.start();
-
+        moverenemigo.start();
         GL gl = drawable.getGL();
         System.err.println("Init gl is: " + gl.getClass().getName());
 
@@ -268,6 +296,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     }
 
+    @Override
     public void display(GLAutoDrawable drawable) {
         //Se genera una instancia que dibuja al personaje
 
@@ -306,7 +335,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
         //Posiscionar camara en un lugar concreto
         gl.glTranslatef(cameraX, cameraY, cameraZ);
-        
+
         //Matriz con el angulo y cordenadas (X, Y, Z)
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
@@ -376,16 +405,16 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         //Retorno al origen
         gl.glTranslatef(-coordX10, -coordY10, 0.0f);
 
-        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
+        if (recoge_moneda(-10.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
             gl.glPushMatrix();
-            gl.glTranslatef(-3.5f, -4.9f, 0.0f);
+            gl.glTranslatef(-10.5f, -4.9f, 0.0f);
             mo1.draw_moneda(gl);
             //Retorno al origen
             gl.glPopMatrix();
         }
-        if (recoge_moneda(3.5f, -4.9f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
+        if (recoge_moneda(3.5f, 0f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
             gl.glPushMatrix();
-            gl.glTranslatef(3.5f, -4.9f, 0.0f);
+            gl.glTranslatef(3.5f, 0f, 0.0f);
             mo2.draw_moneda(gl);
             //Retorno al origen
             gl.glPopMatrix();
@@ -397,6 +426,14 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             //Retorno al origen
             gl.glPopMatrix();
         }
+
+        gl.glPushMatrix();
+        gl.glTranslated(enemigoX, -5.2f, 0f);
+        gl.glRotated(rotenemigo, 0f, 1f, 0f);
+        flog.dibujaFlog(gl, 'O', 1);
+        gl.glPopMatrix();
+        enemigo_cerca(enemigoX, -5.2f);
+
         gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
@@ -432,8 +469,16 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             flagmoneda[fmo] = false;
             return false;
         }
-
         return true;
+    }
+
+    public void enemigo_cerca(float xmons, float ymons) {
+        if (coordXPersonaje >= xmons - 1f && coordXPersonaje <= xmons + 1f
+                && coordYPersonaje <= ymons + 0.5) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            cameraX = 15.0f;
+        }
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -453,9 +498,11 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         gl.glLoadIdentity();
     }
 
+    @Override
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
     }
 
+    @Override
     public void keyTyped(KeyEvent ke) {
     }
 
@@ -478,7 +525,6 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                 System.err.println("Tamaño estimado del fondo piso " + texture2.getEstimatedMemorySize());
 
             } catch (IOException e) {
-                e.printStackTrace();
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 e.printStackTrace(new PrintStream(bos));
                 JOptionPane.showMessageDialog(null,
@@ -528,6 +574,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         }
     }
 
+    @Override
     public void keyPressed(KeyEvent ke) {
 
         if (coordYPersonaje >= 6.0f) {
@@ -632,6 +679,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             case 'W':
                 flag = coordYPersonaje;
                 Thread t = new Thread() {
+                    @Override
                     public void run() {
                         if (coordYPersonaje == -5.2f || coordYPersonaje == -3.3f || coordYPersonaje == -1.4f) {
                             for (float i = 0.0f; i < 300.0f; i++) {
@@ -667,6 +715,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     }
 
+    @Override
     public void keyReleased(KeyEvent ke) {
         if (controlActions != 'D' || controlActions != 'A' || controlActions != 'W') {
             //se hace if para especificar que perosnaje se usa y asi estblecer variables dependiendo de que perosnaje se eligio
@@ -676,6 +725,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         }
     }
 
+    @Override
     public void mouseClicked(MouseEvent me) {
     }
 
@@ -704,7 +754,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             audio = new AudioStream(sounds);
             AudioPlayer.player.start(audio);
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
         }
 
@@ -717,7 +767,11 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             clip.start();
             clip.loop(1000);
 
-        } catch (Exception e) {
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        } catch (LineUnavailableException e) {
+            System.err.println(e.getMessage());
+        } catch (UnsupportedAudioFileException e) {
             System.err.println(e.getMessage());
         }
     }
