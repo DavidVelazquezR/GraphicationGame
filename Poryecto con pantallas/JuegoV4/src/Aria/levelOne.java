@@ -478,6 +478,9 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
             Sound("uuh");
             coordXPersonaje = -19.5f;
             cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
         }
     }
 
