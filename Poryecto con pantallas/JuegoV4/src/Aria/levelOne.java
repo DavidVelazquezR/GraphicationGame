@@ -129,112 +129,9 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     public static boolean up = false;
     public static float flag = 0.0f;
 
-    static Thread caer = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            do {
-                if (up) {
-                    controlActions = 'O';
-                    coordYPersonaje = coordYPersonaje - 0.01f;
-                    cameraY = cameraY + 0.01f;
-                    if (coordYPersonaje <= -5.2f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -14.0f && coordXPersonaje <= -12.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -9.0f && coordXPersonaje <= -5.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -2.0f && coordXPersonaje <= 2.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= -0.0f && coordXPersonaje <= 2.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= 9.0f && coordXPersonaje <= 15.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= 11.0f && coordXPersonaje <= 13.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    }
-                }
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                }
-            } while (true);
-
-        }
-    });
-
-    public static float enemigoX=5.5f;
-    public static float rotenemigo=270;
+    public static float enemigoX = 5.5f;
+    public static float rotenemigo = 270;
     public static boolean izquierda = false;
-    static Thread moverenemigo = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            do {
-                if(enemigoX>=8.2||enemigoX<=2.6){
-                    izquierda=!izquierda;
-                    rotenemigo+=180;
-                }
-                if (enemigoX<=8.2f && izquierda) {
-                    enemigoX+=0.01;
-                }else if(enemigoX>=2.6f && !izquierda){
-                    enemigoX-=0.01;
-                }
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                }
-            } while (true);
-
-        }
-    });
 
     static GLRenderAria ariaCharacter = new GLRenderAria();
     static GLRenderHygel mage = new GLRenderHygel();
@@ -254,12 +151,120 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     @Override
     public void init(GLAutoDrawable drawable) {
+
+        Thread moverenemigo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+                    if (enemigoX >= 8.2 || enemigoX <= 2.6) {
+                        izquierda = !izquierda;
+                        rotenemigo += 180;
+                    }
+                    if (enemigoX <= 8.2f && izquierda) {
+                        enemigoX += 0.01;
+                    } else if (enemigoX >= 2.6f && !izquierda) {
+                        enemigoX -= 0.01;
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                    }
+                } while (true);
+
+            }
+        });
+
+        Thread caer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+                    if (up) {
+                        controlActions = 'O';
+                        coordYPersonaje = coordYPersonaje - 0.01f;
+                        cameraY = cameraY + 0.01f;
+                        if (coordYPersonaje <= -5.2f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -14.0f && coordXPersonaje <= -12.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -9.0f && coordXPersonaje <= -5.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -2.0f && coordXPersonaje <= 2.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= -0.0f && coordXPersonaje <= 2.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= 9.0f && coordXPersonaje <= 15.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= 11.0f && coordXPersonaje <= 13.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        }
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                    }
+                } while (true);
+
+            }
+        });
+
         caer.start();
         moverenemigo.start();
-        GL gl = drawable.getGL();
-        System.err.println("Init gl is: " + gl.getClass().getName());
 
-        gl.setSwapInterval(1);
+        GL gl = drawable.getGL();
+        System.err.println(
+                "Init gl is: " + gl.getClass().getName());
+
+        gl.setSwapInterval(
+                1);
         //añadir luz
         float ligth_ambient[]
                 = {
@@ -281,18 +286,28 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
                 };
 
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ligth_ambient, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, ligth_difuse, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, ligth_specular, 0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, ligth_position, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ligth_ambient,
+                0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, ligth_difuse,
+                0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, ligth_specular,
+                0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, ligth_position,
+                0);
         gl.glEnable(GL.GL_LIGHTING);
+
         gl.glEnable(GL.GL_LIGHT0);
+
         gl.glEnable(GL.GL_DEPTH_TEST);
 
         gl.glShadeModel(GL.GL_SMOOTH);
-        drawable.addMouseListener(this);
-        drawable.addMouseMotionListener(this);
-        drawable.addKeyListener(this);
+
+        drawable.addMouseListener(
+                this);
+        drawable.addMouseMotionListener(
+                this);
+        drawable.addKeyListener(
+                this);
 
     }
 
@@ -672,6 +687,9 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                         controlActions = 'W';
                         flag = coordYPersonaje;
                         System.out.println("FINNN");
+
+                        coordXPersonaje = -19.5f;
+                        coordYPersonaje = -5.2f;
                         if (!terminado) {
                             Sound("fin");
                         }
@@ -694,8 +712,10 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                                     controlActions = 'W';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
                                     cameraY = cameraY - 0.01f;
+
                                 } catch (InterruptedException ex) {
-                                    Logger.getLogger(levelOne.class.getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(levelOne.class
+                                            .getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
                             up = true;
