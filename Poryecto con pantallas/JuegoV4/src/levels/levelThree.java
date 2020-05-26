@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Hygel;
+package levels;
 
+import Hygel.*;
 import Aria.GLRenderAria;
 import Aria.GLRenderBox;
 import com.sun.opengl.util.Animator;
@@ -44,9 +45,9 @@ import sun.audio.AudioStream;
  *
  * @author TOSHIBA
  */
-public class levelTwo extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
+public class levelThree extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
 
-    public levelTwo(int per) {
+    public levelThree(int per) {
         typeCharacter = per;
     }
 
@@ -61,7 +62,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     //variable que controla la rotacion de la figura *vista perfil*
     public int rotFigure = 90;
     //variable que se encaga de realizar movimientos en las instancias de personajes
-    public static char controlActions='O';
+    public static char controlActions = 'O';
     //variable que se encarga de escoger un perosnaje a usar en el nivel
 
     //textures utilizada para cargara imagenes
@@ -123,87 +124,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public static boolean up = false;
     public static float flag = 0.0f;
 
-    static Thread caer = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            do {
-                if (up) {
-                    controlActions = 'O';
-                    coordYPersonaje = coordYPersonaje - 0.01f;
-                    if (coordYPersonaje <= -5.2f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -14.0f && coordXPersonaje <= -12.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -9.0f && coordXPersonaje <= -5.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -2.0f && coordXPersonaje <= 2.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= -0.0f && coordXPersonaje <= 2.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= 9.0f && coordXPersonaje <= 15.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= 11.0f && coordXPersonaje <= 13.0f) {
-                        up = false;
-                        flag = 0.0f;
-                        System.out.println("cayoo");
-                        BigDecimal bd = new BigDecimal(coordYPersonaje);
-                        bd = bd.setScale(1, RoundingMode.HALF_UP);
-                        System.out.println(bd);
-
-                        coordYPersonaje = bd.floatValue();
-                    }
-                }
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ex) {
-                }
-            } while (true);
-
-        }
-    });
-
     static GLRenderAria ariaCharacter = new GLRenderAria();
     static GLRenderHygel mage = new GLRenderHygel();
     public int typeCharacter = 0;
@@ -214,12 +134,48 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     JFrame frame;
     boolean[] flagmoneda = {true, true, true};
 
-    public levelTwo(int per, JFrame j) {
+    public levelThree(int per, JFrame j) {
         frame = j;
         typeCharacter = per;
     }
 
     public void init(GLAutoDrawable drawable) {
+
+        Thread caer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+                    if (up) {
+                        controlActions = 'O';
+                        coordYPersonaje = coordYPersonaje - 0.01f;
+                        if (coordYPersonaje <= -5.2f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -14.0f && coordXPersonaje <= -12.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+
+                            coordYPersonaje = bd.floatValue();
+                        }
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                    }
+                } while (true);
+
+            }
+        });
         caer.start();
 
         GL gl = drawable.getGL();
@@ -313,82 +269,28 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
         //Retorno al origen
         gl.glTranslatef(-coordX1, -coordY1, 0.0f);
 
-        //Dibujamos el segundo obstaculo 
-        gl.glTranslatef(coordX2, coordY2, 0.0f);
-        box2.drawBox(gl, 'B', enableF2);
-        //Retorno al origen
-        gl.glTranslatef(-coordX2, -coordY2, 0.0f);
-
-        //Dibujamos el tercer obstaculo 
-        gl.glTranslatef(coordX3, coordY3, 0.0f);
-        box3.drawBox(gl, 'B', enableF3);
-        //Retorno al origen
-        gl.glTranslatef(-coordX3, -coordY3, 0.0f);
-
-        //Dibujamos el cuarto obstaculo 
-        gl.glTranslatef(coordX4, coordY4, 0.0f);
-        box4.drawBox(gl, 'B', enableF2);
-        //Retorno al origen
-        gl.glTranslatef(-coordX4, -coordY4, 0.0f);
-
-        //Dibujamos el quinto obstaculo 
-        gl.glTranslatef(coordX5, coordY5, 0.0f);
-        box5.drawBox(gl, 'B', enableF5);
-        //Retorno al origen
-        gl.glTranslatef(-coordX5, -coordY5, 0.0f);
-
-        //Dibujamos el sexto obstaculo 
-        gl.glTranslatef(coordX6, coordY6, 0.0f);
-        box6.drawBox(gl, 'B', enableF6);
-        //Retorno al origen
-        gl.glTranslatef(-coordX6, -coordY6, 0.0f);
-
-        //Dibujamos el septimo obstaculo 
-        gl.glTranslatef(coordX7, coordY7, 0.0f);
-        box7.drawBox(gl, 'B', enableF7);
-        //Retorno al origen
-        gl.glTranslatef(-coordX7, -coordY7, 0.0f);
-
-        //Dibujamos el octavo obstaculo 
-        gl.glTranslatef(coordX8, coordY8, 0.0f);
-        box8.drawBox(gl, 'B', enableF8);
-        //Retorno al origen
-        gl.glTranslatef(-coordX8, -coordY8, 0.0f);
-
-        //Dibujamos el noveno obstaculo 
-        gl.glTranslatef(coordX9, coordY9, 0.0f);
-        box8.drawBox(gl, 'B', enableF9);
-        //Retorno al origen
-        gl.glTranslatef(-coordX9, -coordY9, 0.0f);
-
-        //Dibujamos el octavo obstaculo 
-        gl.glTranslatef(coordX10, coordY10, 0.0f);
-        box8.drawBox(gl, 'B', enableF10);
-        //Retorno al origen
-        gl.glTranslatef(-coordX10, -coordY10, 0.0f);
-
-        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
-            gl.glPushMatrix();
-            gl.glTranslatef(-3.5f, -4.9f, 0.0f);
-            mo1.draw_moneda(gl);
-            //Retorno al origen
-            gl.glPopMatrix();
-        }
-        if (recoge_moneda(3.5f, -4.9f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
-            gl.glPushMatrix();
-            gl.glTranslatef(3.5f, -4.9f, 0.0f);
-            mo2.draw_moneda(gl);
-            //Retorno al origen
-            gl.glPopMatrix();
-        }
-        if (recoge_moneda(12f, -1f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
-            gl.glPushMatrix();
-            gl.glTranslatef(12, -1f, 0.0f);
-            mo3.draw_moneda(gl);
-            //Retorno al origen
-            gl.glPopMatrix();
-        }
-            gl.glPushMatrix();
+//        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
+//            gl.glPushMatrix();
+//            gl.glTranslatef(-3.5f, -4.9f, 0.0f);
+//            mo1.draw_moneda(gl);
+//            //Retorno al origen
+//            gl.glPopMatrix();
+//        }
+//        if (recoge_moneda(3.5f, -4.9f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
+//            gl.glPushMatrix();
+//            gl.glTranslatef(3.5f, -4.9f, 0.0f);
+//            mo2.draw_moneda(gl);
+//            //Retorno al origen
+//            gl.glPopMatrix();
+//        }
+//        if (recoge_moneda(12f, -1f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
+//            gl.glPushMatrix();
+//            gl.glTranslatef(12, -1f, 0.0f);
+//            mo3.draw_moneda(gl);
+//            //Retorno al origen
+//            gl.glPopMatrix();
+//        }
+        gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
             //Mueve la escena en la psoicion de la matriz
@@ -398,7 +300,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
         } else if (typeCharacter == 2) {
             gl.glTranslatef(coordXPersonaje, coordYPersonaje, 0.0f);
             gl.glRotatef(rotFigure, 0.0f, 1.0f, 0.0f);
-            mage.accionesHygel(gl, controlActions,2);
+            mage.accionesHygel(gl, controlActions, 2);
         }
         gl.glPopMatrix();
         if (terminado & f != 1) {
@@ -451,7 +353,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     }
 
     public void texturaFondo(GL gl) {
-        arch1 = new File("src/fondos/aLandscape2.jpg");
+        arch1 = new File("src/fondos/aLandscape3.jpg");
         arch2 = new File("src/fondos/texture_floor1.jpg");
         if (newTexture) {
             newTexture = false;
@@ -535,31 +437,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     coordXPersonaje = -11.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.5f) {
                     up = true;
-                } else if (coordXPersonaje == -4.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 2 A");
-                    coordXPersonaje = -4.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -9.5f) {
-                    up = true;
-                } else if (coordXPersonaje == 2.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 3 A");
-                    coordXPersonaje = 2.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -2.5f) {
-                    up = true;
-                } else if (coordXPersonaje == 2.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
-                    System.out.println("Colision Caja 3-2 D");
-                    coordXPersonaje = 2.5f;
-                } else if (coordYPersonaje == -1.4f && coordXPersonaje == -0.5f) {
-                    up = true;
-                } else if (coordXPersonaje == 15.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 4 D");
-                    coordXPersonaje = 15.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == 8.5f) {
-                    up = true;
-                } else if (coordXPersonaje == 13.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
-                    System.out.println("Colision Caja 4-2 D");
-                    coordXPersonaje = 13.5f;
-                } else if (coordYPersonaje == -1.4f && coordXPersonaje == 10.5f) {
-                    up = true;
                 } else {
                     if (coordXPersonaje <= -19.5) {
                         Sound("nod");
@@ -576,31 +453,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     System.out.println("Colision Caja 1 D");
                     coordXPersonaje = -14.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -11.5f) {
-                    up = true;
-                } else if (coordXPersonaje == -9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 2 D");
-                    coordXPersonaje = -9.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -4.5f) {
-                    up = true;
-                } else if (coordXPersonaje == -2.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 3 D");
-                    coordXPersonaje = -2.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == 2.5f) {
-                    up = true;
-                } else if (coordXPersonaje == -0.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
-                    System.out.println("Colision Caja 3-2 D");
-                    coordXPersonaje = -0.5f;
-                } else if (coordYPersonaje == -1.4f && coordXPersonaje == 2.5f) {
-                    up = true;
-                } else if (coordXPersonaje == 8.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 4 D");
-                    coordXPersonaje = 8.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == 15.5f) {
-                    up = true;
-                } else if (coordXPersonaje == 10.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
-                    System.out.println("Colision Caja 4 D");
-                    coordXPersonaje = 10.5f;
-                } else if (coordYPersonaje == -1.4f && coordXPersonaje == 13.5f) {
                     up = true;
                 } else {
                     if (coordXPersonaje < 19.5) {
@@ -633,7 +485,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                                     coordYPersonaje = coordYPersonaje + 0.01f;
 
                                 } catch (InterruptedException ex) {
-                                    Logger.getLogger(levelTwo.class.getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(levelThree.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
                             up = true;
@@ -659,9 +511,9 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public void keyReleased(KeyEvent ke) {
         if (controlActions != 'D' || controlActions != 'A' || controlActions != 'W') {
             //se hace if para especificar que perosnaje se usa y asi estblecer variables dependiendo de que perosnaje se eligio
-            
-                controlActions = 'O';
-            
+
+            controlActions = 'O';
+
         }
     }
 

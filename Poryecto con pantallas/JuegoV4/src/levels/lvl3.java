@@ -1,14 +1,15 @@
-package Hygel;
+package levels;
 
+import Hygel.*;
 import com.sun.opengl.util.Animator;
 
-public class lvl2 extends javax.swing.JFrame {
+public class lvl3 extends javax.swing.JFrame {
     private Animator anima;
-    levelTwo n;
+    levelThree n;
     
-    public lvl2(int p) {
+    public lvl3(int p) {
         initComponents();
-        n=new levelTwo(p,this);
+        n=new levelThree(p, this);
         glcjuego.addGLEventListener(n);
         anima=new Animator(glcjuego);
         setLocationRelativeTo(null);

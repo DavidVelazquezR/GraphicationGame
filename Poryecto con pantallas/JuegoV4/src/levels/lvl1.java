@@ -1,4 +1,4 @@
-package Aria;
+package levels;
 
 import Hygel.*;
 import com.sun.opengl.util.Animator;

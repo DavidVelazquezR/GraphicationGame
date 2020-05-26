@@ -1,12 +1,12 @@
 package pantallas;
 
 import Aria.SelectAria;
-import Aria.levelOne;
-import Aria.lvl1;
-import Hygel.levelTwo;
+import levels.levelOne;
+import levels.lvl1;
+import levels.levelTwo;
 import Flogat.SelectFlog;
 import Hygel.SelectMage;
-import Hygel.lvl2;
+import levels.lvl2;
 import Terluks.SelectJF;
 import com.sun.opengl.util.Animator;
 import java.awt.Color;
@@ -19,6 +19,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import levels.lvl3;
+import levels.lvl4;
 
 public class Inicio extends javax.swing.JFrame {
     int xy, xx;//pantalla barra
@@ -937,11 +939,14 @@ public class Inicio extends javax.swing.JFrame {
                 case 2:
                     if(ambient.isRunning()) ambient.stop();
                     lvl2 nv2 = new lvl2(personaje);
-                    
                     break;
                 case 3:
+                    if(ambient.isRunning()) ambient.stop();
+                    lvl3 nv3 = new lvl3(personaje);
                     break;
                 case 4:
+                    if(ambient.isRunning()) ambient.stop();
+                    lvl4 nv4 = new lvl4(personaje);
                     break;
             }
             this.dispose();

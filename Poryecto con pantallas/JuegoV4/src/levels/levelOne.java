@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Aria;
+package levels;
 
+import Aria.GLRenderAria;
+import Aria.GLRenderBox;
 import Flogat.Flog;
 import Hygel.GLRenderHygel;
 import Hygel.Moneda;
