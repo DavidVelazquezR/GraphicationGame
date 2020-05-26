@@ -59,12 +59,12 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     private float angle_rotZ = 90;
 
     AudioStream audio;
-    static InputStream sounds;
+    InputStream sounds;
 
     //variable que controla la rotacion de la figura *vista perfil*
     public int rotFigure = 90;
     //variable que se encaga de realizar movimientos en las instancias de personajes
-    public static char controlActions = 'O';
+    public char controlActions = 'O';
     //variable que se encarga de escoger un perosnaje a usar en el nivel
 
     //textures utilizada para cargara imagenes
@@ -76,12 +76,12 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     //Variables Camara
     public float cameraX = 15.0f;
-    static public float cameraY = 0.0f;
+    public float cameraY = 0.0f;
     public float cameraZ = 0.0f;
 
     //Variables para el control de las Coordenadas de las figuras 3D
-    public static float coordXPersonaje = -19.5f;
-    public static float coordYPersonaje = -5.2f;
+    public float coordXPersonaje = -19.5f;
+    public float coordYPersonaje = -5.2f;
 
     //primera caja
     public float coordX1 = -13.0f;
@@ -128,16 +128,16 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     public float coordY11 = -2.7f;
     public boolean enableF11 = true;
 
-    public static boolean up = false;
-    public static float flag = 0.0f;
+    public boolean up = false;
+    public float flag = 0.0f;
 
-    public static float enemigoX = 5.5f;
-    public static float rotenemigo = 270;
-    public static boolean izquierda = false;
+    public float enemigoX = 5.5f;
+    public float rotenemigo = 270;
+    public boolean izquierda = false;
 
-    static GLRenderAria ariaCharacter = new GLRenderAria();
-    static GLRenderHygel mage = new GLRenderHygel();
-    static Flog flog = new Flog();
+    GLRenderAria ariaCharacter = new GLRenderAria();
+    GLRenderHygel mage = new GLRenderHygel();
+    Flog flog = new Flog();
     public int typeCharacter = 0;
     boolean terminado = false;
     int f = 0;
@@ -311,6 +311,8 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         drawable.addKeyListener(
                 this);
 
+        this.setResizable(false);
+
     }
 
     @Override
@@ -318,21 +320,8 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         //Se genera una instancia que dibuja al personaje
 
         GLRenderBox box1 = new GLRenderBox();
-        GLRenderBox box2 = new GLRenderBox();
-        GLRenderBox box3 = new GLRenderBox();
-        GLRenderBox box4 = new GLRenderBox();
-        GLRenderBox box5 = new GLRenderBox();
-        GLRenderBox box6 = new GLRenderBox();
-        GLRenderBox box7 = new GLRenderBox();
-        GLRenderBox box8 = new GLRenderBox();
-        GLRenderBox box9 = new GLRenderBox();
-        GLRenderBox box10 = new GLRenderBox();
-        GLRenderBox box11 = new GLRenderBox();
-        GLRenderBox box12 = new GLRenderBox();
 
         Moneda mo1 = new Moneda();
-        Moneda mo2 = new Moneda();
-        Moneda mo3 = new Moneda();
 
         //Hacemos uso de GL y GLU
         GL gl = drawable.getGL();
@@ -370,55 +359,55 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
         //Dibujamos el segundo obstaculo 
         gl.glTranslatef(coordX2, coordY2, 0.0f);
-        box2.drawBox(gl, 'B', enableF2);
+        box1.drawBox(gl, 'B', enableF2);
         //Retorno al origen
         gl.glTranslatef(-coordX2, -coordY2, 0.0f);
 
         //Dibujamos el tercer obstaculo 
         gl.glTranslatef(coordX3, coordY3, 0.0f);
-        box3.drawBox(gl, 'B', enableF3);
+        box1.drawBox(gl, 'B', enableF3);
         //Retorno al origen
         gl.glTranslatef(-coordX3, -coordY3, 0.0f);
 
         //Dibujamos el cuarto obstaculo 
         gl.glTranslatef(coordX4, coordY4, 0.0f);
-        box4.drawBox(gl, 'B', enableF2);
+        box1.drawBox(gl, 'B', enableF2);
         //Retorno al origen
         gl.glTranslatef(-coordX4, -coordY4, 0.0f);
 
         //Dibujamos el quinto obstaculo 
         gl.glTranslatef(coordX5, coordY5, 0.0f);
-        box5.drawBox(gl, 'B', enableF5);
+        box1.drawBox(gl, 'B', enableF5);
         //Retorno al origen
         gl.glTranslatef(-coordX5, -coordY5, 0.0f);
 
         //Dibujamos el sexto obstaculo 
         gl.glTranslatef(coordX6, coordY6, 0.0f);
-        box6.drawBox(gl, 'B', enableF6);
+        box1.drawBox(gl, 'B', enableF6);
         //Retorno al origen
         gl.glTranslatef(-coordX6, -coordY6, 0.0f);
 
         //Dibujamos el septimo obstaculo 
         gl.glTranslatef(coordX7, coordY7, 0.0f);
-        box7.drawBox(gl, 'B', enableF7);
+        box1.drawBox(gl, 'B', enableF7);
         //Retorno al origen
         gl.glTranslatef(-coordX7, -coordY7, 0.0f);
 
         //Dibujamos el octavo obstaculo 
         gl.glTranslatef(coordX8, coordY8, 0.0f);
-        box8.drawBox(gl, 'B', enableF8);
+        box1.drawBox(gl, 'B', enableF8);
         //Retorno al origen
         gl.glTranslatef(-coordX8, -coordY8, 0.0f);
 
         //Dibujamos el noveno obstaculo 
         gl.glTranslatef(coordX9, coordY9, 0.0f);
-        box8.drawBox(gl, 'B', enableF9);
+        box1.drawBox(gl, 'B', enableF9);
         //Retorno al origen
         gl.glTranslatef(-coordX9, -coordY9, 0.0f);
 
         //Dibujamos el octavo obstaculo 
         gl.glTranslatef(coordX10, coordY10, 0.0f);
-        box8.drawBox(gl, 'B', enableF10);
+        box1.drawBox(gl, 'B', enableF10);
         //Retorno al origen
         gl.glTranslatef(-coordX10, -coordY10, 0.0f);
 
@@ -432,14 +421,14 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         if (recoge_moneda(3.5f, 0f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
             gl.glPushMatrix();
             gl.glTranslatef(3.5f, 0f, 0.0f);
-            mo2.draw_moneda(gl);
+            mo1.draw_moneda(gl);
             //Retorno al origen
             gl.glPopMatrix();
         }
         if (recoge_moneda(12f, -1f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
             gl.glPushMatrix();
             gl.glTranslatef(12, -1f, 0.0f);
-            mo3.draw_moneda(gl);
+            mo1.draw_moneda(gl);
             //Retorno al origen
             gl.glPopMatrix();
         }

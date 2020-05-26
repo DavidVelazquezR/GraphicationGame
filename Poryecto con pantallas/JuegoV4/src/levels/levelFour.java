@@ -57,12 +57,12 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     private float angle_rotZ = 90;
 
     AudioStream audio;
-    static InputStream sounds;
+    InputStream sounds;
 
     //variable que controla la rotacion de la figura *vista perfil*
     public int rotFigure = 90;
     //variable que se encaga de realizar movimientos en las instancias de personajes
-    public static char controlActions = 'O';
+    public char controlActions = 'O';
     //variable que se encarga de escoger un perosnaje a usar en el nivel
 
     //textures utilizada para cargara imagenes
@@ -73,8 +73,8 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     private boolean newTexture = true;
 
     //Variables para el control de las Coordenadas de las figuras 3D
-    public static float coordXPersonaje = -19.5f;
-    public static float coordYPersonaje = -5.2f;
+    public float coordXPersonaje = -19.5f;
+    public float coordYPersonaje = -5.2f;
 
     //primera caja
     public float coordX1 = -13.0f;
@@ -121,11 +121,11 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     public float coordY11 = -2.7f;
     public boolean enableF11 = true;
 
-    public static boolean up = false;
-    public static float flag = 0.0f;
+    public boolean up = false;
+    public float flag = 0.0f;
 
-    static GLRenderAria ariaCharacter = new GLRenderAria();
-    static GLRenderHygel mage = new GLRenderHygel();
+    GLRenderAria ariaCharacter = new GLRenderAria();
+    GLRenderHygel mage = new GLRenderHygel();
     public int typeCharacter = 0;
     boolean terminado = false;
     int f = 0;
@@ -236,21 +236,8 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         //Se genera una instancia que dibuja al personaje
 
         GLRenderBox box1 = new GLRenderBox();
-        GLRenderBox box2 = new GLRenderBox();
-        GLRenderBox box3 = new GLRenderBox();
-        GLRenderBox box4 = new GLRenderBox();
-        GLRenderBox box5 = new GLRenderBox();
-        GLRenderBox box6 = new GLRenderBox();
-        GLRenderBox box7 = new GLRenderBox();
-        GLRenderBox box8 = new GLRenderBox();
-        GLRenderBox box9 = new GLRenderBox();
-        GLRenderBox box10 = new GLRenderBox();
-        GLRenderBox box11 = new GLRenderBox();
-        GLRenderBox box12 = new GLRenderBox();
 
         Moneda mo1 = new Moneda();
-        Moneda mo2 = new Moneda();
-        Moneda mo3 = new Moneda();
 
         //Hacemos uso de GL y GLU
         GL gl = drawable.getGL();
@@ -368,7 +355,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
     public void texturaFondo(GL gl) {
         arch1 = new File("src/fondos/aLandscape4.jpg");
-        arch2 = new File("src/fondos/texture_floor1.jpg");
+        arch2 = new File("src/fondos/texture_floor2.jpg");
         if (newTexture) {
             newTexture = false;
 

@@ -27,6 +27,7 @@ public class lvl2 extends javax.swing.JFrame {
         glcjuego = new javax.media.opengl.GLCanvas();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
