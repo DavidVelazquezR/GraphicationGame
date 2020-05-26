@@ -34,6 +34,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import levels.DibujaB;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -190,7 +191,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 0.0f, 0.0f, 1.0f // is up
         );
 
-        DrawJF rb = new DrawJF();
+        //DrawJF rb = new DrawJF();
 
         // mueve la escena en la posicion de la matriz
         gl.glTranslatef(X_POSITION, Y_POSITION, Z_POSITION);
@@ -203,23 +204,26 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
         texturaFondo(gl);
 
         //we draw Stan in the window
-        JF.DIBU_jf(gl, keys['W'],
-                keys['J'],
-                keys['R'],
-                keys['F'],
-                keys['G'],
-                keys['T'],
-                keys['E'],
-                keys['X'],
-                keys['Y'],
-                keys['Z'],
-                keys['C'],
-                keys['V'],
-                keys['B'],
-                keys['O'],
-                keys['P']);
+//        JF.DIBU_jf(gl, keys['W'],
+//                keys['J'],
+//                keys['R'],
+//                keys['F'],
+//                keys['G'],
+//                keys['T'],
+//                keys['E'],
+//                keys['X'],
+//                keys['Y'],
+//                keys['Z'],
+//                keys['C'],
+//                keys['V'],
+//                keys['B'],
+//                keys['O'],
+//                keys['P']);
 
         // Flush all drawing operations to the graphics card
+        
+        DibujaB a = new DibujaB();
+        a.dibujaB(gl);
         gl.glFlush();
     }
 

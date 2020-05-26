@@ -53,7 +53,7 @@ public class GLRenderAria {
             draw_legsD(gl, glu, 'W', true);
             draw_legsI(gl, glu, ' ', true);
             //Aria salta con movimientos-------------------------------------------------------------------------------------Tecla J
-        } else if (tecla == 'J' && mvt % 40 + 10 > 20) {
+        } else if (tecla == 'J') {
             gl.glTranslatef(0f, 0.8f, 0f);
             draw_head(gl, glu, ' ');
             draw_face(gl, glu, 'J');
@@ -61,16 +61,6 @@ public class GLRenderAria {
             draw_hat(gl, glu, 'J');
             draw_handD(gl, glu, 'W');
             draw_handI(gl, glu, 'W');
-            draw_legsD(gl, glu, ' ', true);
-            draw_legsI(gl, glu, ' ', true);
-        } else if (tecla == 'J' && mvt % 40 + 10 <= 20) {
-            gl.glTranslatef(0f, 0.0f, 0f);
-            draw_head(gl, glu, ' ');
-            draw_face(gl, glu, ' ');
-            draw_body(gl, glut, ' ');
-            draw_hat(gl, glu, ' ');
-            draw_handD(gl, glu, ' ');
-            draw_handI(gl, glu, ' ');
             draw_legsD(gl, glu, ' ', true);
             draw_legsI(gl, glu, ' ', true);
             //Aria se agacha con movimientos----------------------------------------------------------------------------Tecla M

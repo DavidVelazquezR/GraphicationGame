@@ -238,7 +238,8 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         GLRenderBox box1 = new GLRenderBox();
 
         Moneda mo1 = new Moneda();
-
+        DibujaB ban = new DibujaB();
+        
         //Hacemos uso de GL y GLU
         GL gl = drawable.getGL();
         GLU glu = new GLU();
@@ -269,6 +270,12 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         box1.drawBox(gl, 'B', enableF1);
         //Retorno al origen
         gl.glTranslatef(-coordX1, -coordY1, 0.0f);
+        
+        gl.glPushMatrix();/////bandera
+        gl.glTranslatef(19.5f, -5.2f, -0.2f);
+        gl.glScaled(2f, 2f, 2f);
+        ban.dibujaB(gl);
+        gl.glPopMatrix();
 
 //        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
 //            gl.glPushMatrix();
@@ -482,7 +489,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                                 }
                                 try {
                                     Thread.sleep(1);
-                                    controlActions = 'W';
+                                    controlActions = 'J';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
 
                                 } catch (InterruptedException ex) {

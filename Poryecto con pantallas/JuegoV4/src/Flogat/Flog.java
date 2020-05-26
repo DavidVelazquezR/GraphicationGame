@@ -43,10 +43,11 @@ public class Flog {
                 set_orange_material(gl);
             break;
             case 2:
-                set_green_material(gl);
+                set_purp_material(gl);
+                
             break;
             case 3:
-                set_purp_material(gl);
+                set_green_material(gl);
             break;
             case 4:
                 set_brown_material(gl);

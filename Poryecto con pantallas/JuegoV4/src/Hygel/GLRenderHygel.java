@@ -35,12 +35,12 @@ public class GLRenderHygel {
         if(p==2){
             gl.glTranslatef(0f, 0.4f, 0f);
         }
-        //Aria hace movimientos para caminar---------------------------------------------------------------------------Tecla W
+        //caminar-------------------------------------------Tecla W
         if (tecla == 'W' && mvt % 20 + 10 >= 20) {
             draw_head(gl, glu, ' ');
             draw_body(gl, glu, ' ');
             draw_hat(gl, glu, ' ');
-            draw_handD(gl, glu, 'D'); //La primera que se va a mover sera la derecha
+            draw_handD(gl, glu, 'D');
             draw_handI(gl, glu, ' ');
             draw_legs(gl, glu, 'D', false);
             draw_legs(gl, glu, ' ', true);
@@ -50,31 +50,21 @@ public class GLRenderHygel {
             draw_body(gl, glu, ' ');
             draw_hat(gl, glu, ' ');
             draw_handD(gl, glu, ' ');
-            draw_handI(gl, glu, 'D'); //Despues se movera a la izquierda
+            draw_handI(gl, glu, 'D');
             draw_legs(gl, glu, ' ', false);
             draw_legs(gl, glu, 'D', true);
             draw_centro(gl, glu, 'D');
-            //Aria salta con movimientos-------------------------------------------------------------------------------------Tecla J
-        } else if (tecla == 'J' && mvt % 40 + 10 > 20) {
+            //salta-------------------------------------------Tecla J
+        } else if (tecla == 'J') {
             gl.glTranslatef(0f, 0.8f, 0f);
             draw_head(gl, glu, ' ');
             draw_body(gl, glu, ' ');
-            draw_hat(gl, glu, 'J');
+            draw_hat(gl, glu, ' ');
             draw_handD(gl, glu, 'W');
             draw_handI(gl, glu, 'W');
             draw_legs(gl, glu, 'W', false);
             draw_legs(gl, glu, 'W', true);
             draw_centro(gl, glu, 'W');
-        } else if (tecla == 'J' && mvt % 40 + 10 <= 20) {
-            gl.glTranslatef(0f, 0.0f, 0f);
-            draw_head(gl, glu, ' ');
-            draw_body(gl, glu, ' ');
-            draw_hat(gl, glu, ' ');
-            draw_handD(gl, glu, ' ');
-            draw_handI(gl, glu, ' ');
-            draw_legs(gl, glu, 'W', false);
-            draw_legs(gl, glu, 'W', true);
-            draw_centro(gl, glu, ' ');
             //Original----------------------------------------------------------------------------------------------------------------Tecla O
         } else if (tecla == 'O') {
             draw_head(gl, glu, ' ');
@@ -543,6 +533,7 @@ public class GLRenderHygel {
 
     public void boca_ab(GL gl) {
         gl.glBegin(GL.GL_QUADS);
+        gl.glColor3f(0.0f, 0.0f, 0.0f);
         gl.glVertex3f(1.1f, 1f, 1f);
         gl.glVertex3f(1.3f, 1f, 1f);
         gl.glVertex3f(1.4f, 0.6f, 1f);
@@ -550,6 +541,7 @@ public class GLRenderHygel {
         gl.glEnd();
 
         gl.glBegin(GL.GL_TRIANGLES);
+        gl.glColor3f(0.0f, 0.0f, 0.0f);
         gl.glVertex3f(1.25f, 1f, 1f);
         gl.glVertex3f(1.3f, 1f, 1f);
         gl.glVertex3f(1.4f, 0.6f, 1f);

@@ -322,7 +322,8 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         GLRenderBox box1 = new GLRenderBox();
 
         Moneda mo1 = new Moneda();
-
+        DibujaB ban = new DibujaB();
+        
         //Hacemos uso de GL y GLU
         GL gl = drawable.getGL();
         GLU glu = new GLU();
@@ -410,26 +411,29 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         box1.drawBox(gl, 'B', enableF10);
         //Retorno al origen
         gl.glTranslatef(-coordX10, -coordY10, 0.0f);
+        
+        gl.glPushMatrix();/////bandera
+        gl.glTranslatef(19.5f, -5.2f, -0.2f);
+        gl.glScaled(2f, 2f, 2f);
+        ban.dibujaB(gl);
+        gl.glPopMatrix();
 
         if (recoge_moneda(-10.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
             gl.glPushMatrix();
             gl.glTranslatef(-10.5f, -4.9f, 0.0f);
             mo1.draw_moneda(gl);
-            //Retorno al origen
             gl.glPopMatrix();
         }
         if (recoge_moneda(3.5f, 0f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
             gl.glPushMatrix();
             gl.glTranslatef(3.5f, 0f, 0.0f);
             mo1.draw_moneda(gl);
-            //Retorno al origen
             gl.glPopMatrix();
         }
         if (recoge_moneda(12f, -1f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
             gl.glPushMatrix();
             gl.glTranslatef(12, -1f, 0.0f);
             mo1.draw_moneda(gl);
-            //Retorno al origen
             gl.glPopMatrix();
         }
 
@@ -439,8 +443,8 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
         flog.dibujaFlog(gl, 'O', 1);
         gl.glPopMatrix();
         enemigo_cerca(enemigoX, -5.2f);
-
         gl.glPushMatrix();
+        
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
             //Mueve la escena en la psoicion de la matriz
@@ -469,7 +473,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     public boolean recoge_moneda(float xmon, float ymon, int fmo) {
         if (coordXPersonaje >= xmon - 1f && coordXPersonaje <= xmon + 1f
-                && coordYPersonaje <= ymon && flagmoneda[fmo]) {
+                && coordYPersonaje <= ymon+0.9 && flagmoneda[fmo]) {
             System.out.println("entra 3");
             Sound("coin");
             flagmoneda[fmo] = false;
@@ -480,7 +484,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
 
     public void enemigo_cerca(float xmons, float ymons) {
         if (coordXPersonaje >= xmons - 1f && coordXPersonaje <= xmons + 1f
-                && coordYPersonaje <= ymons + 0.5) {
+                && coordYPersonaje <= ymons + 0.85) {
             Sound("uuh");
             coordXPersonaje = -19.5f;
             cameraX = 15.0f;
@@ -700,7 +704,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                                 }
                                 try {
                                     Thread.sleep(1);
-                                    controlActions = 'W';
+                                    controlActions = 'J';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
                                     cameraY = cameraY - 0.01f;
 

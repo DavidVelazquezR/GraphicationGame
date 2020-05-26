@@ -7,6 +7,7 @@ package levels;
 
 import Aria.GLRenderAria;
 import Aria.GLRenderBox;
+import Flogat.Flog;
 import Hygel.GLRenderHygel;
 import Hygel.Moneda;
 import com.sun.opengl.util.Animator;
@@ -115,7 +116,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public float coordX8 = 6.0f;
     public float coordY8 = -4.7f;
     public boolean enableF8 = true;
-    
+
     public float coordX9 = 6.0f;
     public float coordY9 = -2.7f;
     public boolean enableF9 = true;
@@ -127,22 +128,25 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public float coordX11 = 8.0f;
     public float coordY11 = -2.7f;
     public boolean enableF11 = true;
-    
+
     public float coordX12 = 8.0f;
     public float coordY12 = -0.7f;
     public boolean enableF12 = true;
-    
+
     public float coordX13 = 14.0f;
     public float coordY13 = -2.7f;
     public boolean enableF13 = true;
-    
-    
 
     public boolean up = false;
     public float flag = 0.0f;
 
     GLRenderAria ariaCharacter = new GLRenderAria();
     GLRenderHygel mage = new GLRenderHygel();
+    public float enemigoX = -2.9f;
+    public float rotenemigo = 90;
+    public boolean izquierda = false;
+    Flog flog = new Flog();
+    Flog flog2 = new Flog();
     public int typeCharacter = 0;
     boolean terminado = false;
     int f = 0;
@@ -157,6 +161,30 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     }
 
     public void init(GLAutoDrawable drawable) {
+        Thread moverenemigo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+
+                    if (enemigoX <= -3.0 || enemigoX >= 2.4) {
+                        izquierda = !izquierda;
+                        rotenemigo += 180;
+                    }
+                    if (enemigoX >= -3.0f && !izquierda) {
+                        enemigoX += 0.01;
+                    } else if (enemigoX <= 2.5f && izquierda) {
+                        enemigoX -= 0.01f;
+                        System.out.println("enemigo: " + enemigoX);
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                    }
+                } while (true);
+
+            }
+        });
+
         Thread caer = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -247,7 +275,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
 
             }
         });
-
+        moverenemigo.start();
         caer.start();
 
         GL gl = drawable.getGL();
@@ -296,7 +324,8 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
         GLRenderBox box1 = new GLRenderBox();
 
         Moneda mo1 = new Moneda();
-
+        DibujaB ban = new DibujaB();
+        
         //Hacemos uso de GL y GLU
         GL gl = drawable.getGL();
         GLU glu = new GLU();
@@ -384,40 +413,57 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
         box1.drawBox(gl, 'B', enableF1);
         //Retorno al origen
         gl.glTranslatef(-coordX10, -coordY10, 0.0f);
-        
+
         //Dibujamos el 12 obstaculo 
         gl.glTranslatef(coordX11, coordY11, 0.0f);
         box1.drawBox(gl, 'B', enableF1);
         //Retorno al origen
         gl.glTranslatef(-coordX11, -coordY11, 0.0f);
-        
+
         //Dibujamos el 12 obstaculo 
         gl.glTranslatef(coordX12, coordY12, 0.0f);
         box1.drawBox(gl, 'B', enableF1);
         //Retorno al origen
         gl.glTranslatef(-coordX12, -coordY12, 0.0f);
+        
+        gl.glPushMatrix();/////bandera
+        gl.glTranslatef(19.5f, -5.2f, -0.2f);
+        gl.glScaled(2f, 2f, 2f);
+        ban.dibujaB(gl);
+        gl.glPopMatrix();
 
-//        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
-//            gl.glPushMatrix();
-//            gl.glTranslatef(-3.5f, -4.9f, 0.0f);
-//            mo1.draw_moneda(gl);
-//            //Retorno al origen
-//            gl.glPopMatrix();
-//        }
-//        if (recoge_moneda(3.5f, -4.9f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
-//            gl.glPushMatrix();
-//            gl.glTranslatef(3.5f, -4.9f, 0.0f);
-//            mo2.draw_moneda(gl);
-//            //Retorno al origen
-//            gl.glPopMatrix();
-//        }
-//        if (recoge_moneda(12f, -1f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
-//            gl.glPushMatrix();
-//            gl.glTranslatef(12, -1f, 0.0f);
-//            mo3.draw_moneda(gl);
-//            //Retorno al origen
-//            gl.glPopMatrix();
-//        }
+        if (recoge_moneda(-8.75f, -0.2f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(-8.75f, -0.2f, 0.0f);
+            mo1.draw_moneda(gl);
+            //Retorno al origen
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(3.78f, -3.0f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(3.78f, -3.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(10.5f, -4.9f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(10.5f, -4.9f, 0.0f);
+            mo1.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        gl.glPushMatrix();
+        gl.glTranslated(-8.75f, -5.2f, 0f);
+        flog.dibujaFlog(gl, 'O', 2);
+        gl.glPopMatrix();
+        enemigo_cerca(-8.75f, -5.2f);
+
+        gl.glPushMatrix();
+        gl.glTranslated(enemigoX, -5.2f, 0f);
+        gl.glRotated(rotenemigo, 0f, 1f, 0f);
+        flog2.dibujaFlog(gl, 'O', 2);
+        gl.glPopMatrix();
+        enemigo_cerca(enemigoX, -5.2f);
+
         gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
@@ -431,6 +477,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
             mage.accionesHygel(gl, controlActions, 2);
         }
         gl.glPopMatrix();
+        
         if (terminado & f != 1) {
             try {
                 //Ponemos a "Dormir" el programa durante los ms que queremos
@@ -447,7 +494,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
 
     public boolean recoge_moneda(float xmon, float ymon, int fmo) {
         if (coordXPersonaje >= xmon - 1f && coordXPersonaje <= xmon + 1f
-                && coordYPersonaje <= ymon && flagmoneda[fmo]) {
+                && coordYPersonaje <= ymon + 0.8 && flagmoneda[fmo]) {
             System.out.println("entra 3");
             Sound("coin");
             flagmoneda[fmo] = false;
@@ -455,6 +502,18 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
         }
 
         return true;
+    }
+
+    public void enemigo_cerca(float xmons, float ymons) {
+        if (coordXPersonaje >= xmons - 1f && coordXPersonaje <= xmons + 1f
+                && coordYPersonaje <= ymons + 0.85) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
+        }
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -521,13 +580,13 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
             texture1.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords1.left(), coords1.bottom());
-            gl.glVertex3f(30f, -20f, -3f);
+            gl.glVertex3f(40f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.bottom());
             gl.glVertex3f(-30f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.top());
-            gl.glVertex3f(-30f, 20f, -3f);
+            gl.glVertex3f(-30f, 30f, -3f);
             gl.glTexCoord2f(coords1.left(), coords1.top());
-            gl.glVertex3f(30f, 20f, -3f);
+            gl.glVertex3f(40f, 30f, -3f);
             gl.glEnd();
             texture1.disable();
 
@@ -555,15 +614,13 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
             this.dispose();
         }
 
-        System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de entrada");
-
+        //System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de entrada");
         switch (ke.getKeyCode()) {
             case 'A':
                 controlActions = 'W';
 
                 if (coordXPersonaje == -9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -1.3f) {
                     System.out.println("Pared Der Caja 2 y 3");
-                    Sound("nod");
                     coordXPersonaje = -9.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
                     System.out.println("Caida Izq Caja 3");
@@ -579,7 +636,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     Sound("fall");
                 } else if (coordXPersonaje == -5.0 && coordYPersonaje >= -5.2f && coordYPersonaje <= -1.3f) {
                     System.out.println("Pared Der Caja 5");
-                    Sound("nod");
                     coordXPersonaje = -5.0f;
                 } else if (coordXPersonaje == -3.0f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Der Caja 6");
@@ -593,7 +649,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     Sound("fall");
                 } else if (coordXPersonaje == 9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= 0.7f) {
                     System.out.println("Pared Der Caja 10, 11 y 12");
-                    Sound("nod");
                     coordXPersonaje = 9.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == 3.0f) {
                     System.out.println("Caida Izq Caja 7");
@@ -616,7 +671,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                 }//_________________________________________________________________________________
                 else {
                     if (coordXPersonaje <= -19.5) {
-                        Sound("nod");
                     } else {
                         coordXPersonaje = coordXPersonaje - 0.5f;
                         cameraX = cameraX + 0.5f;
@@ -631,7 +685,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
 
                 if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Izq Caja 1");
-                    Sound("nod");
                     coordXPersonaje = -14.5f;
                 } else if (coordYPersonaje == -1.4f && coordXPersonaje == -10.0f) {
                     System.out.println("Caida Der Caja 2 y 3");
@@ -641,11 +694,9 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     Sound("fall");
                 } else if (coordXPersonaje == -12.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
                     System.out.println("Pared Izq Caja 3");
-                    Sound("nod");
                     coordXPersonaje = -12.5f;
                 } else if (coordXPersonaje == -8.0f && coordYPersonaje >= -5.2f && coordYPersonaje <= -1.3f) {
                     System.out.println("Pared Izq Caja 4 y 5");
-                    Sound("nod");
                     coordXPersonaje = -8.0f;
                 } else if (coordYPersonaje == -1.4f && coordXPersonaje == -5.5f) {
                     System.out.println("Caida Der Caja 5");
@@ -661,17 +712,14 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     Sound("fall");
                 } else if (coordXPersonaje == 2.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Izq Caja 7");
-                    Sound("nod");
                     coordXPersonaje = 2.5f;
                 } else if (coordXPersonaje == 4.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
                     System.out.println("Pared Izq Caja 9");
-                    Sound("nod");
                     coordXPersonaje = 4.5f;
                 } else if (coordXPersonaje == 6.5f && coordYPersonaje >= -1.4f && coordYPersonaje <= 0.7f) {
                     System.out.println("Pared Izq Caja 12");
-                    Sound("nod");
                     coordXPersonaje = 6.5f;
-                }else if (coordYPersonaje == 0.6f && coordXPersonaje == 9.0f) {
+                } else if (coordYPersonaje == 0.6f && coordXPersonaje == 9.0f) {
                     System.out.println("Caida Der Caja 12, 11 y 10");
                     coordXPersonaje = 9.5f;
                     up = true;
