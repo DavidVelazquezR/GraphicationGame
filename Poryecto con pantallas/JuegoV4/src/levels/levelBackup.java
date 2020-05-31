@@ -176,16 +176,12 @@ public class levelBackup extends JFrame implements GLEventListener, KeyListener,
 
             }
         });
-
         caer.start();
 
         GL gl = drawable.getGL();
+        System.err.println("Init gl is: " + gl.getClass().getName());
 
-        System.err.println(
-                "Init gl is: " + gl.getClass().getName());
-
-        gl.setSwapInterval(
-                1);
+        gl.setSwapInterval(1);
         //añadir luz
         float ligth_ambient[]
                 = {
@@ -207,28 +203,18 @@ public class levelBackup extends JFrame implements GLEventListener, KeyListener,
 
                 };
 
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ligth_ambient,
-                0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, ligth_difuse,
-                0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, ligth_specular,
-                0);
-        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, ligth_position,
-                0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ligth_ambient, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, ligth_difuse, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, ligth_specular, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, ligth_position, 0);
         gl.glEnable(GL.GL_LIGHTING);
-
         gl.glEnable(GL.GL_LIGHT0);
-
         gl.glEnable(GL.GL_DEPTH_TEST);
 
         gl.glShadeModel(GL.GL_SMOOTH);
-
-        drawable.addMouseListener(
-                this);
-        drawable.addMouseMotionListener(
-                this);
-        drawable.addKeyListener(
-                this);
+        drawable.addMouseListener(this);
+        drawable.addMouseMotionListener(this);
+        drawable.addKeyListener(this);
 
     }
 
@@ -361,8 +347,8 @@ public class levelBackup extends JFrame implements GLEventListener, KeyListener,
     }
 
     public void texturaFondo(GL gl) {
-        arch1 = new File("src/fondos/aLandscape4.jpg");
-        arch2 = new File("src/fondos/texture_floor2.jpg");
+        arch1 = new File("src/fondos/aLandscape3.jpg");
+        arch2 = new File("src/fondos/texture_floor3.jpg");
         if (newTexture) {
             newTexture = false;
 
@@ -443,11 +429,11 @@ public class levelBackup extends JFrame implements GLEventListener, KeyListener,
                 if (coordXPersonaje == -11.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Colision Caja 1 A");
                     coordXPersonaje = -11.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.5f) {
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
+                    coordXPersonaje = -14.5f;
                     up = true;
                 } else {
                     if (coordXPersonaje <= -19.5) {
-                        Sound("nod");
                     } else {
                         coordXPersonaje = coordXPersonaje - 0.5f;
                         rotFigure = 270;
@@ -460,7 +446,8 @@ public class levelBackup extends JFrame implements GLEventListener, KeyListener,
                 if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Colision Caja 1 D");
                     coordXPersonaje = -14.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -11.5f) {
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -12.0f) {
+                    coordXPersonaje = -11.5f;
                     up = true;
                 } else {
                     if (coordXPersonaje < 19.5) {
@@ -493,8 +480,7 @@ public class levelBackup extends JFrame implements GLEventListener, KeyListener,
                                     coordYPersonaje = coordYPersonaje + 0.01f;
 
                                 } catch (InterruptedException ex) {
-                                    Logger.getLogger(levelBackup.class
-                                            .getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(levelBackup.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
                             up = true;
