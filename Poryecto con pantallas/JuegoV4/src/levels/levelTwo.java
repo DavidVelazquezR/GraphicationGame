@@ -49,6 +49,7 @@ import sun.audio.AudioStream;
  */
 public class levelTwo extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
 
+    //constructor para resivir el personaje de la pantalla de seleccion
     public levelTwo(int per) {
         typeCharacter = per;
     }
@@ -58,6 +59,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     private float view_roty = 0.1f;
     private float angle_rotZ = 90;
 
+    //variables encaragdas de hacer funcionar los sonidos
     AudioStream audio;
     InputStream sounds;
 
@@ -68,13 +70,14 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     //variable que se encarga de escoger un perosnaje a usar en el nivel
 
     //textures utilizada para cargara imagenes
+    //cada texture es para una imagen diferente
     private Texture texture1;
     private Texture texture2;
     private File arch1;
     private File arch2;
     private boolean newTexture = true;
 
-    //Variables Camara
+    //Variables Camara del juegp
     public float cameraX = 15.0f;
     public float cameraY = 0.0f;
     public float cameraZ = 0.0f;
@@ -83,6 +86,8 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public float coordXPersonaje = -19.5f;
     public float coordYPersonaje = -5.2f;
 
+    //Variables de objetos del juego
+    //cada una dispone de su cordenada en X y Y y un enable para hacerla desaparecer si se requiere
     //primera caja
     public float coordX1 = -13.0f;
     public float coordY1 = -4.7f;
@@ -140,19 +145,27 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public boolean up = false;
     public float flag = 0.0f;
 
+    //Instancias de objetos de los personajes
     GLRenderAria ariaCharacter = new GLRenderAria();
     GLRenderHygel mage = new GLRenderHygel();
+    
+    //Varibles del enemigo
     public float enemigoX = -2.9f;
     public float rotenemigo = 90;
     public boolean izquierda = false;
+    
+    //Instancias de los enemigos
     Flog flog = new Flog();
     Flog flog2 = new Flog();
     public int typeCharacter = 0;
     boolean terminado = false;
     int f = 0;
+   
     File clic = new File("src/sonidos/08.wav");
     Clip clip, clip2;
     JFrame frame;
+    
+    //Vector para mantener  monedas activas
     boolean[] flagmoneda = {true, true, true};
 
     public levelTwo(int per, JFrame j) {
@@ -161,6 +174,8 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     }
 
     public void init(GLAutoDrawable drawable) {
+        
+        
         Thread moverenemigo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -185,6 +200,8 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
             }
         });
 
+        //en este hilo se especifica que detendra su caida cuando llege a cierta corrdenada en y
+        //puede verse como especificar en los ifs las tapas de las cajas
         Thread caer = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -320,9 +337,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
 
     public void display(GLAutoDrawable drawable) {
         //Se genera una instancia que dibuja al personaje
-
         GLRenderBox box1 = new GLRenderBox();
-
         Moneda mo1 = new Moneda();
         DibujaB ban = new DibujaB();
         
@@ -615,6 +630,11 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
         }
 
         //System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de entrada");
+        
+        //los case van de A=Mover izquierda y W= Mover derecha y W =salto
+        //especificamos en los if y else las colisones y acciones que debe de hacer el personaje
+        //por ejemplo las colisoones de paredes de las cajas y hacer que el personaje se caiga desde una esquina
+        //esa caida se epscifica con un sout pemitiendo el control de cada una de as colisiones
         switch (ke.getKeyCode()) {
             case 'A':
                 controlActions = 'W';
