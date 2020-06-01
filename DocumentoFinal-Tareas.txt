@@ -1,4 +1,4 @@
-Caratula Oficial (incluye nombre de proyecto, alumnos y docente)  ------------------------------------------------------LISTO
+﻿Caratula Oficial (incluye nombre de proyecto, alumnos y docente)  ------------------------------------------------------LISTO
 Índice   (de Contenido y de Tablas o Figuras)                     ------------------------------------------------------LISTO
 Introducción (Redactar de que trata a grandes rasgos el proyecto máximo una cuartilla, mínimo media cuartilla) 
 Problemática 
@@ -26,8 +26,10 @@ Marco Teórico
 Marco Metodológico 
 •	Requerimientos Funcionales y no Funcionales					------------------------------------------------------LISTO
 •	Ciclo de vida del Software (que empleo)
+------------------------------------------------------LISTO
 •	Diagrama de Flujo de Actividades (Actual)
 •	Diagrama de Caso de Uso
+------------------------------------------------------LISTO
 •	Plantilla de Caso de Uso (usar la plantilla anexa, por cada pantalla y nivel y personaje que tenga)
 •	Diagrama de Paquetes
 
@@ -36,13 +38,18 @@ Desarrollo de Solución
 •	Manera de Juego (de que trata, como gana o pierde puntos, como realiza colisiones etc.)           David
 •	Descripción de los Personajes, (que papel desarrollan, como el usuario los elige etc.)		 ------------------------------------------------------LISTO
 •	Personajes en 3D (screen shot y su descripción como realizan Movimientos Mínimos necesarios (traslación, escalación, rotación, corte, reflexión,    sonido on/ off por personaje y escenario) Cada quien su personaje
-•	Niveles por Personaje (Descripción de cada uno con los personajes) 				Cada quien su personaje
+•	Niveles por Personaje (Descripción de cada uno con los personajes) 				
+Cada quien su personaje
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         Charly
 •	Como Muestra la Ayuda (Configuración de Movimientos, Manera de Juego)
 •	Como Muestra los Creditos(Version soportada etc)
 •	Dificultades Presentadas Soluciones Dadas
 •	Código Relevante Explicado
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 •	Conclusiones  (Individuales Mínimo media cuartilla por integrante)
 •	Recomendaciones
+
 
 Bibliografía (en formato APA) 									------------------------------------------------------LISTO
 Videos	Documentales	Libros	Revistas							 ------------------------------------------------------LISTO
