@@ -128,7 +128,6 @@ public class Inicio extends javax.swing.JFrame {
         jpconfig = new javax.swing.JPanel();
         jPOverlayCre1 = new javax.swing.JPanel();
         jLTitulo3 = new javax.swing.JLabel();
-        jlpausa = new javax.swing.JLabel();
         jLTitulo5 = new javax.swing.JLabel();
         jloff = new javax.swing.JLabel();
         jlinicio2 = new javax.swing.JLabel();
@@ -136,6 +135,7 @@ public class Inicio extends javax.swing.JFrame {
         jlsaltar = new javax.swing.JLabel();
         jlcader1 = new javax.swing.JLabel();
         jlcamizq1 = new javax.swing.JLabel();
+        jlpausa = new javax.swing.JLabel();
         jpselectlv = new javax.swing.JPanel();
         jOselectlvl = new javax.swing.JPanel();
         jllvl1 = new javax.swing.JLabel();
@@ -355,13 +355,6 @@ public class Inicio extends javax.swing.JFrame {
         jLTitulo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPOverlayCre1.add(jLTitulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 541, -1));
 
-        jlpausa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlpausa.setForeground(new java.awt.Color(255, 255, 255));
-        jlpausa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlpausa.setText("Pausa   -   ESC");
-        jlpausa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPOverlayCre1.add(jlpausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 260, -1));
-
         jLTitulo5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLTitulo5.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -428,6 +421,13 @@ public class Inicio extends javax.swing.JFrame {
         jlcamizq1.setText("Caminar a izquierda   -   A");
         jlcamizq1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPOverlayCre1.add(jlcamizq1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 260, -1));
+
+        jlpausa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlpausa.setForeground(new java.awt.Color(51, 51, 51));
+        jlpausa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlpausa.setText("Pausa   -   ESC");
+        jlpausa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre1.add(jlpausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 260, -1));
 
         jpconfig.add(jPOverlayCre1);
         jPOverlayCre1.setBounds(0, 0, 820, 533);

@@ -174,8 +174,6 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     }
 
     public void init(GLAutoDrawable drawable) {
-        
-        
         Thread moverenemigo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -196,10 +194,8 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                     } catch (InterruptedException ex) {
                     }
                 } while (true);
-
             }
         });
-
         //en este hilo se especifica que detendra su caida cuando llege a cierta corrdenada en y
         //puede verse como especificar en los ifs las tapas de las cajas
         Thread caer = new Thread(new Runnable() {
@@ -776,7 +772,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                                 }
                                 try {
                                     Thread.sleep(1);
-                                    controlActions = 'W';
+                                    controlActions = 'J';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
                                     cameraY = cameraY - 0.01f;
 
