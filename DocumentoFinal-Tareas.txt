@@ -41,7 +41,7 @@ Desarrollo de Solución
 •	Niveles por Personaje (Descripción de cada uno con los personajes) 				
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         Charly
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         Charly ------LISTO
 •	Como Muestra la Ayuda (Configuración de Movimientos, Manera de Juego)
 •	Como Muestra los Creditos(Version soportada etc)
 •	Dificultades Presentadas Soluciones Dadas
