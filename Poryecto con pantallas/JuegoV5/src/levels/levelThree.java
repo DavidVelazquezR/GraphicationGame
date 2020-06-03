@@ -8,6 +8,7 @@ package levels;
 import Hygel.*;
 import Aria.GLRenderAria;
 import Aria.GLRenderBox;
+import Flogat.Flog;
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
@@ -139,9 +140,29 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         frame = j;
         typeCharacter = per;
     }
-
+    public float enemigoY = 0.0f;
+    public boolean subir = true;
     public void init(GLAutoDrawable drawable) {
 
+        Thread subirenemigo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+                    if (enemigoY <= -5.2 || enemigoY >= 4.2) {
+                        subir=!subir;
+                    }
+                    if (enemigoY<4.2 && subir) {
+                        enemigoY += 0.02f;
+                    }else if (enemigoY>-5.2 && !subir) {
+                        enemigoY -= 0.02f;
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                    }
+                } while (true);
+            }
+        });
         Thread caer = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -214,7 +235,8 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
             }
         });
         caer.start();
-
+        subirenemigo.start();
+        
         GL gl = drawable.getGL();
         System.err.println("Init gl is: " + gl.getClass().getName());
 
@@ -254,7 +276,9 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         drawable.addKeyListener(this);
 
     }
-
+    Flog flog1 = new Flog();
+    Flog flog2 = new Flog();
+    Flog flog3 = new Flog();
     public void display(GLAutoDrawable drawable) {
         //Se genera una instancia que dibuja al personaje
 
@@ -346,7 +370,46 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         gl.glScaled(2f, 2f, 2f);
         ban.dibujaB(gl);
         gl.glPopMatrix();
-
+        
+        if (recoge_moneda(-10.5f, -5.0f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(-10.5f, -5.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            //Retorno al origen
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda2(4.5f, -5.0f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(4.5f, -5.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(12.0f, -5.0f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(12.0f, -5.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        
+        gl.glPushMatrix();
+        gl.glTranslated(-4.0f, -3.3, 0f);
+        flog1.dibujaFlog(gl, 'O', 3);
+        gl.glPopMatrix();
+        enemigo_cerca(-4.0f, -3.3f);
+        
+        gl.glPushMatrix();
+        gl.glTranslated(4.5f, enemigoY, 0f);
+        flog2.dibujaFlog(gl, 'O', 3);
+        gl.glPopMatrix();
+        enemigoY_cerca(4.5f, enemigoY);
+        
+        gl.glPushMatrix();
+        gl.glTranslated(12f, enemigoY, 0f);
+        flog3.dibujaFlog(gl, 'O', 3);
+        gl.glPopMatrix();
+        enemigoY_cerca(12f, enemigoY);
+        
+        gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
             //Mueve la escena en la psoicion de la matriz
@@ -381,8 +444,41 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
             flagmoneda[fmo] = false;
             return false;
         }
-
         return true;
+    }
+    public boolean recoge_moneda2(float xmon, float ymon, int fmo) {
+        if (coordXPersonaje >= xmon - 1f && coordXPersonaje <= xmon + 1f
+                && coordYPersonaje >= ymon-0.6 && flagmoneda[fmo]) {
+            System.out.println("entra 3");
+            Sound("coin");
+            flagmoneda[fmo] = false;
+            return false;
+        }
+        return true;
+    }
+    
+    public void enemigo_cerca(float xmons, float ymons) {
+        if (coordXPersonaje >= xmons - 1f && coordXPersonaje <= xmons + 1f
+                && coordYPersonaje <= ymons + 0.85) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            //cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
+        }
+    }
+    
+    public void enemigoY_cerca(float xmons, float ymons) {
+        if ((coordXPersonaje >= xmons - 0.5f && coordXPersonaje <= xmons + 0.5f)
+                && ((coordYPersonaje+0.2) >= ymons)) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            //cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
+        }
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
