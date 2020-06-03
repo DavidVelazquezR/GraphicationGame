@@ -83,6 +83,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
     public float coordX2 = -8.0f;
     public float coordY2 = -4.7f;
     public boolean enableF2 = true;
+    
     public float coordX3 = -6.0f;
     public float coordY3 = -4.7f;
     public boolean enableF3 = true;
