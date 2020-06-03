@@ -87,7 +87,8 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
     public float coordYPersonaje = -5.2f;
 
     //Variables de objetos del juego
-    //cada una dispone de su cordenada en X y Y y un enable para hacerla desaparecer si se requiere
+    //cada una dispone de su cordenada en X y Y y un enable para
+    //hacerla desaparecer si se requiere
     //primera caja
     public float coordX1 = -13.0f;
     public float coordY1 = -4.7f;
