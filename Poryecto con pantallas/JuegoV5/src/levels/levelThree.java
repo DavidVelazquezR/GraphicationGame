@@ -330,10 +330,6 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         //Retorno al origen
         gl.glTranslatef(-coordX1, -coordY1, 0.0f);
 
-<<<<<<< HEAD
-<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         //Dibujamos el segundo obstaculo 
         gl.glTranslatef(coordX2, coordY2, 0.0f);
         box1.drawBox(gl, 'B', enableF1);
@@ -382,11 +378,6 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         //Retorno al origen
         gl.glTranslatef(-coordX9, -coordY9, 0.0f);
 
-<<<<<<< HEAD
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         gl.glPushMatrix();/////bandera
         gl.glTranslatef(19.5f, -5.2f, -0.2f);
         gl.glScaled(2f, 2f, 2f);
@@ -608,10 +599,6 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
             case 'A':
                 controlActions = 'W';
                 if (coordXPersonaje == -11.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-<<<<<<< HEAD
-<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                     System.out.println("Pared Caja 1 Dere ");
                     coordXPersonaje = -11.5f;
                 } else if (coordXPersonaje == -4.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
@@ -640,49 +627,21 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                     coordXPersonaje = -3.5f;
                     up = true;
                     cameraX = cameraX + 0.5f;
-<<<<<<< HEAD
-=======
-                     System.out.println("Pared Caja 1 Dere ");
-                    coordXPersonaje = -11.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
-                    System.out.println("Caida Caja 1 Izq");
-                    coordXPersonaje = -14.5f;
-                    up = true;
-                    Sound("fall");
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
                 } else {
                     if (coordXPersonaje <= -19.5) {
                     } else {
-                        //Camina normala la izquierda
-=======
-                } else {
-                    if (coordXPersonaje <= -19.5) {
-                    } else {
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                         coordXPersonaje = coordXPersonaje - 0.5f;
                         rotFigure = 270;
                         cameraX = cameraX + 0.5f;
                     }
                 }
                 break;
-<<<<<<< HEAD
-<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
 
-=======
-                
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
-=======
-
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
             case 'D':
                 controlActions = 'W';
                 if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Caja 1 Izqu ");
                     coordXPersonaje = -14.5f;
-<<<<<<< HEAD
-<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                 } else if (coordXPersonaje == -9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Caja 2 Izqu ");
                     coordXPersonaje = -9.5f;
@@ -707,29 +666,12 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                     coordXPersonaje = 1.5f;
                     up = true;
                     cameraX = cameraX - 0.5f;
-<<<<<<< HEAD
-=======
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -12.0f) {
-                    System.out.println("Caida Caja 1 Der");
-                    coordXPersonaje = -11.5f;
-                    up = true;
-                    Sound("fall");
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
                 } else {
                     if (coordXPersonaje < 19.5) {
-                        //Camina normala la derecha
-=======
-                } else {
-                    if (coordXPersonaje < 19.5) {
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                         coordXPersonaje = coordXPersonaje + 0.5f;
                         rotFigure = 90;
                         cameraX = cameraX - 0.5f;
                     } else if (coordXPersonaje >= 19.5) {
-<<<<<<< HEAD
-                        //No permite caminar por que es el inicio de mapa
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                         rotFigure = 270;
                         controlActions = 'W';
                         flag = coordYPersonaje;
@@ -741,15 +683,7 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                     }
                 }
                 break;
-<<<<<<< HEAD
-<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
 
-=======
-                
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
-=======
-
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
             case 'W':
                 flag = coordYPersonaje;
                 Thread t = new Thread() {
@@ -763,16 +697,8 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                                     Thread.sleep(1);
                                     controlActions = 'J';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
-<<<<<<< HEAD
-<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
                                     cameraY = cameraY - 0.01f;
 
-=======
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
-=======
-                                    cameraY = cameraY - 0.01f;
-
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(levelThree.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -785,15 +711,6 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                             coordYPersonaje = bd.floatValue();
                             System.out.println("saltoo");
                         }
-<<<<<<< HEAD
-                    }
-                };
-                t.start();
-                break;
-        }
-        
-        System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de salida");
-=======
 
                     }
                 };
@@ -804,7 +721,6 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         }
         System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de salida");
 
->>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
     }
 
     public void keyReleased(KeyEvent ke) {
