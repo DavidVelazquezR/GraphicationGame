@@ -52,9 +52,9 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     }
 
     private Animator animator;
-    private float view_rotx = 0.1f;
-    private float view_roty = 0.1f;
-    private float angle_rotZ = 90;
+    float view_rotx = 0.1f;
+    float view_roty = 0.1f;
+    float angle_rotZ = 90;
 
     AudioStream audio;
     InputStream sounds;
@@ -82,34 +82,28 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     public boolean enableF1 = true;
 
     //segunda caja
-    public float coordX2 = -11.0f;
-    public float coordY2 = 1.3f;
+    public float coordX2 = -8.0f;
+    public float coordY2 = -4.7f;
     public boolean enableF2 = true;
-
     //tercera caja
-    public float coordX3 = -8.0f;
-    public float coordY3 = -4.7f;
+    public float coordX3 = -6.0f;
+    public float coordY3 = -2.7f;
     public boolean enableF3 = true;
 
     //cuarta caja
-    public float coordX4 = -6.0f;
-    public float coordY4 = -2.7f;
+    public float coordX4 = -4.0f;
+    public float coordY4 = -0.7f;
     public boolean enableF4 = true;
 
     //quinta caja
-    public float coordX5 = -4.0f;
-    public float coordY5 = -0.7f;
+    public float coordX5 = -2.0f;
+    public float coordY5 = 1.3f;
     public boolean enableF5 = true;
 
     //sexta caja
-    public float coordX6 = -2.0f;
-    public float coordY6 = 1.3f;
+    public float coordX6 = -0.0f;
+    public float coordY6 = 3.3f;
     public boolean enableF6 = true;
-
-    //Septima caja
-    public float coordX7 = -0.0f;
-    public float coordY7 = 3.3f;
-    public boolean enableF7 = true;
 
     public float coordX8 = 12.0f;
     public float coordY8 = -4.7f;
@@ -157,20 +151,58 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                         if (coordYPersonaje <= -5.2f) {
                             up = false;
                             flag = 0.0f;
-                            System.out.println("cayoo");
+                            System.out.println("Caida normal");
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
-
                             coordYPersonaje = bd.floatValue();
                         } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -14.0f && coordXPersonaje <= -12.0f) {
+                            System.out.println("Tapa Caja 1");
                             up = false;
                             flag = 0.0f;
-                            System.out.println("cayoo");
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
-
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -9.0f && coordXPersonaje <= -7.5f) {
+                            System.out.println("Tapa Caja 2");
+                            up = false;
+                            flag = 0.0f;
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= -7.0f && coordXPersonaje <= -5.5f) {
+                            System.out.println("Tapa Caja 3");
+                            up = false;
+                            flag = 0.0f;
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= 0.5f && coordXPersonaje >= -5.0f && coordXPersonaje <= -3.5f) {
+                            System.out.println("Tapa Caja 4");
+                            up = false;
+                            flag = 0.0f;
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= 2.4f && coordXPersonaje >= -3.0f && coordXPersonaje <= -1.5f) {
+                            System.out.println("Tapa Caja 5");
+                            up = false;
+                            flag = 0.0f;
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
+                            coordYPersonaje = bd.floatValue();
+                        } else if (coordYPersonaje <= 4.3f && coordXPersonaje >= -1.0f && coordXPersonaje <= 1.0f) {
+                            System.out.println("Tapa Caja 6");
+                            up = false;
+                            flag = 0.0f;
+                            BigDecimal bd = new BigDecimal(coordYPersonaje);
+                            bd = bd.setScale(1, RoundingMode.HALF_UP);
+                            System.out.println(bd);
                             coordYPersonaje = bd.floatValue();
                         }
                     }
@@ -307,39 +339,12 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         //Retorno al origen
         gl.glTranslatef(-coordX6, -coordY6, 0.0f);
 
-        //Dibujamos el septimo obstaculo 
-        gl.glTranslatef(coordX7, coordY7, 0.0f);
-        box1.drawBox(gl, 'B', enableF7);
-        //Retorno al origen
-        gl.glTranslatef(-coordX7, -coordY7, 0.0f);
-
         gl.glPushMatrix();/////bandera
         gl.glTranslatef(19.5f, -5.2f, -0.2f);
         gl.glScaled(2f, 2f, 2f);
         ban.dibujaB(gl);
         gl.glPopMatrix();
 
-//        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
-//            gl.glPushMatrix();
-//            gl.glTranslatef(-3.5f, -4.9f, 0.0f);
-//            mo1.draw_moneda(gl);
-//            //Retorno al origen
-//            gl.glPopMatrix();
-//        }
-//        if (recoge_moneda(3.5f, -4.9f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
-//            gl.glPushMatrix();
-//            gl.glTranslatef(3.5f, -4.9f, 0.0f);
-//            mo2.draw_moneda(gl);
-//            //Retorno al origen
-//            gl.glPopMatrix();
-//        }
-//        if (recoge_moneda(12f, -1f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
-//            gl.glPushMatrix();
-//            gl.glTranslatef(12, -1f, 0.0f);
-//            mo3.draw_moneda(gl);
-//            //Retorno al origen
-//            gl.glPopMatrix();
-//        }
         gl.glPushMatrix();
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
@@ -353,6 +358,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
             mage.accionesHygel(gl, controlActions, 2);
         }
         gl.glPopMatrix();
+
         if (terminado & f != 1) {
             try {
                 //Ponemos a "Dormir" el programa durante los ms que queremos
@@ -485,9 +491,37 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 if (coordXPersonaje == -11.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Caja 1 Dere ");
                     coordXPersonaje = -11.5f;
+                } else if (coordXPersonaje == 1.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= 4.2f) {
+                    System.out.println("Pared Caja 6 Dere ");
+                    coordXPersonaje = 1.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
                     System.out.println("Caida Caja 1 Izq");
                     coordXPersonaje = -14.5f;
+                    up = true;
+                    Sound("fall");
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -9.0f) {
+                    System.out.println("Caida Caja 2 Izq");
+                    coordXPersonaje = -9.5f;
+                    up = true;
+                    Sound("fall");
+                } else if (coordYPersonaje == -1.4f && coordXPersonaje == -7.0f) {
+                    System.out.println("Caida Caja 3 Izq");
+                    coordXPersonaje = -7.5f;
+                    up = true;
+                    Sound("fall");
+                } else if (coordYPersonaje == 0.5f && coordXPersonaje == -5.0f) {
+                    System.out.println("Caida Caja 4 Izq");
+                    coordXPersonaje = -5.5f;
+                    up = true;
+                    Sound("fall");
+                } else if (coordYPersonaje == 2.4f && coordXPersonaje == -3.0f) {
+                    System.out.println("Caida Caja 5 Izq");
+                    coordXPersonaje = -3.5f;
+                    up = true;
+                    Sound("fall");
+                } else if (coordYPersonaje == 4.3f && coordXPersonaje == -1.0f) {
+                    System.out.println("Caida Caja 6 Izq");
+                    coordXPersonaje = -1.5f;
                     up = true;
                     Sound("fall");
                 } else {
@@ -502,12 +536,32 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
             case 'D':
                 controlActions = 'W';
-                if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
+                if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.2f) {
                     System.out.println("Pared Caja 1 Izqu ");
                     coordXPersonaje = -14.5f;
+                } else if (coordXPersonaje == -9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.2f) {
+                    System.out.println("Pared Caja 2 Izqu ");
+                    coordXPersonaje = -9.5f;
+                } else if (coordXPersonaje == -7.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
+                    System.out.println("Pared Caja 3 Izqu ");
+                    coordXPersonaje = -7.5f;
+                } else if (coordXPersonaje == -5.5f && coordYPersonaje >= -1.4f && coordYPersonaje <= -0.4f) {
+                    System.out.println("Pared Caja 4 Izqu ");
+                    coordXPersonaje = -5.5f;
+                } else if (coordXPersonaje == -3.5f && coordYPersonaje >= 0.5f && coordYPersonaje <= 2.3f) {
+                    System.out.println("Pared Caja 5 Izqu ");
+                    coordXPersonaje = -3.5f;
+                } else if (coordXPersonaje == -1.5f && coordYPersonaje >= 2.4f && coordYPersonaje <= 4.2f) {
+                    System.out.println("Pared Caja 6 Izqu ");
+                    coordXPersonaje = -1.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -12.0f) {
                     System.out.println("Caida Caja 1 Der");
                     coordXPersonaje = -11.5f;
+                    up = true;
+                    Sound("fall");
+                } else if (coordYPersonaje == 4.3f && coordXPersonaje == 1.0f) {
+                    System.out.println("Caida Caja 6 Der");
+                    coordXPersonaje = 1.5f;
                     up = true;
                     Sound("fall");
                 } else {
@@ -533,7 +587,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 flag = coordYPersonaje;
                 Thread t = new Thread() {
                     public void run() {
-                        if (coordYPersonaje == -5.2f || coordYPersonaje == -3.3f || coordYPersonaje == -1.4f || coordYPersonaje == 0.5f || coordYPersonaje == 2.4f) {
+                        if (coordYPersonaje == -5.2f || coordYPersonaje == -3.3f || coordYPersonaje == -1.4f || coordYPersonaje == 0.5f || coordYPersonaje == 2.4f || coordYPersonaje == 4.3f) {
                             for (float i = 0.0f; i < 300.0f; i++) {
                                 if (i == 0) {
                                     Sound("sj");
@@ -547,7 +601,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                                     Logger.getLogger(levelThree.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
-                            
+
                             up = true;
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
