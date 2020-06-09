@@ -9,7 +9,10 @@ import Hygel.*;
 import Aria.GLRenderAria;
 import Aria.GLRenderBox;
 import Flogat.Flog;
+<<<<<<< HEAD
 import Terluks.DrawJF;
+=======
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
@@ -47,9 +50,15 @@ import sun.audio.AudioStream;
  *
  * @author TOSHIBA
  */
+<<<<<<< HEAD
 public class levelFour extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
 
     public levelFour(int per) {
+=======
+public class levelThree extends JFrame implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
+
+    public levelThree(int per) {
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         typeCharacter = per;
     }
 
@@ -74,17 +83,29 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     private File arch2;
     private boolean newTexture = true;
 
+<<<<<<< HEAD
     public float camaraX = 15.0f;
     public float camaraY = 0.0f;
     public float camaraZ = 0.0f;
+=======
+    //Variables Camara del juegp
+    public float cameraX = 15.0f;
+    public float cameraY = 0.0f;
+    public float cameraZ = 0.0f;
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
 
     //Variables para el control de las Coordenadas de las figuras 3D
     public float coordXPersonaje = -19.5f;
     public float coordYPersonaje = -5.2f;
 
+<<<<<<< HEAD
     //cambismos las coordenadas y acomodar los obstaculos
     //primera caja
     /* public float coordX1 = -13.0f;
+=======
+    //primera caja
+    public float coordX1 = -13.0f;
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
     public float coordY1 = -4.7f;
     public boolean enableF1 = true;
 
@@ -97,6 +118,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     public float coordY3 = -4.7f;
     public boolean enableF3 = true;
 
+<<<<<<< HEAD
     public float coordX4 = -1.0f;
     public float coordY4 = -4.7f;
     public boolean enableF4 = true;
@@ -123,12 +145,41 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
     public float coordX10 = 14.0f;
     public float coordY10 = -4.7f;
+=======
+    public float coordX4 = -6.0f;
+    public float coordY4 = -2.7f;
+    public boolean enableF4 = true;
+
+    public float coordX5 = -4.0f;
+    public float coordY5 = -4.7f;
+    public boolean enableF5 = true;
+
+    public float coordX6 = -2.0f;
+    public float coordY6 = -4.7f;
+    public boolean enableF6 = true;
+
+    public float coordX7 = -2.0f;
+    public float coordY7 = -2.7f;
+    public boolean enableF7 = true;
+
+    public float coordX8 = 0.0f;
+    public float coordY8 = -4.7f;
+    public boolean enableF8 = true;
+
+    public float coordX9 = 0.0f;
+    public float coordY9 = -2.7f;
+    public boolean enableF9 = true;
+
+    public float coordX10 = 0.0f;
+    public float coordY10 = -0.7f;
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
     public boolean enableF10 = true;
 
     public float coordX11 = 14.0f;
     public float coordY11 = -2.7f;
     public boolean enableF11 = true;
 
+<<<<<<< HEAD
  
      */
     //nuevas coordenas de piramines de obstaculos:
@@ -277,12 +328,51 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                     } else if (enemigoX <= 2.5f && izquierda) {
                         enemigoX -= 0.01f;
 //                        System.out.println("enemigo: " + enemigoX);
+=======
+    public boolean up = false;
+    public float flag = 0.0f;
+
+    GLRenderAria ariaCharacter = new GLRenderAria();
+    GLRenderHygel mage = new GLRenderHygel();
+    public int typeCharacter = 0;
+    boolean terminado = false;
+    int f = 0;
+    File clic = new File("src/sonidos/08.wav");
+    Clip clip, clip2;
+    JFrame frame;
+    boolean[] flagmoneda = {true, true, true};
+
+    public levelThree(int per, JFrame j) {
+        frame = j;
+        typeCharacter = per;
+    }
+    public float enemigoY = 0.0f;
+    public boolean subir = true;
+
+    public void init(GLAutoDrawable drawable) {
+
+        Thread subirenemigo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+                    if (enemigoY <= -5.2 || enemigoY >= 4.2) {
+                        subir = !subir;
+                    }
+                    if (enemigoY < 4.2 && subir) {
+                        enemigoY += 0.02f;
+                    } else if (enemigoY > -5.2 && !subir) {
+                        enemigoY -= 0.02f;
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                     }
                     try {
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
+<<<<<<< HEAD
                 } while (true);
+=======
+                } while (!terminado);
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
             }
         });
 
@@ -293,6 +383,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                     if (up) {
                         controlActions = 'O';
                         coordYPersonaje = coordYPersonaje - 0.01f;
+<<<<<<< HEAD
                         camaraY = camaraY + 0.01f;
                         if (coordYPersonaje <= -5.2f) {
                             up = false;
@@ -316,51 +407,93 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                             up = false;
                             flag = 0.0f;
                             System.out.println("cayoo3");
+=======
+                        cameraY = cameraY + 0.01f;
+                        if (coordYPersonaje <= -5.2f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
 
                             coordYPersonaje = bd.floatValue();
+<<<<<<< HEAD
                         } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -7.5f && coordXPersonaje <= -3.5f) {
                             up = false;
                             flag = 0.0f;
                             System.out.println("cayoo4");
+=======
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -14.0f && coordXPersonaje <= -12.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
 
                             coordYPersonaje = bd.floatValue();
+<<<<<<< HEAD
                         } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= -7.5f && coordXPersonaje <= -5.5f) {
                             up = false;
                             flag = 0.0f;
                             System.out.println("cayoo5");
+=======
+                        } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= -9.0f && coordXPersonaje <= -7.5f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
 
                             coordYPersonaje = bd.floatValue();
+<<<<<<< HEAD
                         } else if (coordYPersonaje <= -3.3f && coordXPersonaje >= 3.0f && coordXPersonaje <= 4.5f) {
                             up = false;
                             flag = 0.0f;
                             System.out.println("cayoo6");
+=======
+                        } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= -7.0f && coordXPersonaje <= -5.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
 
                             coordYPersonaje = bd.floatValue();
+<<<<<<< HEAD
                         } else if (coordYPersonaje <= -1.4f && coordXPersonaje >= 5.0f && coordXPersonaje <= 6.5f) {
                             up = false;
                             flag = 0.0f;
                             System.out.println("cayoo7");
+=======
+                        } else if (coordYPersonaje <= -3.3 && coordXPersonaje >= -4.5f && coordXPersonaje <= -3.5f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
 
                             coordYPersonaje = bd.floatValue();
+<<<<<<< HEAD
                         } else if (coordYPersonaje <= 0.6f && coordXPersonaje >= 7.0f && coordXPersonaje <= 9.0f) {
                             up = false;
                             flag = 0.0f;
                             System.out.println("cayoo8");
+=======
+                        } else if (coordYPersonaje <= -1.4 && coordXPersonaje >= -3.0f && coordXPersonaje <= 1.0f) {
+                            up = false;
+                            flag = 0.0f;
+                            System.out.println("cayoo");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             BigDecimal bd = new BigDecimal(coordYPersonaje);
                             bd = bd.setScale(1, RoundingMode.HALF_UP);
                             System.out.println(bd);
@@ -376,6 +509,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
             }
         });
+<<<<<<< HEAD
         moverenemigo.start();
         caer.start();
 
@@ -385,6 +519,16 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
         gl.setSwapInterval(
                 1);
+=======
+
+        subirenemigo.start();
+        caer.start();
+
+        GL gl = drawable.getGL();
+        System.err.println("Init gl is: " + gl.getClass().getName());
+
+        gl.setSwapInterval(1);
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         //añadir luz
         float ligth_ambient[]
                 = {
@@ -406,6 +550,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
                 };
 
+<<<<<<< HEAD
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ligth_ambient,
                 0);
         gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, ligth_difuse,
@@ -430,6 +575,25 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 this);
 
     }
+=======
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_AMBIENT, ligth_ambient, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_DIFFUSE, ligth_difuse, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_SPECULAR, ligth_specular, 0);
+        gl.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, ligth_position, 0);
+        gl.glEnable(GL.GL_LIGHTING);
+        gl.glEnable(GL.GL_LIGHT0);
+        gl.glEnable(GL.GL_DEPTH_TEST);
+
+        gl.glShadeModel(GL.GL_SMOOTH);
+        drawable.addMouseListener(this);
+        drawable.addMouseMotionListener(this);
+        drawable.addKeyListener(this);
+
+    }
+    Flog flog1 = new Flog();
+    Flog flog2 = new Flog();
+    Flog flog3 = new Flog();
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
 
     public void display(GLAutoDrawable drawable) {
         //Se genera una instancia que dibuja al personaje
@@ -454,8 +618,13 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 0.0f, 1.0f, 0.0f
         );
 
+<<<<<<< HEAD
         //posicion de la camara 
         gl.glTranslatef(camaraX, camaraY, camaraZ);
+=======
+        //Posiscionar camara en un lugar concreto
+        gl.glTranslatef(cameraX, cameraY, cameraZ);
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
 
         //Matriz con el angulo y cordenadas (X, Y, Z)
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
@@ -466,14 +635,19 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         //Establecemos el origen
         gl.glTranslatef(0.0f, 0.0f, 0.0f);
 
+<<<<<<< HEAD
         //Dibujamos el primer obstaculo
         //conjunto de la piramide
         //parte inferior
+=======
+        //Dibujamos el primer obstaculo 
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         gl.glTranslatef(coordX1, coordY1, 0.0f);
         box1.drawBox(gl, 'B', enableF1);
         //Retorno al origen
         gl.glTranslatef(-coordX1, -coordY1, 0.0f);
 
+<<<<<<< HEAD
 <<<<<<< HEAD:Actual/Poryecto con pantallas/JuegoV4/src/levels/levelFour.java
         gl.glTranslatef(coordX2, coordY2, 0.0f);
         box1.drawBox(gl, 'B', enableF2);
@@ -600,6 +774,57 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         gl.glTranslatef(-coordX22, -coordY22, 0.0f);
 
 =======
+<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
+        //Dibujamos el segundo obstaculo 
+        gl.glTranslatef(coordX2, coordY2, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX2, -coordY2, 0.0f);
+
+        //Dibujamos el tercer obstaculo 
+        gl.glTranslatef(coordX3, coordY3, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX3, -coordY3, 0.0f);
+
+        //Dibujamos el cuarto obstaculo 
+        gl.glTranslatef(coordX4, coordY4, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX4, -coordY4, 0.0f);
+
+        //Dibujamos el quinto obstaculo 
+        gl.glTranslatef(coordX5, coordY5, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX5, -coordY5, 0.0f);
+
+        //Dibujamos el sexto obstaculo 
+        gl.glTranslatef(coordX6, coordY6, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX6, -coordY6, 0.0f);
+
+        //Dibujamos el septimo obstaculo 
+        gl.glTranslatef(coordX7, coordY7, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX7, -coordY7, 0.0f);
+
+        //Dibujamos el octavo obstaculo 
+        gl.glTranslatef(coordX8, coordY8, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX8, -coordY8, 0.0f);
+
+        //Dibujamos el noveno obstaculo 
+        gl.glTranslatef(coordX9, coordY9, 0.0f);
+        box1.drawBox(gl, 'B', enableF1);
+        //Retorno al origen
+        gl.glTranslatef(-coordX9, -coordY9, 0.0f);
+
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
+=======
 >>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
         gl.glPushMatrix();/////bandera
         gl.glTranslatef(19.5f, -5.2f, -0.2f);
@@ -607,6 +832,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         ban.dibujaB(gl);
         gl.glPopMatrix();
 
+<<<<<<< HEAD
 //        if (recoge_moneda(-3.5f, -4.9f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
 //            gl.glPushMatrix();
 //            gl.glTranslatef(-3.5f, -4.9f, 0.0f);
@@ -662,6 +888,47 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 //        gl.glPopMatrix();
 //        enemigo_cerca(-8.75f, -4.2f);
 //        gl.glPushMatrix();
+=======
+        if (recoge_moneda(-10.5f, -5.0f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(-10.5f, -5.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            //Retorno al origen
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda2(4.5f, -5.0f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(4.5f, -5.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(12.0f, -5.0f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(12.0f, -5.0f, 0.0f);
+            mo1.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+
+        gl.glPushMatrix();
+        gl.glTranslated(-4.0f, -3.3, 0f);
+        flog1.dibujaFlog(gl, 'O', 3);
+        gl.glPopMatrix();
+        enemigo_cerca(-4.0f, -3.3f);
+
+        gl.glPushMatrix();
+        gl.glTranslated(4.5f, enemigoY, 0f);
+        flog2.dibujaFlog(gl, 'O', 3);
+        gl.glPopMatrix();
+        enemigoY_cerca(4.5f, enemigoY);
+
+        gl.glPushMatrix();
+        gl.glTranslated(12f, enemigoY, 0f);
+        flog3.dibujaFlog(gl, 'O', 3);
+        gl.glPopMatrix();
+        enemigoY_cerca(12f, enemigoY);
+
+        gl.glPushMatrix();
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         if (typeCharacter == 1) {
             //Dibuja la figura 3d dependiendo de la tecla que se presione
             //Mueve la escena en la psoicion de la matriz
@@ -696,7 +963,21 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
             flagmoneda[fmo] = false;
             return false;
         }
+<<<<<<< HEAD
 
+=======
+        return true;
+    }
+
+    public boolean recoge_moneda2(float xmon, float ymon, int fmo) {
+        if (coordXPersonaje >= xmon - 1f && coordXPersonaje <= xmon + 1f
+                && coordYPersonaje >= ymon - 0.6 && flagmoneda[fmo]) {
+            System.out.println("entra 3");
+            Sound("coin");
+            flagmoneda[fmo] = false;
+            return false;
+        }
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         return true;
     }
 
@@ -705,7 +986,23 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 && coordYPersonaje <= ymons + 0.85) {
             Sound("uuh");
             coordXPersonaje = -19.5f;
+<<<<<<< HEAD
             camaraX = 15.0f;
+=======
+            cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
+        }
+    }
+
+    public void enemigoY_cerca(float xmons, float ymons) {
+        if ((coordXPersonaje >= xmons - 0.5f && coordXPersonaje <= xmons + 0.5f)
+                && ((coordYPersonaje + 0.2) >= ymons)) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            cameraX = 15.0f;
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
             flagmoneda[0] = true;
             flagmoneda[1] = true;
             flagmoneda[2] = true;
@@ -724,7 +1021,11 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         //Seleccionamos la matrix de proyeccion
         gl.glMatrixMode(gl.GL_PROJECTION);
         gl.glLoadIdentity();
+<<<<<<< HEAD
         glu.gluPerspective(80.0f, h, 5.0, 20.0);
+=======
+        glu.gluPerspective(50.0f, h, 5.0, 20.0);
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         gl.glMatrixMode(gl.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
@@ -736,8 +1037,13 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     }
 
     public void texturaFondo(GL gl) {
+<<<<<<< HEAD
         arch1 = new File("src/fondos/aLandscape4.jpg");
         arch2 = new File("src/fondos/texture_floor2.jpg");
+=======
+        arch1 = new File("src/fondos/aLandscape3.jpg");
+        arch2 = new File("src/fondos/texture_floor3.jpg");
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
         if (newTexture) {
             newTexture = false;
 
@@ -815,6 +1121,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         switch (ke.getKeyCode()) {
             case 'A':
                 controlActions = 'W';
+<<<<<<< HEAD
 <<<<<<< HEAD:Actual/Poryecto con pantallas/JuegoV4/src/levels/levelFour.java
 
                 if (coordXPersonaje == -9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -1.3f) {
@@ -876,6 +1183,39 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 else {
 =======
                 if (coordXPersonaje == -11.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
+=======
+                if (coordXPersonaje == -11.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
+<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
+                    System.out.println("Pared Caja 1 Dere ");
+                    coordXPersonaje = -11.5f;
+                } else if (coordXPersonaje == -4.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
+                    System.out.println("Pared Caja 4 Dere ");
+                    coordXPersonaje = -4.5f;
+                } else if (coordXPersonaje == 1.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -1.3f) {
+                    System.out.println("Pared Caja 8 y 9 Dere ");
+                    coordXPersonaje = 1.5f;
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
+                    System.out.println("Caida Izq Caja 1");
+                    coordXPersonaje = -14.5f;
+                    up = true;
+                    cameraX = cameraX + 0.5f;
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -9.0f) {
+                    System.out.println("Caida Izq Caja 2");
+                    coordXPersonaje = -9.5f;
+                    up = true;
+                    cameraX = cameraX + 0.5f;
+                } else if (coordYPersonaje == -1.4f && coordXPersonaje == -7.0f) {
+                    System.out.println("Caida Izq Caja 4");
+                    coordXPersonaje = -7.5f;
+                    up = true;
+                    cameraX = cameraX + 0.5f;
+                } else if (coordYPersonaje == -1.4f && coordXPersonaje == -3.0f) {
+                    System.out.println("Caida Izq Caja 7");
+                    coordXPersonaje = -3.5f;
+                    up = true;
+                    cameraX = cameraX + 0.5f;
+=======
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                      System.out.println("Pared Caja 1 Dere ");
                     coordXPersonaje = -11.5f;
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
@@ -883,12 +1223,18 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                     coordXPersonaje = -14.5f;
                     up = true;
                     Sound("fall");
+<<<<<<< HEAD
                 } else {
 >>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
+=======
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
+                } else {
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                     if (coordXPersonaje <= -19.5) {
                     } else {
                         //Camina normala la izquierda
                         coordXPersonaje = coordXPersonaje - 0.5f;
+<<<<<<< HEAD
                         camaraX = camaraX + 0.5f;
                         rotFigure = 270;
                     }
@@ -948,16 +1294,58 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 else {
 =======
                 
+=======
+                        rotFigure = 270;
+                        cameraX = cameraX + 0.5f;
+                    }
+                }
+                break;
+<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
+
+=======
+                
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
             case 'D':
                 controlActions = 'W';
                 if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
                     System.out.println("Pared Caja 1 Izqu ");
                     coordXPersonaje = -14.5f;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
+                } else if (coordXPersonaje == -9.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
+                    System.out.println("Pared Caja 2 Izqu ");
+                    coordXPersonaje = -9.5f;
+                } else if (coordXPersonaje == -7.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
+                    System.out.println("Pared Caja 4 Izqu ");
+                    coordXPersonaje = -7.5f;
+                } else if (coordXPersonaje == -3.5f && coordYPersonaje >= -3.3f && coordYPersonaje <= -1.3f) {
+                    System.out.println("Pared Caja 5 Izqu ");
+                    coordXPersonaje = -3.5f;
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -12.0f) {
+                    System.out.println("Caida Der Caja 1");
+                    coordXPersonaje = -11.5f;
+                    up = true;
+                    cameraX = cameraX - 0.5f;
+                } else if (coordYPersonaje == -1.4f && coordXPersonaje == -5.0f) {
+                    System.out.println("Caida Der Caja 4");
+                    coordXPersonaje = -4.5f;
+                    up = true;
+                    cameraX = cameraX - 0.5f;
+                } else if (coordYPersonaje == -1.4f && coordXPersonaje == 1.0f) {
+                    System.out.println("Caida Der Caja 9");
+                    coordXPersonaje = 1.5f;
+                    up = true;
+                    cameraX = cameraX - 0.5f;
+=======
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                 } else if (coordYPersonaje == -3.3f && coordXPersonaje == -12.0f) {
                     System.out.println("Caida Caja 1 Der");
                     coordXPersonaje = -11.5f;
                     up = true;
                     Sound("fall");
+<<<<<<< HEAD
                 } else {
 >>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
                     if (coordXPersonaje < 19.5) {
@@ -965,6 +1353,15 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                         coordXPersonaje = coordXPersonaje + 0.5f;
                         camaraX = camaraX - 0.5f;
                         rotFigure = 90;
+=======
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
+                } else {
+                    if (coordXPersonaje < 19.5) {
+                        //Camina normala la derecha
+                        coordXPersonaje = coordXPersonaje + 0.5f;
+                        rotFigure = 90;
+                        cameraX = cameraX - 0.5f;
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                     } else if (coordXPersonaje >= 19.5) {
                         //No permite caminar por que es el inicio de mapa
                         rotFigure = 270;
@@ -978,17 +1375,27 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                     }
                 }
                 break;
+<<<<<<< HEAD
 <<<<<<< HEAD:Actual/Poryecto con pantallas/JuegoV4/src/levels/levelFour.java
+=======
+<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
 
 =======
                 
 >>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
             case 'W':
                 flag = coordYPersonaje;
+<<<<<<< HEAD
 
                 Thread t = new Thread() {
                     public void run() {
                         if (coordYPersonaje == -5.2f || coordYPersonaje == -3.3f || coordYPersonaje == -1.4f || coordYPersonaje == 0.6f) {
+=======
+                Thread t = new Thread() {
+                    public void run() {
+                        if (coordYPersonaje == -5.2f || coordYPersonaje == -3.3f || coordYPersonaje == -1.4f) {
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                             for (float i = 0.0f; i < 300.0f; i++) {
                                 if (i == 0) {
                                     Sound("sj");
@@ -997,6 +1404,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                                     Thread.sleep(1);
                                     controlActions = 'J';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
+<<<<<<< HEAD
 <<<<<<< HEAD:Actual/Poryecto con pantallas/JuegoV4/src/levels/levelFour.java
                                     camaraY = camaraY - 0.01f;
 
@@ -1006,6 +1414,15 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                                 } catch (InterruptedException ex) {
                                     Logger.getLogger(levelThree.class.getName()).log(Level.SEVERE, null, ex);
 >>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
+=======
+<<<<<<< HEAD:Poryecto con pantallas/JuegoV5/src/levels/levelThree.java
+                                    cameraY = cameraY - 0.01f;
+
+=======
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce:Poryecto con pantallas/JuegoV5/src/levels/levelFour.java
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(levelThree.class.getName()).log(Level.SEVERE, null, ex);
+>>>>>>> 05cb78bae68a9f8b11587fd64398c70ab4e84dce
                                 }
                             }
                             up = true;
