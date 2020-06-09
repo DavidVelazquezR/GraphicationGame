@@ -239,7 +239,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
 
         Moneda mo1 = new Moneda();
         DibujaB ban = new DibujaB();
-        
+
         //Hacemos uso de GL y GLU
         GL gl = drawable.getGL();
         GLU glu = new GLU();
@@ -270,7 +270,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         box1.drawBox(gl, 'B', enableF1);
         //Retorno al origen
         gl.glTranslatef(-coordX1, -coordY1, 0.0f);
-        
+
         gl.glPushMatrix();/////bandera
         gl.glTranslatef(19.5f, -5.2f, -0.2f);
         gl.glScaled(2f, 2f, 2f);
@@ -401,13 +401,13 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
             texture1.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords1.left(), coords1.bottom());
-            gl.glVertex3f(30f, -10f, -3f);
+            gl.glVertex3f(40f, -30f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.bottom());
-            gl.glVertex3f(-30f, -10f, -3f);
+            gl.glVertex3f(-30f, -30f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.top());
-            gl.glVertex3f(-30f, 10f, -3f);
+            gl.glVertex3f(-30f, 30f, -3f);
             gl.glTexCoord2f(coords1.left(), coords1.top());
-            gl.glVertex3f(30f, 10f, -3f);
+            gl.glVertex3f(40f, 30f, -3f);
             gl.glEnd();
             texture1.disable();
 
@@ -416,13 +416,13 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
             texture2.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords2.left(), coords2.bottom());
-            gl.glVertex3f(30f, -6f, -5f);
+            gl.glVertex3f(50f, -6f, -10f);
             gl.glTexCoord2f(coords2.right(), coords2.bottom());
-            gl.glVertex3f(-30f, -6f, -5f);
+            gl.glVertex3f(-30f, -6f, -10f);
             gl.glTexCoord2f(coords2.right(), coords2.top());
-            gl.glVertex3f(-30f, -6f, 5f);
+            gl.glVertex3f(-30f, -6f, 10f);
             gl.glTexCoord2f(coords2.left(), coords2.top());
-            gl.glVertex3f(30f, -6f, 5f);
+            gl.glVertex3f(50f, -6f, 10f);
             gl.glEnd();
 
             texture2.disable();
@@ -441,32 +441,40 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
             case 'A':
                 controlActions = 'W';
                 if (coordXPersonaje == -11.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 1 A");
+                     System.out.println("Pared Caja 1 Dere ");
                     coordXPersonaje = -11.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.5f) {
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -14.0f) {
+                    System.out.println("Caida Caja 1 Izq");
+                    coordXPersonaje = -14.5f;
                     up = true;
+                    Sound("fall");
                 } else {
                     if (coordXPersonaje <= -19.5) {
-                        Sound("nod");
                     } else {
+                        //Camina normala la izquierda
                         coordXPersonaje = coordXPersonaje - 0.5f;
                         rotFigure = 270;
                     }
                 }
-
                 break;
+                
             case 'D':
                 controlActions = 'W';
                 if (coordXPersonaje == -14.5f && coordYPersonaje >= -5.2f && coordYPersonaje <= -3.4f) {
-                    System.out.println("Colision Caja 1 D");
+                    System.out.println("Pared Caja 1 Izqu ");
                     coordXPersonaje = -14.5f;
-                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -11.5f) {
+                } else if (coordYPersonaje == -3.3f && coordXPersonaje == -12.0f) {
+                    System.out.println("Caida Caja 1 Der");
+                    coordXPersonaje = -11.5f;
                     up = true;
+                    Sound("fall");
                 } else {
                     if (coordXPersonaje < 19.5) {
+                        //Camina normala la derecha
                         coordXPersonaje = coordXPersonaje + 0.5f;
                         rotFigure = 90;
                     } else if (coordXPersonaje >= 19.5) {
+                        //No permite caminar por que es el inicio de mapa
                         rotFigure = 270;
                         controlActions = 'W';
                         flag = coordYPersonaje;
@@ -478,6 +486,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                     }
                 }
                 break;
+                
             case 'W':
                 flag = coordYPersonaje;
                 Thread t = new Thread() {
@@ -491,10 +500,8 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                                     Thread.sleep(1);
                                     controlActions = 'J';
                                     coordYPersonaje = coordYPersonaje + 0.01f;
-
                                 } catch (InterruptedException ex) {
-                                    Logger.getLogger(levelFour.class
-                                            .getName()).log(Level.SEVERE, null, ex);
+                                    Logger.getLogger(levelThree.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
                             up = true;
@@ -505,16 +512,13 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                             coordYPersonaje = bd.floatValue();
                             System.out.println("saltoo");
                         }
-
                     }
                 };
                 t.start();
-
                 break;
-
         }
+        
         System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de salida");
-
     }
 
     public void keyReleased(KeyEvent ke) {
