@@ -606,10 +606,9 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
         if (coordYPersonaje >= 6.0f) {
             this.dispose();
         }
-
         //System.out.println("Cord X: " + coordXPersonaje + " Cord Y: " + coordYPersonaje + " -->Valor de entrada");
         
-        //los case van de A=Mover izquierda y W= Mover derecha y W =salto
+        //los case van de A=Mover izquierda y D= Mover derecha y W =salto
         //especificamos en los if y else las colisones y acciones que debe de hacer el personaje
         //por ejemplo las colisoones de paredes de las cajas y hacer que el personaje se caiga desde una esquina
         //esa caida se epscifica con un sout pemitiendo el control de cada una de as colisiones
