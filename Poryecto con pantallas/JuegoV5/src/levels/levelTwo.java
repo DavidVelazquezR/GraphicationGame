@@ -194,7 +194,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
             }
         });
         //en este hilo se especifica que detendra su caida cuando llege a cierta corrdenada en y
@@ -285,7 +285,7 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
 
             }
         });
@@ -596,13 +596,13 @@ public class levelTwo extends JFrame implements GLEventListener, KeyListener, Mo
             texture1.bind();
             gl.glBegin(GL.GL_QUADS);
             gl.glTexCoord2f(coords1.left(), coords1.bottom());
-            gl.glVertex3f(40f, -20f, -3f);
+            gl.glVertex3f(50f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.bottom());
             gl.glVertex3f(-30f, -20f, -3f);
             gl.glTexCoord2f(coords1.right(), coords1.top());
             gl.glVertex3f(-30f, 30f, -3f);
             gl.glTexCoord2f(coords1.left(), coords1.top());
-            gl.glVertex3f(40f, 30f, -3f);
+            gl.glVertex3f(50f, 30f, -3f);
             gl.glEnd();
             texture1.disable();
 

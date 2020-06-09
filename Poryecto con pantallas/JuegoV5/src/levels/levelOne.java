@@ -171,7 +171,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
 
             }
         });
@@ -253,7 +253,7 @@ public class levelOne extends JFrame implements GLEventListener, KeyListener, Mo
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
 
             }
         });

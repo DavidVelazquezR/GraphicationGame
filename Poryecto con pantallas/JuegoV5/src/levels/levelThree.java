@@ -166,9 +166,10 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
             }
         });
+
         Thread caer = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -237,12 +238,13 @@ public class levelThree extends JFrame implements GLEventListener, KeyListener, 
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
 
             }
         });
-        caer.start();
+
         subirenemigo.start();
+        caer.start();
 
         GL gl = drawable.getGL();
         System.err.println("Init gl is: " + gl.getClass().getName());

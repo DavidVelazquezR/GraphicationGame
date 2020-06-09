@@ -172,7 +172,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                         Thread.sleep(1);
                     } catch (InterruptedException ex) {
                     }
-                } while (true);
+                } while (!terminado);
 
             }
         });

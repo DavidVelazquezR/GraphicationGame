@@ -1,9 +1,7 @@
 package pantallas;
 
 import Aria.SelectAria;
-import levels.levelOne;
 import levels.lvl1;
-import levels.levelTwo;
 import Flogat.SelectFlog;
 import Hygel.SelectMage;
 import levels.lvl2;
@@ -35,10 +33,10 @@ public class Inicio extends javax.swing.JFrame {
     private Animator anim;
     private Animator anmin;
     
-    static SelectMage mage = new SelectMage();///tu mono
-    static SelectAria aria = new SelectAria();
-    static SelectFlog flog;
-    static SelectJF jf = new SelectJF();
+    SelectMage mage = new SelectMage();///tu mono
+    SelectAria aria = new SelectAria();
+    SelectFlog flog;
+    SelectJF jf = new SelectJF();
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
