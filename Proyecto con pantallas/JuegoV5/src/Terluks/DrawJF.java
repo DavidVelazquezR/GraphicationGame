@@ -265,7 +265,8 @@ public class DrawJF {
         gl.glRotatef(5f, -0.3f, -0.8f, 0f);
         glu.gluCylinder(q, WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
-
+gl.glPopMatrix();
+gl.glPushMatrix();
         gl.glRotatef(90f, -0.2f, 0.1f, 0f);
         gl.glTranslatef(-0.35f, -HEIGHT_LEGS * 0.7f, -0.1f);
 
@@ -277,8 +278,6 @@ public class DrawJF {
         gl.glRotatef(-60, 1f, 0.4f, 0.10f);
         gl.glRotatef(50, 1f, 0.4f, 0.10f);
         glu.gluCylinder(q, RADIO_PICO, 0, ALTURA_PICO, 53, STACKS);
-        gl.glPopMatrix();
-
         gl.glPopMatrix();
 
     }
@@ -299,7 +298,8 @@ public class DrawJF {
         gl.glRotatef(-15f, -0.3f, -0.8f, 0f);
         glu.gluCylinder(q, WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
-
+gl.glPopMatrix();
+gl.glPushMatrix();
         gl.glRotatef(90f, -0.2f, 0.1f, 0f);
         gl.glTranslatef(-0.35f, -HEIGHT_LEGS * 0.7f, -0.09f);
 
@@ -316,7 +316,7 @@ public class DrawJF {
     }
 
     public void ataque(GL gl, GLU glu, float cl) {
-
+        gl.glPushMatrix();
         colo_luktita(gl);
         if (co > 0.5) {
             gl.glPushMatrix();
@@ -324,6 +324,7 @@ public class DrawJF {
             glu.gluSphere(q, ataque * 2, REBANADAS, PILAS);
             gl.glPopMatrix();
         }
+        gl.glPopMatrix();
     }
 
     public void set_brown_material(GL gl) {

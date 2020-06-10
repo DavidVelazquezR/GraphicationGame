@@ -248,7 +248,7 @@ public class GLRenderAria {
         if (colision < 0.5) {
             //ojo izquierdo
             set_black_material(gl);
-
+gl.glPushMatrix();
             gl.glBegin(GL.GL_POLYGON);
             for (int i = -1; i < 359; i++) {
                 float y = (float) ((0.07) * Math.sin(i) + 1.3);//alto
@@ -256,6 +256,7 @@ public class GLRenderAria {
                 gl.glVertex3d(x, y, 0.35f);
 
             }
+            gl.glPopMatrix();
             gl.glEnd();
 
             //ojo derecho
@@ -269,37 +270,43 @@ public class GLRenderAria {
 
             //Boca de Aria
             set_black_material(gl);
+            gl.glPushMatrix();
             gl.glBegin(GL.GL_POLYGON);
             for (int j = -1; j < 359; j++) {
                 float y1 = (float) ((0.1) * Math.sin(j) + 1.12);//alto
                 float x1 = (float) ((0.1) * Math.cos(j) + 0.0);//ancho
                 gl.glVertex3d(x1, y1, 0.35f);
             }
+            gl.glPopMatrix();
             gl.glEnd();
         } else {
             switch (c) {
                 case 'W'://---------------------------------------------------------------------Opcion para cuando esta caminando
                     //pupila izquierdo
                     set_black_material(gl);
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.02) * Math.sin(i) + 1.3); //alto
                         float x = (float) ((0.04) * Math.cos(i) + -0.1); //ancho
                         gl.glVertex3d(x, y, 0.36f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
                     //pupila derecho
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.02) * Math.sin(i) + 1.3); //alto
                         float x = (float) ((0.04) * Math.cos(i) + 0.1); //ancho
                         gl.glVertex3d(x, y, 0.36f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //ojo izquierdo
                     set_blue_material(gl);
-
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.07) * Math.sin(i) + 1.3);//alto
@@ -307,49 +314,58 @@ public class GLRenderAria {
                         gl.glVertex3d(x, y, 0.35f);
 
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //ojo derecho
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.07) * Math.sin(i) + 1.3); //alto
                         float x = (float) ((0.06) * Math.cos(i) + 0.1); //ancho
                         gl.glVertex3d(x, y, 0.35f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //Boca de Aria
                     set_black_material(gl);
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int j = -1; j < 359; j++) {
                         float y1 = (float) ((0.05) * Math.sin(j) + 1.12);//alto
                         float x1 = (float) ((0.1) * Math.cos(j) + 0.0);//ancho
                         gl.glVertex3d(x1, y1, 0.35f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
                     break;
                 case 'J': //-------------------------------------------------------------------------------Opcion para cuando Aria salta
                     //pupila izquierdo
                     set_black_material(gl);
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.06) * Math.sin(i) + 1.4);//alto
                         float x = (float) ((0.05) * Math.cos(i) + -0.1);//ancho
                         gl.glVertex3d(x, y, 0.34f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
                     //pupila derecho
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.06) * Math.sin(i) + 1.4); //alto
                         float x = (float) ((0.05) * Math.cos(i) + 0.1); //ancho
                         gl.glVertex3d(x, y, 0.34f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //ojo izquierdo
                     set_blue_material(gl);
-
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.07) * Math.sin(i) + 1.4);//alto
@@ -357,102 +373,53 @@ public class GLRenderAria {
                         gl.glVertex3d(x, y, 0.33f);
 
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //ojo derecho
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.07) * Math.sin(i) + 1.4); //alto
                         float x = (float) ((0.06) * Math.cos(i) + 0.1); //ancho
                         gl.glVertex3d(x, y, 0.33f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //Boca de Aria
                     set_black_material(gl);
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int j = -1; j < 359; j++) {
                         float y1 = (float) ((0.05) * Math.sin(j) + 1.22);//alto
                         float x1 = (float) ((0.1) * Math.cos(j) + 0.0);//ancho
                         gl.glVertex3d(x1, y1, 0.35f);
                     }
-                    gl.glEnd();
-                    break;
-                case 'R': //------------------------------------------Opcion para cuando rota como spinner
-                    //pupila izquierdo
-                    set_black_material(gl);
-                    gl.glBegin(GL.GL_POLYGON);
-                    for (int i = -1; i < 359; i++) {
-                        float y = (float) ((0.04) * Math.sin(i) + 1.3);//alto
-                        float x = (float) ((0.01) * Math.cos(i) + -0.1);//ancho
-                        gl.glVertex3d(x, y, 0.36f);
-                    }
-                    gl.glEnd();
-                    //pupila derecho
-                    gl.glBegin(GL.GL_POLYGON);
-                    for (int i = -1; i < 359; i++) {
-                        float y = (float) ((0.06) * Math.sin(i) + 1.3); //alto
-                        float x = (float) ((0.03) * Math.cos(i) + 0.1); //ancho
-                        gl.glVertex3d(x, y, 0.36f);
-                    }
-                    gl.glEnd();
-
-                    //ojo izquierdo
-                    set_blue_material(gl);
-
-                    gl.glBegin(GL.GL_POLYGON);
-                    for (int i = -1; i < 359; i++) {
-                        float y = (float) ((0.07) * Math.sin(i) + 1.3);//alto
-                        float x = (float) ((0.06) * Math.cos(i) + -0.1);//ancho
-                        gl.glVertex3d(x, y, 0.35f);
-
-                    }
-                    gl.glEnd();
-
-                    //ojo derecho
-                    gl.glBegin(GL.GL_POLYGON);
-                    for (int i = -1; i < 359; i++) {
-                        float y = (float) ((0.07) * Math.sin(i) + 1.3); //alto
-                        float x = (float) ((0.06) * Math.cos(i) + 0.1); //ancho
-                        gl.glVertex3d(x, y, 0.35f);
-                    }
-                    gl.glEnd();
-
-                    //Boca de Aria
-                    set_black_material(gl);
-                    gl.glBegin(GL.GL_POLYGON);
-                    for (int j = -1; j < 359; j++) {
-                        float y1 = (float) ((0.05) * Math.sin(j) + 1.12);//alto
-                        float x1 = (float) ((0.3) * Math.cos(j) + 0.0);//ancho
-                        gl.glVertex3d(x1, y1, 0.35f);
-                    }
-                    gl.glEnd();
-
-                    gl.glBegin(GL.GL_POLYGON);
-                    for (int j = -1; j < 359; j++) {
-                        float y1 = (float) ((0.05) * Math.sin(j) + 1);//alto
-                        float x1 = (float) ((0.1) * Math.cos(j) + 0.0);//ancho
-                        gl.glVertex3d(x1, y1, 0.35f);
-                    }
+                    gl.glPopMatrix();
                     gl.glEnd();
                     break;
                 case ' ': //---------------------------------------------------------------------------Opcion para cuando esta estatica
                     //pupila izquierdo
                     set_black_material(gl);
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.06) * Math.sin(i) + 1.3);//alto
                         float x = (float) ((0.03) * Math.cos(i) + -0.1);//ancho
                         gl.glVertex3d(x, y, 0.36f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
                     //pupila derecho
+                    gl.glPushMatrix();
                     gl.glBegin(GL.GL_POLYGON);
                     for (int i = -1; i < 359; i++) {
                         float y = (float) ((0.06) * Math.sin(i) + 1.3); //alto
                         float x = (float) ((0.03) * Math.cos(i) + 0.1); //ancho
                         gl.glVertex3d(x, y, 0.36f);
                     }
+                    gl.glPopMatrix();
                     gl.glEnd();
 
                     //ojo izquierdo

@@ -140,9 +140,9 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         frame = j;
         typeCharacter = per;
     }
-    public float enemigoX = -5.0f;
-    public float rotenemigo = 90;
-    public boolean derecha = true;
+    float enemigoX = -5.0f;
+    float rotenemigo = 90;
+    boolean derecha = true;
     
     public void init(GLAutoDrawable drawable) {
         
@@ -306,7 +306,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         //Se genera una instancia que dibuja al personaje
 
         GLRenderBox box1 = new GLRenderBox();
-
+DrawJF ca = new DrawJF();
         Llave la = new Llave();
         DibujaB ban = new DibujaB();
 
