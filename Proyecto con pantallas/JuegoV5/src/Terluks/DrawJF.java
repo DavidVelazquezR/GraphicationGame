@@ -54,7 +54,7 @@ public class DrawJF {
             draw_arm_left(gl, glu, ' ');
             draw_arm_right(gl, glu, 'W');
         } else if (tec=='W' && mvt % 20 + 10 <= 20) {
-              gl.glTranslatef(0.0f, 1.5f, 0f);
+            gl.glTranslatef(0.0f, 1.5f, 0f);
             draw_legs(gl, glu, ' ', false, true);
             draw_legs(gl, glu, 'W', true, false);
             draw_arm_left(gl, glu, 'W');
@@ -68,6 +68,8 @@ public class DrawJF {
         else if (tec=='O') {
             draw_legs(gl, glu, ' ', false, true);
             draw_legs(gl, glu, ' ', true, false);
+            draw_arm_left(gl, glu, ' ');
+            draw_arm_right(gl, glu, ' ');
         }
         mvt++;
         draw_body(gl, glu, ' ');
@@ -75,7 +77,6 @@ public class DrawJF {
         draw_ojos(gl, glu);
         draw_pupila(gl, glu);
         dibujar_luktita_c(gl, glu);
-        gl.glPopMatrix();
         
         
     }

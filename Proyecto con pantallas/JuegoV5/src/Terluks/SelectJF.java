@@ -107,6 +107,11 @@ public class SelectJF extends JFrame implements GLEventListener {
         gl.glRotatef(view_rotx, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_roty, -1.0f, 0.0f, 0.0f);
         //Dibuja la figura 3d dependiendo de la tecla que se presione
+        gl.glPopMatrix();
+        
+        
+        gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+        gl.glTranslatef(0, 0, 0.5f);
         jf.DIBU_jf(gl,'W');
 
         gl.glFlush();
