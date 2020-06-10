@@ -38,9 +38,7 @@ public class DrawJF {
     public DrawJF() {
     }
 
-    public void DIBU_jf(GL gl, boolean walk, boolean jump, boolean rotacion_X, boolean rotacion_Y, boolean rotacion_Z,
-            boolean Traslacion, boolean Escalacion, boolean reflexion_X, boolean reflexion_Y, boolean reflexion_Z,
-            boolean corte_X, boolean corte_Y, boolean corte_Z, boolean original, boolean colicion) {
+    public void DIBU_jf(GL gl, char tec) {
         //llamado de paquetes de O.0PENGL, instancia de GLU como variable para llmado de funciones
         GLU glu = new GLU();
         q = glu.gluNewQuadric();
@@ -49,217 +47,41 @@ public class DrawJF {
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
 
         //robot camina 
-        if (walk && mvt % 20 + 10 > 20) {
+        if (tec=='W' && mvt % 20 + 10 > 20) {
             gl.glTranslatef(0.0f, 1.5f, 0f);
             draw_legs(gl, glu, 'W', false, true);
             draw_legs(gl, glu, ' ', true, false);
             draw_arm_left(gl, glu, ' ');
             draw_arm_right(gl, glu, 'W');
-//            draw_ojos(gl, glu);
-//            dibujar_caparason(gl, glu);
-//            dibujar_luktita_c(gl, glu);
-        } else if (walk && mvt % 20 + 10 <= 20) {
+        } else if (tec=='W' && mvt % 20 + 10 <= 20) {
               gl.glTranslatef(0.0f, 1.5f, 0f);
             draw_legs(gl, glu, ' ', false, true);
             draw_legs(gl, glu, 'W', true, false);
             draw_arm_left(gl, glu, 'W');
             draw_arm_right(gl, glu, ' ');
-//            draw_ojos(gl, glu);
-//            draw_pupila(gl, glu);
-//            dibujar_caparason(gl, glu);
-//            dibujar_luktita_c(gl, glu);
-        } //robot saltando 
-        else if (jump && mvt % 20 + 10 > 20) {
-            gl.glTranslatef(0f, 0.35f, 0f);
+        }else if (tec=='J') {
             draw_legs(gl, glu, 'J', false, true);
             draw_legs(gl, glu, 'J', true, false);
             draw_arm_left(gl, glu, 'J');
             draw_arm_right(gl, glu, 'J');
-//            draw_ojos(gl, glu);
-//            draw_pupila(gl, glu);
-//            dibujar_caparason(gl, glu);
-//            dibujar_luktita_c(gl, glu);
-        }//robot is jumping
-        else if (jump && mvt % 20 + 10 <= 20) {
-            gl.glTranslatef(0f, 0.35f, 0f);
-            draw_legs(gl, glu, 'J', false, true);
-            draw_legs(gl, glu, 'J', true, false);
-            draw_arm_left(gl, glu, 'J');
-            draw_arm_right(gl, glu, 'J');
-//            draw_body(gl, glu, ' ');
-//            dibujar_caparason(gl, glu);
-        }//rortacion en x 
-        else if (rotacion_X) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            gl.glRotatef(40f, 1f, 0f, 0f);
-            draw_ojos(gl, glu);
-            gl.glRotatef(-40f, 1f, 0f, 0f);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-
-//rotacion en y
-        } else if (rotacion_Y) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            gl.glRotatef(40f, 0f, 1f, 0f);
-            draw_ojos(gl, glu);
-            gl.glRotatef(-40f, 0f, 1f, 0f);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-
-//rotacion en z
-        } else if (rotacion_Z) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            gl.glRotatef(40f, 0f, 0f, 1f);
-            draw_ojos(gl, glu);
-            gl.glRotatef(-40f, 0f, 0f, 1f);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-
-//traslacion
-        } else if (Traslacion) {
-            gl.glTranslatef(-0.3f, -0.2f, 0f);
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            gl.glTranslatef(0.3f, 0.2f, 0f);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            //escalacion
-        } else if (Escalacion) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            gl.glScalef(0.5f, 0.5f, 0.5f);
-            draw_body(gl, glu, ' ');
-            gl.glScalef(2f, 2f, 2f);
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            //reflexionx
-        } else if (reflexion_X) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            gl.glRotatef(180, 0f, 1f, 0f);
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            gl.glRotatef(-180, 0f, 1f, 0f);
-            //reflexiony
-        } else if (reflexion_Y) {
-
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            gl.glRotatef(180, 0f, 0f, 1f);
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            gl.glRotatef(-180, 0f, 0f, 1f);
-            //reflexionz
-        } else if (reflexion_Z) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            gl.glTranslatef(0.1f, 0f, 0f);
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            gl.glTranslatef(-0.1f, 0f, 0f);
-            //cortex
-        } else if (corte_X) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            //cortey
-        } else if (corte_Y) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            //cortez
-        } else if (corte_Z) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-        } //original
-        else if (original) {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            dibujar_luktita_c(gl, glu);
-            //colision
-        } else if (colicion) {
-            set_orange_material(gl);
-//            draw_legs(gl, glu, ' ', false, true);
-//            draw_legs(gl, glu, ' ', true, false);
-//            draw_arm_left(gl, glu, ' ');
-//            draw_arm_right(gl, glu, ' ');
-            draw_ojos(gl, glu);
-            draw_body(gl, glu, ' ');
-            dibujar_caparason(gl, glu);
-            co = (float) (co - 0.3);
-            ataque(gl, glu, co);
-
-        } //stan is normal
-        else {
-            draw_legs(gl, glu, ' ', false, true);
-            draw_legs(gl, glu, ' ', true, false);
-            draw_arm_left(gl, glu, ' ');
-            draw_arm_right(gl, glu, ' ');
         }
-
+        else if (tec=='O') {
+            draw_legs(gl, glu, ' ', false, true);
+            draw_legs(gl, glu, ' ', true, false);
+        }
         mvt++;
         draw_body(gl, glu, ' ');
         dibujar_caparason(gl, glu);
         draw_ojos(gl, glu);
         draw_pupila(gl, glu);
         dibujar_luktita_c(gl, glu);
+        gl.glPopMatrix();
+        
+        
     }
 
     public void draw_ojos(GL gl, GLU glu) {
         //dibijamos cabeza
-        colo_piel(gl);
         set_brown_material(gl);
         gl.glPushMatrix();
         gl.glTranslatef(0.36f, -0.15f, -1.35f);
@@ -314,6 +136,7 @@ public class DrawJF {
         //creacion de luktita en caparason:
         float radio_picas = 0.33f;
         colo_luktita2(gl);
+        gl.glPushMatrix();
         gl.glTranslatef(0.05f, 1f, -0.38f);
         gl.glRotatef(-155, 1f, 0.4f, 0.10f);
         gl.glRotatef(50, 1f, 0.4f, 0.10f);
@@ -321,6 +144,7 @@ public class DrawJF {
         gl.glPopMatrix();
 
         colo_luktita2(gl);
+        gl.glPushMatrix();
         gl.glTranslatef(-0.2f, 0.75f, -0.7f);
         gl.glRotatef(-200, 1f, 0.4f, 0.10f);
         gl.glRotatef(50, 1f, 0.4f, 0.10f);
@@ -332,18 +156,21 @@ public class DrawJF {
     public void dibujar_luktita_c(GL gl, GLU glu) {
         float radio_picas = 0.33f;
         colo_luktita2(gl);
+        gl.glPushMatrix();
         gl.glTranslatef(0.2f, 0.8f, -0.7f);
         gl.glRotatef(-200, 1f, 0.4f, 0.10f);
         gl.glRotatef(50, 1f, 0.4f, 0.10f);
         glu.gluCylinder(q, radio_picas, 0, ALTURA_PICO, 53, STACKS);
         gl.glPopMatrix();
-
+        
+        gl.glPushMatrix();
         gl.glTranslatef(-0.099f, 0.6f, -0.4f);
         gl.glRotatef(-100, 1f, 0.4f, 0.10f);
         gl.glRotatef(10, 1f, 0.4f, 0.10f);
         glu.gluCylinder(q, radio_picas, 0, ALTURA_PICO, 53, STACKS);
         gl.glPopMatrix();
-
+        
+        gl.glPushMatrix();
         gl.glTranslatef(0.002f, -0.45f, 0.05f);
         gl.glRotatef(-250, 1.05f, 0.8f, 0.15f);
         gl.glRotatef(-80, 1.05f, 0.8f, 0.15f);
@@ -358,7 +185,6 @@ public class DrawJF {
         if (c == 'W') {
             gl.glTranslatef(0f, -0.1f, -0.2f);
             gl.glRotatef(30, -100f, 0f, 0f);
-
         }
         if (c == 'J') {
             gl.glTranslatef(0f, -0.05f, -0.1f);
@@ -368,8 +194,10 @@ public class DrawJF {
                 gl.glRotatef(30, -100f, 100f, 0f);
             }
         }
+        gl.glPopMatrix();
 //   creamos piernas
         set_orange_material(gl);
+        
         gl.glPushMatrix();
         if (left) {
             gl.glTranslatef(-0.2f, -0.55f, -0.3f);
@@ -378,7 +206,6 @@ public class DrawJF {
             gl.glTranslatef(0.2f, -0.55f, -0.3f);
             gl.glRotatef(130, 0f, 180f, 0f);
         }
-
         glu.gluCylinder(q, WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
         gl.glRotatef(90f, -1f, 0f, 0f);
@@ -411,7 +238,9 @@ public class DrawJF {
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
         gl.glRotatef(90f, 1f, 0f, 0f);
         glu.gluSphere(q, WIDTH_HANDS, SLICES, STACKS);
-
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix();
         gl.glTranslatef(0f, 0.0f, 0f);
         gl.glRotatef(-60, 1f, 0.4f, 0.10f);
         gl.glRotatef(50, 1f, 0.4f, 0.10f);

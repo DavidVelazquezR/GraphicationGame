@@ -203,27 +203,9 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
         gl.glRotatef(90, 0.0f, 0.0f, 1.0f);
         texturaFondo(gl);
 
-        //we draw Stan in the window
-//        JF.DIBU_jf(gl, keys['W'],
-//                keys['J'],
-//                keys['R'],
-//                keys['F'],
-//                keys['G'],
-//                keys['T'],
-//                keys['E'],
-//                keys['X'],
-//                keys['Y'],
-//                keys['Z'],
-//                keys['C'],
-//                keys['V'],
-//                keys['B'],
-//                keys['O'],
-//                keys['P']);
-
-        // Flush all drawing operations to the graphics card
-        
-        DibujaB a = new DibujaB();
-        a.dibujaB(gl);
+       
+        DrawJF a = new DrawJF();
+        //a.DIBU_jf(gl,'O');
         gl.glFlush();
     }
 

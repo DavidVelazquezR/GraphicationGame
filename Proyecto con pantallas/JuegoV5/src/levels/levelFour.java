@@ -8,6 +8,8 @@ package levels;
 import Hygel.*;
 import Aria.GLRenderAria;
 import Aria.GLRenderBox;
+import Flogat.Flog;
+import Terluks.DrawJF;
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
@@ -132,14 +134,41 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     File clic = new File("src/sonidos/08.wav");
     Clip clip, clip2;
     JFrame frame;
-    boolean[] flagmoneda = {true, true, true};
+    boolean[] flagmoneda = {true, true, true,true};
 
     public levelFour(int per, JFrame j) {
         frame = j;
         typeCharacter = per;
     }
-
+    public float enemigoX = -5.0f;
+    public float rotenemigo = 90;
+    public boolean derecha = true;
+    
     public void init(GLAutoDrawable drawable) {
+        
+        Thread moverenemigo2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                do {
+                    if (enemigoX <= -5.5 || enemigoX >= 0.5) {
+                        derecha = !derecha;
+                        rotenemigo += 180;
+                    }
+                    if (enemigoX>0.47 && enemigoX<=0.51) {
+                    }
+                    if (enemigoX > -5.6f &&  derecha) {
+                        enemigoX += 0.01;
+                    }
+                    else if (enemigoX <= 0.6f  &&  !derecha) {
+                        enemigoX -= 0.01f;
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException ex) {
+                    }
+                } while (!terminado);
+            }
+        });
 
         Thread caer = new Thread(new Runnable() {
             @Override
@@ -216,7 +245,7 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         });
 
         caer.start();
-
+        moverenemigo2.start();
         GL gl = drawable.getGL();
 
         System.err.println(
@@ -269,13 +298,16 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
                 this);
 
     }
-
+    Flog flog1 = new Flog();
+    Flog flog2 = new Flog();
+    DrawJF ca = new DrawJF();
+    
     public void display(GLAutoDrawable drawable) {
         //Se genera una instancia que dibuja al personaje
 
         GLRenderBox box1 = new GLRenderBox();
 
-        Moneda mo1 = new Moneda();
+        Llave la = new Llave();
         DibujaB ban = new DibujaB();
 
         //Hacemos uso de GL y GLU
@@ -344,6 +376,63 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
         gl.glScaled(2f, 2f, 2f);
         ban.dibujaB(gl);
         gl.glPopMatrix();
+        
+        if (recoge_moneda(-13.0f, -1.0f, 0) && flagmoneda[0]) {//Dibujamos primera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(-13.0f, -0.5f, 0.0f);
+            gl.glRotated(90, 0, 1, 0);
+            la.draw_moneda(gl);
+            //Retorno al origen
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(-8.2f, -3.3f, 1) && flagmoneda[1]) {//Dibujamos segunda moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(-8.3f, -3.1f, 0.0f);
+            gl.glRotated(90, 0, 1, 0);
+            la.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(0.0f, 4.4f, 2) && flagmoneda[2]) {//Dibujamos tercera moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(-0.1f, 4.6f, 0.0f);
+            gl.glRotated(90, 0, 1, 0);
+            la.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        if (recoge_moneda(0.5f, -5.0f, 3) && flagmoneda[3]) {//Dibujamos cuarta moneda
+            gl.glPushMatrix();
+            gl.glTranslatef(0.5f, -5.0f, 0.0f);
+            gl.glRotated(90, 0, 1, 0);
+            la.draw_moneda(gl);
+            gl.glPopMatrix();
+        }
+        
+        
+        
+        gl.glPushMatrix();
+        gl.glTranslated(-10.5f, -5.2, 0f);
+        flog1.dibujaFlog(gl, 'O', 4);
+        gl.glPopMatrix();
+        enemigo_cerca(-10.5f, -5.2f);
+
+        gl.glPushMatrix();
+        gl.glTranslated(enemigoX, -5.2f, 0f);
+        gl.glRotated(rotenemigo, 0f, 1f, 0f);
+        flog2.dibujaFlog(gl, 'O', 4);
+        gl.glPopMatrix();
+        enemigo_cerca(enemigoX, -5.2f);
+        
+        
+        if (flagmoneda[0]==true || flagmoneda[1]==true||flagmoneda[2]==true||flagmoneda[3]==true) {
+            gl.glPushMatrix();
+            gl.glTranslated(13.0f, -3.0f, 0f);
+            gl.glRotated(180, 0f, 0.5f, -0.1f);
+            gl.glScaled(3.5, 3.5, 3.5);
+            ca.DIBU_jf(gl, 'O');
+            gl.glPopMatrix();
+            enemigo2_cerca(13.0f, -5.2f);
+        }
+        
 
         gl.glPushMatrix();
         if (typeCharacter == 1) {
@@ -372,9 +461,35 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
             frame.dispose();
         }
     }
+    
+    public void enemigo_cerca(float xmons, float ymons) {
+        if (coordXPersonaje >= xmons - 1f && coordXPersonaje <= xmons + 1f
+                && coordYPersonaje <= ymons + 0.85) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            //cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
+            flagmoneda[3] = true;
+        }
+    }
+    
+    public void enemigo2_cerca(float xmons, float ymons) {
+        if (coordXPersonaje >= xmons - 3.5f && coordXPersonaje <= xmons + 3.5f
+                && coordYPersonaje <= ymons + 5) {
+            Sound("uuh");
+            coordXPersonaje = -19.5f;
+            //cameraX = 15.0f;
+            flagmoneda[0] = true;
+            flagmoneda[1] = true;
+            flagmoneda[2] = true;
+            flagmoneda[3] = true;
+        }
+    }
 
     public boolean recoge_moneda(float xmon, float ymon, int fmo) {
-        if (coordXPersonaje >= xmon - 1f && coordXPersonaje <= xmon + 1f
+        if (coordXPersonaje >= xmon - 0.6f && coordXPersonaje <= xmon + 1f
                 && coordYPersonaje <= ymon && flagmoneda[fmo]) {
             System.out.println("entra 3");
             Sound("coin");

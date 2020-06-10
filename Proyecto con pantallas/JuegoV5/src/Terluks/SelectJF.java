@@ -39,30 +39,6 @@ public class SelectJF extends JFrame implements GLEventListener {
     private static final float Y_POSITION = 0.0f;
     private static final float Z_POSITION = -1.0f;
 
-//    public static void main(String[] args) throws IOException {
-//        final Frame frame = new Frame("Aria");
-//        GLCanvas canvas = new GLCanvas();
-//        canvas.addGLEventListener(new MainAria()); //con la clase en la que este el personaje
-//        frame.add(canvas);
-//        frame.setSize(800, 600);
-//        final Animator animator = new Animator(canvas);
-//
-//        frame.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosing(WindowEvent e) {
-//                new Thread(new Runnable() {
-//                    public void run() {
-//                        animator.stop();
-//                        System.exit(0);
-//                    }
-//                }).start();
-//            }
-//        });
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
-//
-//        animator.start();
-//    }
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
         System.err.println("Init gl is: " + gl.getClass().getName());
@@ -131,7 +107,7 @@ public class SelectJF extends JFrame implements GLEventListener {
         gl.glRotatef(view_rotx, 0.0f, 1.0f, 0.0f);
         gl.glRotatef(view_roty, -1.0f, 0.0f, 0.0f);
         //Dibuja la figura 3d dependiendo de la tecla que se presione
-        jf.DIBU_jf(gl, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+        jf.DIBU_jf(gl,'W');
 
         gl.glFlush();
     }
