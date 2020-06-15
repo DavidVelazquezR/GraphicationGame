@@ -38,7 +38,7 @@ Desarrollo de Solución
 •	Manera de Juego (de que trata, como gana o pierde puntos, como realiza colisiones etc.)           David listo
 •	Descripción de los Personajes, (que papel desarrollan, como el usuario los elige etc.)		 ------------------------------------------------------LISTO
 •	Personajes en 3D (screen shot y su descripción como realizan Movimientos Mínimos necesarios (traslación, escalación, rotación, corte, reflexión,    sonido on/ off por personaje y escenario) Cada quien su personaje
-•	Niveles por Personaje (Descripción de cada uno con los personajes) 				
+•	Niveles por Personaje (Descripción de cada uno con los personajes) 		listo		
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         Charly ------LISTO
