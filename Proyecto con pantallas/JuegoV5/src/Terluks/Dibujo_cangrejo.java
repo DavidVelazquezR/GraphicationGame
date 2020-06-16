@@ -1,12 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Terluks;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
 
-
-public class DrawJF {
-    //variables globales:
+/**
+ *
+ * @author Alan
+ */
+public class Dibujo_cangrejo  {
 
     private static final int SLICES = 40;
     private static final int STACKS = 40;
@@ -18,9 +25,21 @@ public class DrawJF {
 
     //medidas de cangrejo:
     //cuerpo de cangrejo:
+    private static final float altura_cuerpo = 0.2f;
+    private static final float superior_cuerpo = 0.4f;
+    private static final float inferior_cuerpo = 0.4f;
+
     //patas:
+    private static final float altura_patas = 0.7f;
+    private static final float anchura_patas = 0.15f;
     private static final float HEIGHT_LEGS = 0.70f;
     private static final float WIDTH_LEGS = 0.15f;
+
+    //pinzas:
+    private static final float altura_pinzas = 0.9f;
+    private static final float anchura_pinzas = 0.199f;
+    private static final float anchura_puntas = 0.1f;
+    private static final float anchura_p = 0.0525f;
 
     //cabeza:
     private static final float anchura_cabeza = 0.6f;
@@ -29,16 +48,28 @@ public class DrawJF {
     private static final float WIDTH_EYES = 0.22f;
     private static final float WIDTH_HANDS = 0.16f;
 
+    //
+    private static final float anchura_boca_abierta = 0.1f;
+    private static final float anchura_pupulas = 0.03f;
+    private static final float WIDTH_POMPON = 0.12f;
+
+    //caparason:
+    private static final float caparason = 1.5f;
+    private static final float altura_luktita = 0.75f;
+    private static final float anchura_luktita = 0.75f;
     private static final float ataque = 0.05f;
 
     private static final float WIDTH_PUPILS = 0.07f;
     private static final float RADIO_PICO = 0.1525f;
     private static final float ALTURA_PICO = 0.5f;
 
-    public DrawJF() {
+    public Dibujo_cangrejo() {
     }
+//boolean rotacion_X, boolean rotacion_Y, boolean rotacion_Z,
+//            boolean Traslacion, boolean Escalacion, boolean reflexion_X, boolean reflexion_Y, boolean reflexion_Z,
+//            boolean corte_X, boolean corte_Y, boolean corte_Z,boolean original, 
 
-    public void DIBU_jf(GL gl, char tec) {
+    public void DIBU_jf(GL gl, boolean walk, boolean jump, boolean colicion) {
         //llamado de paquetes de O.0PENGL, instancia de GLU como variable para llmado de funciones
         GLU glu = new GLU();
         q = glu.gluNewQuadric();
@@ -46,44 +77,79 @@ public class DrawJF {
         glu.gluQuadricOrientation(q, GLU.GLU_OUTSIDE);
         glu.gluQuadricNormals(q, GLU.GLU_SMOOTH);
 
-        //robot camina 
-        if (tec=='W' && mvt % 20 + 10 > 20) {
-            gl.glTranslatef(0.0f, 1.5f, 0f);
+        //camina
+        if (walk && mvt % 20 + 10 > 20) {
             draw_legs(gl, glu, 'W', false, true);
             draw_legs(gl, glu, ' ', true, false);
             draw_arm_left(gl, glu, ' ');
             draw_arm_right(gl, glu, 'W');
-        } else if (tec=='W' && mvt % 20 + 10 <= 20) {
-            gl.glTranslatef(0.0f, 1.5f, 0f);
+//            draw_ojos(gl, glu);
+//            dibujar_caparason(gl, glu);
+//            dibujar_luktita_c(gl, glu);
+        } else if (walk && mvt % 20 + 10 <= 20) {
             draw_legs(gl, glu, ' ', false, true);
             draw_legs(gl, glu, 'W', true, false);
             draw_arm_left(gl, glu, 'W');
             draw_arm_right(gl, glu, ' ');
-        }else if (tec=='J') {
+//            draw_ojos(gl, glu);
+//            draw_pupila(gl, glu);
+//            dibujar_caparason(gl, glu);
+//            dibujar_luktita_c(gl, glu);
+        } //saltando 
+        else if (jump && mvt % 20 + 10 > 20) {
+            gl.glTranslatef(0f, 0.35f, 0f);
             draw_legs(gl, glu, 'J', false, true);
             draw_legs(gl, glu, 'J', true, false);
             draw_arm_left(gl, glu, 'J');
             draw_arm_right(gl, glu, 'J');
-        }
-        else if (tec=='O') {
+//            draw_ojos(gl, glu);
+//            draw_pupila(gl, glu);
+//            dibujar_caparason(gl, glu);
+//            dibujar_luktita_c(gl, glu);
+        }//is jumping
+        else if (jump && mvt % 20 + 10 <= 20) {
+            gl.glTranslatef(0f, 0.35f, 0f);
+            draw_legs(gl, glu, 'J', false, true);
+            draw_legs(gl, glu, 'J', true, false);
+            draw_arm_left(gl, glu, 'J');
+            draw_arm_right(gl, glu, 'J');
+//            draw_body(gl, glu, ' ');
+//            dibujar_caparason(gl, glu);
+        } else if (colicion) {
+            set_orange_material(gl);
+//            draw_legs(gl, glu, ' ', false, true);
+//            draw_legs(gl, glu, ' ', true, false);
+//            draw_arm_left(gl, glu, ' ');
+//            draw_arm_right(gl, glu, ' ');
+            //draw_ojos(gl, glu);
+            //draw_body(gl, glu, ' ');
+            //dibujar_caparason(gl, glu);
+            co = (float) (co - 0.3);
+            ataque(gl, glu, co);
+
+        } else {
             draw_legs(gl, glu, ' ', false, true);
             draw_legs(gl, glu, ' ', true, false);
             draw_arm_left(gl, glu, ' ');
             draw_arm_right(gl, glu, ' ');
         }
+
         mvt++;
         draw_body(gl, glu, ' ');
         dibujar_caparason(gl, glu);
         draw_ojos(gl, glu);
         draw_pupila(gl, glu);
-        dibujar_luktita_c(gl, glu);
-        
-        
+        //dibujar_luktita_c(gl, glu);
     }
 
     public void draw_ojos(GL gl, GLU glu) {
         //dibijamos cabeza
+        colo_piel(gl);
         set_brown_material(gl);
+        
+        gl.glRotated(180,1.0f, 0.0f, 0.0f);
+        gl.glRotated(50,1.0f, 0.0f, -1.0f);
+        gl.glTranslatef(0.0f, -0.5f, 0.8f);
         gl.glPushMatrix();
         gl.glTranslatef(0.36f, -0.15f, -1.35f);
         glu.gluSphere(q, WIDTH_HEAD, SLICES, STACKS);
@@ -180,26 +246,26 @@ public class DrawJF {
     }
 
     public void draw_legs(GL gl, GLU glu, char c, boolean left, boolean r) {
+        
+        set_orange_material(gl);
         gl.glPushMatrix();
 //        metodo de salto y caminar
 
         if (c == 'W') {
             gl.glTranslatef(0f, -0.1f, -0.2f);
             gl.glRotatef(30, -100f, 0f, 0f);
+
         }
         if (c == 'J') {
-            gl.glTranslatef(0f, -0.05f, -0.1f);
+            gl.glTranslatef(0f, -0.01f, -0.05f);
             if (left) {
-                gl.glRotatef(30, -100f, -100f, 0f);
+                gl.glRotatef(30, 50f, -100f, 0f);
             } else {
-                gl.glRotatef(30, -100f, 100f, 0f);
+                gl.glRotatef(30, -80f, 100f, 0f);
             }
         }
-        gl.glPopMatrix();
 //   creamos piernas
-        set_orange_material(gl);
         
-        gl.glPushMatrix();
         if (left) {
             gl.glTranslatef(-0.2f, -0.55f, -0.3f);
             gl.glRotatef(130, 0f, -180f, 0f);
@@ -207,6 +273,7 @@ public class DrawJF {
             gl.glTranslatef(0.2f, -0.55f, -0.3f);
             gl.glRotatef(130, 0f, 180f, 0f);
         }
+
         glu.gluCylinder(q, WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
         gl.glRotatef(90f, -1f, 0f, 0f);
@@ -239,9 +306,7 @@ public class DrawJF {
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
         gl.glRotatef(90f, 1f, 0f, 0f);
         glu.gluSphere(q, WIDTH_HANDS, SLICES, STACKS);
-        gl.glPopMatrix();
-        
-        gl.glPushMatrix();
+
         gl.glTranslatef(0f, 0.0f, 0f);
         gl.glRotatef(-60, 1f, 0.4f, 0.10f);
         gl.glRotatef(50, 1f, 0.4f, 0.10f);
@@ -254,23 +319,22 @@ public class DrawJF {
         set_orange_material(gl);
         gl.glPushMatrix();
         if (c == 'J') {
-            gl.glTranslatef(-0.2f, -0.55f, -0.3f);
-            gl.glRotatef(130, 0f, -180f, 0f);
+            gl.glTranslatef(-0.15f, 0.15f, -0.35f);
+            //gl.glRotatef(130, 0f, -180f, 0f);
         }
         if (c == 'W') {
-            gl.glTranslatef(0.2f, -0.55f, -0.3f);
-            gl.glRotatef(130, 0f, 180f, 0f);
+            gl.glTranslatef(-0.05f, 0.05f, -0.2f);
+            //gl.glRotatef(130, 0f, 180f, 0f);
         }
 //cambio de rotacion
         gl.glTranslatef(-0.6f, 0.045f, 0.5f);
         gl.glRotatef(5f, -0.3f, -0.8f, 0f);
         glu.gluCylinder(q, WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
-gl.glPopMatrix();
-gl.glPushMatrix();
-        gl.glRotatef(90f, -0.2f, 0.1f, 0f);
+//coordenadas de pinzas
+        gl.glRotatef(97.0f, -0.899f, 0.62f, 0f);
         gl.glTranslatef(-0.35f, -HEIGHT_LEGS * 0.7f, -0.1f);
-
+//cono
         gl.glRotatef(90f, 1f, 0f, 0f);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
         gl.glRotatef(90f, 1f, 0f, 0f);
@@ -281,27 +345,27 @@ gl.glPushMatrix();
         glu.gluCylinder(q, RADIO_PICO, 0, ALTURA_PICO, 53, STACKS);
         gl.glPopMatrix();
 
+
     }
 
     public void draw_arm_right(GL gl, GLU glu, char c) {
         set_orange_material(gl);
         gl.glPushMatrix();
         if (c == 'J') {
-            gl.glTranslatef(-0.2f, -0.55f, -0.3f);
-            gl.glRotatef(130, 0f, -180f, 0f);
+            gl.glTranslatef(0.11f, 0.3f, -0.35f);
+//            gl.glRotatef(130, 0f, -180f, 0f);
         }
         if (c == 'W') {
-            gl.glTranslatef(0.2f, -0.55f, -0.3f);
-            gl.glRotatef(130, 0f, 180f, 0f);
+            gl.glTranslatef(0.051f, 0.25f, -0.2f);
+            //gl.glRotatef(130, 0f, 180f, 0f);
         }
 //cambio de rotacion
         gl.glTranslatef(0.6f, 0.045f, 0.5f);
         gl.glRotatef(-15f, -0.3f, -0.8f, 0f);
         glu.gluCylinder(q, WIDTH_LEGS, WIDTH_LEGS, HEIGHT_LEGS, SLICES, STACKS);
         glu.gluDisk(q, 0f, WIDTH_LEGS, SLICES, STACKS);
-gl.glPopMatrix();
-gl.glPushMatrix();
-        gl.glRotatef(90f, -0.2f, 0.1f, 0f);
+//coordenas de las pinzas
+        gl.glRotatef(97.0f, -0.899f, 0.62f, 0f);
         gl.glTranslatef(-0.35f, -HEIGHT_LEGS * 0.7f, -0.09f);
 
         gl.glRotatef(90f, 1f, 0f, 0f);
@@ -317,7 +381,7 @@ gl.glPushMatrix();
     }
 
     public void ataque(GL gl, GLU glu, float cl) {
-        gl.glPushMatrix();
+
         colo_luktita(gl);
         if (co > 0.5) {
             gl.glPushMatrix();
@@ -325,8 +389,8 @@ gl.glPushMatrix();
             glu.gluSphere(q, ataque * 2, REBANADAS, PILAS);
             gl.glPopMatrix();
         }
-        gl.glPopMatrix();
     }
+//--------------------------------------Materiales---------------------------
 
     public void set_brown_material(GL gl) {
         float[] mat_ambient
@@ -630,5 +694,4 @@ gl.glPushMatrix();
             w += dw;
         }
     }
-
 }

@@ -43,6 +43,7 @@ public class Inicio extends javax.swing.JFrame {
         
         jPOverlay.setBackground(new Color(223, 227, 238, 150));
         jPOverlayCre.setBackground(new Color(223, 227, 238, 150));
+        jPOverlayCre2.setBackground(new Color(223, 227, 238, 150));
         jpventanas.add(jlp);
         setpane(jpprincipal);
         if (musicf) {
@@ -93,6 +94,17 @@ public class Inicio extends javax.swing.JFrame {
             anmin.start();
             
     }
+    
+    public void stopmonos(){
+        anma.stop();
+        animaria.stop();
+        anim.stop();
+        anmin.stop();
+        anma=null;
+        animaria=null;
+        anim=null;
+        anmin=null;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -125,15 +137,12 @@ public class Inicio extends javax.swing.JFrame {
         jlbackcred = new javax.swing.JLabel();
         jpconfig = new javax.swing.JPanel();
         jPOverlayCre1 = new javax.swing.JPanel();
-        jLTitulo3 = new javax.swing.JLabel();
+        subtitulo = new javax.swing.JLabel();
         jLTitulo5 = new javax.swing.JLabel();
         jloff = new javax.swing.JLabel();
         jlinicio2 = new javax.swing.JLabel();
         jlon = new javax.swing.JLabel();
-        jlsaltar = new javax.swing.JLabel();
-        jlcader1 = new javax.swing.JLabel();
-        jlcamizq1 = new javax.swing.JLabel();
-        jlpausa = new javax.swing.JLabel();
+        jlsonido = new javax.swing.JLabel();
         jpselectlv = new javax.swing.JPanel();
         jOselectlvl = new javax.swing.JPanel();
         jllvl1 = new javax.swing.JLabel();
@@ -141,6 +150,7 @@ public class Inicio extends javax.swing.JFrame {
         jltitulo = new javax.swing.JLabel();
         jllv4 = new javax.swing.JLabel();
         jllv3 = new javax.swing.JLabel();
+        jlback = new javax.swing.JLabel();
         jlsig = new javax.swing.JLabel();
         jlbackgr = new javax.swing.JLabel();
         jpselectcharacter = new javax.swing.JPanel();
@@ -149,6 +159,7 @@ public class Inicio extends javax.swing.JFrame {
         jlp1 = new javax.swing.JLabel();
         jlp2 = new javax.swing.JLabel();
         jliniciar = new javax.swing.JLabel();
+        jlback1 = new javax.swing.JLabel();
         jpp1 = new javax.swing.JPanel();
         canar = new javax.media.opengl.GLCanvas();
         jpp2 = new javax.swing.JPanel();
@@ -157,6 +168,21 @@ public class Inicio extends javax.swing.JFrame {
         glpenemigo2areli = new javax.media.opengl.GLJPanel();
         glpenemigo1alan = new javax.media.opengl.GLJPanel();
         jlbacksp = new javax.swing.JLabel();
+        jpayuda = new javax.swing.JPanel();
+        jPOverlayCre2 = new javax.swing.JPanel();
+        jlcaida = new javax.swing.JLabel();
+        jLTitulo6 = new javax.swing.JLabel();
+        jlinicio3 = new javax.swing.JLabel();
+        jlsaltar1 = new javax.swing.JLabel();
+        jlcader2 = new javax.swing.JLabel();
+        jlcamizq2 = new javax.swing.JLabel();
+        imgizquierda = new javax.swing.JLabel();
+        imgderecha = new javax.swing.JLabel();
+        jlcolision = new javax.swing.JLabel();
+        imgcolision = new javax.swing.JLabel();
+        imgcaida = new javax.swing.JLabel();
+        imgsalto = new javax.swing.JLabel();
+        jlbackcred1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -217,7 +243,7 @@ public class Inicio extends javax.swing.JFrame {
                 jLCreditsMouseClicked(evt);
             }
         });
-        jPOverlay.add(jLCredits, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, -1, -1));
+        jPOverlay.add(jLCredits, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
         jLInstructions.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLInstructions.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -229,7 +255,7 @@ public class Inicio extends javax.swing.JFrame {
                 jLInstructionsMouseClicked(evt);
             }
         });
-        jPOverlay.add(jLInstructions, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
+        jPOverlay.add(jLInstructions, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
 
         jLStart.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLStart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -259,7 +285,7 @@ public class Inicio extends javax.swing.JFrame {
                 jlconfigMouseClicked(evt);
             }
         });
-        jPOverlay.add(jlconfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
+        jPOverlay.add(jlconfig, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
         jpprincipal.add(jPOverlay);
         jPOverlay.setBounds(0, 0, 820, 533);
@@ -346,21 +372,21 @@ public class Inicio extends javax.swing.JFrame {
         jPOverlayCre1.setBackground(new java.awt.Color(51, 51, 51));
         jPOverlayCre1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLTitulo3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLTitulo3.setForeground(new java.awt.Color(255, 255, 255));
-        jLTitulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLTitulo3.setText("Controles");
-        jLTitulo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPOverlayCre1.add(jLTitulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 541, -1));
+        subtitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        subtitulo.setForeground(new java.awt.Color(255, 255, 255));
+        subtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        subtitulo.setText("Audio");
+        subtitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre1.add(subtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 541, -1));
 
         jLTitulo5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLTitulo5.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLTitulo5.setText("Audio");
+        jLTitulo5.setText("Configuración");
         jLTitulo5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPOverlayCre1.add(jLTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 541, -1));
 
-        jloff.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jloff.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jloff.setForeground(new java.awt.Color(153, 153, 153));
         jloff.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jloff.setText("OFF");
@@ -371,7 +397,7 @@ public class Inicio extends javax.swing.JFrame {
                 jloffMouseClicked(evt);
             }
         });
-        jPOverlayCre1.add(jloff, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 60, -1));
+        jPOverlayCre1.add(jloff, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 60, -1));
 
         jlinicio2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlinicio2.setForeground(new java.awt.Color(255, 255, 255));
@@ -386,7 +412,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPOverlayCre1.add(jlinicio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 470, 129, -1));
 
-        jlon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlon.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jlon.setForeground(new java.awt.Color(102, 0, 0));
         jlon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlon.setText("ON");
@@ -397,35 +423,10 @@ public class Inicio extends javax.swing.JFrame {
                 jlonMouseClicked(evt);
             }
         });
-        jPOverlayCre1.add(jlon, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 60, -1));
+        jPOverlayCre1.add(jlon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 60, -1));
 
-        jlsaltar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlsaltar.setForeground(new java.awt.Color(255, 255, 255));
-        jlsaltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlsaltar.setText("Saltar   -   W");
-        jlsaltar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPOverlayCre1.add(jlsaltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 260, -1));
-
-        jlcader1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlcader1.setForeground(new java.awt.Color(255, 255, 255));
-        jlcader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlcader1.setText("Caminar a derecha   -   D");
-        jlcader1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPOverlayCre1.add(jlcader1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 260, -1));
-
-        jlcamizq1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlcamizq1.setForeground(new java.awt.Color(255, 255, 255));
-        jlcamizq1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlcamizq1.setText("Caminar a izquierda   -   A");
-        jlcamizq1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPOverlayCre1.add(jlcamizq1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 260, -1));
-
-        jlpausa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlpausa.setForeground(new java.awt.Color(51, 51, 51));
-        jlpausa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlpausa.setText("Pausa   -   ESC");
-        jlpausa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPOverlayCre1.add(jlpausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 260, -1));
+        jlsonido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/unmute1.png"))); // NOI18N
+        jPOverlayCre1.add(jlsonido, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 190, 190));
 
         jpconfig.add(jPOverlayCre1);
         jPOverlayCre1.setBounds(0, 0, 820, 533);
@@ -495,6 +496,15 @@ public class Inicio extends javax.swing.JFrame {
         });
         jOselectlvl.add(jllv3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 110, 110));
 
+        jlback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
+        jlback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbackMouseClicked(evt);
+            }
+        });
+        jOselectlvl.add(jlback, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
+
         jlsig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sig.png"))); // NOI18N
         jlsig.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jlsig.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -547,6 +557,16 @@ public class Inicio extends javax.swing.JFrame {
         });
         jpselectcharacter.add(jliniciar);
         jliniciar.setBounds(620, 420, 151, 65);
+
+        jlback1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back.png"))); // NOI18N
+        jlback1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlback1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlback1MouseClicked(evt);
+            }
+        });
+        jpselectcharacter.add(jlback1);
+        jlback1.setBounds(0, 0, 120, 60);
 
         jpp1.setBackground(new java.awt.Color(202, 230, 255));
         jpp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -691,11 +711,99 @@ public class Inicio extends javax.swing.JFrame {
         jpselectcharacter.add(jlbacksp);
         jlbacksp.setBounds(0, 0, 820, 533);
 
+        jpayuda.setBackground(new java.awt.Color(51, 51, 51));
+        jpayuda.setMaximumSize(new java.awt.Dimension(820, 533));
+        jpayuda.setMinimumSize(new java.awt.Dimension(820, 533));
+        jpayuda.setLayout(null);
+
+        jPOverlayCre2.setBackground(new java.awt.Color(51, 51, 51));
+        jPOverlayCre2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlcaida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlcaida.setForeground(new java.awt.Color(0, 102, 102));
+        jlcaida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlcaida.setText("Caida");
+        jlcaida.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre2.add(jlcaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 260, -1));
+
+        jLTitulo6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLTitulo6.setForeground(new java.awt.Color(255, 255, 255));
+        jLTitulo6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLTitulo6.setText("Ayuda");
+        jLTitulo6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre2.add(jLTitulo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 541, -1));
+
+        jlinicio3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlinicio3.setForeground(new java.awt.Color(153, 255, 255));
+        jlinicio3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlinicio3.setText("Inicio");
+        jlinicio3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlinicio3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlinicio3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlinicio3MouseClicked(evt);
+            }
+        });
+        jPOverlayCre2.add(jlinicio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 470, 129, -1));
+
+        jlsaltar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlsaltar1.setForeground(new java.awt.Color(0, 102, 102));
+        jlsaltar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlsaltar1.setText("Saltar   -   W");
+        jlsaltar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre2.add(jlsaltar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 260, -1));
+
+        jlcader2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlcader2.setForeground(new java.awt.Color(0, 102, 102));
+        jlcader2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlcader2.setText("Caminar a derecha   -   D");
+        jlcader2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre2.add(jlcader2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 260, -1));
+
+        jlcamizq2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlcamizq2.setForeground(new java.awt.Color(0, 102, 102));
+        jlcamizq2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlcamizq2.setText("Caminar a izquierda   -   A");
+        jlcamizq2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre2.add(jlcamizq2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 260, -1));
+
+        imgizquierda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda/MoverIzquierda.jpg"))); // NOI18N
+        jPOverlayCre2.add(imgizquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 140, 140));
+
+        imgderecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda/MoverDerecha.jpg"))); // NOI18N
+        jPOverlayCre2.add(imgderecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 140, 140));
+
+        jlcolision.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlcolision.setForeground(new java.awt.Color(0, 102, 102));
+        jlcolision.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlcolision.setText("Caida");
+        jlcolision.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPOverlayCre2.add(jlcolision, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 260, -1));
+
+        imgcolision.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda/Colision.jpg"))); // NOI18N
+        jPOverlayCre2.add(imgcolision, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 140, 140));
+
+        imgcaida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda/caida.jpg"))); // NOI18N
+        jPOverlayCre2.add(imgcaida, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 140, 140));
+
+        imgsalto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ayuda/Salto.jpg"))); // NOI18N
+        jPOverlayCre2.add(imgsalto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 140, 140));
+
+        jlbackcred1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoaudio.jpg"))); // NOI18N
+        jlbackcred1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jlbackcred1.setAlignmentY(0.0F);
+        jlbackcred1.setPreferredSize(new java.awt.Dimension(820, 846));
+        jPOverlayCre2.add(jlbackcred1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -20, 850, 560));
+
+        jpayuda.add(jPOverlayCre2);
+        jPOverlayCre2.setBounds(0, 0, 820, 533);
+
         jlp.setLayer(jpprincipal, javax.swing.JLayeredPane.POPUP_LAYER);
         jlp.setLayer(jjpcredits, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jlp.setLayer(jpconfig, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jlp.setLayer(jpselectlv, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jlp.setLayer(jpselectcharacter, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlp.setLayer(jpayuda, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jlpLayout = new javax.swing.GroupLayout(jlp);
         jlp.setLayout(jlpLayout);
@@ -721,6 +829,11 @@ public class Inicio extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jpconfig, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jlpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jlpLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         jlpLayout.setVerticalGroup(
             jlpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -744,6 +857,11 @@ public class Inicio extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jpconfig, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jlpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jlpLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout jpventanasLayout = new javax.swing.GroupLayout(jpventanas);
@@ -800,10 +918,6 @@ public class Inicio extends javax.swing.JFrame {
         setpane(jjpcredits);
     }//GEN-LAST:event_jLCreditsMouseClicked
 
-    private void jLInstructionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLInstructionsMouseClicked
-        //setpane();
-    }//GEN-LAST:event_jLInstructionsMouseClicked
-
     private void jLStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLStartMouseClicked
         setpane(jpselectlv);
     }//GEN-LAST:event_jLStartMouseClicked
@@ -814,37 +928,25 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jllvl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jllvl1MouseClicked
         lvl=1;
-        SetIcon("lvl1s", jllvl1);
-        SetIcon("lvl2", jllv2);
-        SetIcon("lvl3", jllv3);
-        SetIcon("lvl4", jllv4);
+        selectlvl1();
         Sound("select");
     }//GEN-LAST:event_jllvl1MouseClicked
 
     private void jllv2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jllv2MouseClicked
         lvl=2;
-        SetIcon("lvl2s", jllv2);
-        SetIcon("lvl1", jllvl1);
-        SetIcon("lvl3", jllv3);
-        SetIcon("lvl4", jllv4);
+        selectlvl2();
         Sound("select");
     }//GEN-LAST:event_jllv2MouseClicked
 
     private void jllv4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jllv4MouseClicked
         lvl=4;
-        SetIcon("lvl4s", jllv4);
-        SetIcon("lvl2", jllv2);
-        SetIcon("lvl3", jllv3);
-        SetIcon("lvl1", jllvl1);
+        selectlvl4();
         Sound("select");
     }//GEN-LAST:event_jllv4MouseClicked
 
     private void jllv3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jllv3MouseClicked
         lvl=3;
-        SetIcon("lvl3s", jllv3);
-        SetIcon("lvl2", jllv2);
-        SetIcon("lvl1", jllvl1);
-        SetIcon("lvl4", jllv4);
+        selectlvl3();
         Sound("select");
     }//GEN-LAST:event_jllv3MouseClicked
 
@@ -857,6 +959,31 @@ public class Inicio extends javax.swing.JFrame {
             setpane(jpselectcharacter);
         }
     }//GEN-LAST:event_jlsigMouseClicked
+public void selectlvl1(){
+        SetIcon("lvl1s", jllvl1);
+        SetIcon("lvl2", jllv2);
+        SetIcon("lvl3", jllv3);
+        SetIcon("lvl4", jllv4);
+}
+
+public void selectlvl2(){
+        SetIcon("lvl2s", jllv2);
+        SetIcon("lvl1", jllvl1);
+        SetIcon("lvl3", jllv3);
+        SetIcon("lvl4", jllv4);
+}
+public void selectlvl4(){
+        SetIcon("lvl4s", jllv4);
+        SetIcon("lvl2", jllv2);
+        SetIcon("lvl3", jllv3);
+        SetIcon("lvl1", jllvl1);
+}
+public void selectlvl3(){
+        SetIcon("lvl3s", jllv3);
+        SetIcon("lvl2", jllv2);
+        SetIcon("lvl1", jllvl1);
+        SetIcon("lvl4", jllv4);
+}
 
     private void jpp1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpp1MouseEntered
         float[] ar = Color.RGBtoHSB(225, 236, 116,null);
@@ -964,6 +1091,7 @@ public class Inicio extends javax.swing.JFrame {
             ambientacion("03");
             jloff.setForeground(new Color(153,153,153));
             jlon.setForeground(new Color(102,0,0));
+            SetIcon("unmute1", jlsonido);
             musicf=true;
         }
     }//GEN-LAST:event_jlonMouseClicked
@@ -973,9 +1101,44 @@ public class Inicio extends javax.swing.JFrame {
             ambient.stop();
             jloff.setForeground(new Color(102,0,0));
             jlon.setForeground(new Color(153,153,153));
+            SetIcon("mute1", jlsonido);
             musicf=false;
         }
     }//GEN-LAST:event_jloffMouseClicked
+
+    private void jlbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbackMouseClicked
+        lvl=0;
+        personaje=0;
+        setpane(jpprincipal);
+    }//GEN-LAST:event_jlbackMouseClicked
+
+    private void jlback1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlback1MouseClicked
+        personaje=0;
+        setpane(jpselectlv);
+        switch(lvl){
+            case 1:
+                selectlvl1();
+                break;
+            case 2:
+                selectlvl2();
+                break;
+            case 3:
+                selectlvl3();
+                break;
+            case 4:
+                selectlvl4();
+                break;
+        }
+        stopmonos();
+    }//GEN-LAST:event_jlback1MouseClicked
+
+    private void jLInstructionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLInstructionsMouseClicked
+        setpane(jpayuda);
+    }//GEN-LAST:event_jLInstructionsMouseClicked
+
+    private void jlinicio3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlinicio3MouseClicked
+        setpane(jpprincipal);
+    }//GEN-LAST:event_jlinicio3MouseClicked
     
     void setpane(JPanel a){
         jlp.removeAll();
@@ -1061,6 +1224,11 @@ public class Inicio extends javax.swing.JFrame {
     private javax.media.opengl.GLCanvas canma;
     private javax.media.opengl.GLJPanel glpenemigo1alan;
     private javax.media.opengl.GLJPanel glpenemigo2areli;
+    private javax.swing.JLabel imgcaida;
+    private javax.swing.JLabel imgcolision;
+    private javax.swing.JLabel imgderecha;
+    private javax.swing.JLabel imgizquierda;
+    private javax.swing.JLabel imgsalto;
     private javax.swing.JLabel jLClose1;
     private javax.swing.JLabel jLCredits;
     private javax.swing.JLabel jLCredits1;
@@ -1073,25 +1241,32 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLStart3;
     private javax.swing.JLabel jLTitulo1;
     private javax.swing.JLabel jLTitulo2;
-    private javax.swing.JLabel jLTitulo3;
     private javax.swing.JLabel jLTitulo4;
     private javax.swing.JLabel jLTitulo5;
+    private javax.swing.JLabel jLTitulo6;
     private javax.swing.JLabel jLVersion;
     private javax.swing.JPanel jOselectlvl;
     private javax.swing.JPanel jPOverlay;
     private javax.swing.JPanel jPOverlayCre;
     private javax.swing.JPanel jPOverlayCre1;
+    private javax.swing.JPanel jPOverlayCre2;
     private javax.swing.JPanel jjpcredits;
+    private javax.swing.JLabel jlback;
+    private javax.swing.JLabel jlback1;
     private javax.swing.JLabel jlbackcred;
+    private javax.swing.JLabel jlbackcred1;
     private javax.swing.JLabel jlbackgr;
     private javax.swing.JLabel jlbackground;
     private javax.swing.JLabel jlbacksp;
-    private javax.swing.JLabel jlcader1;
-    private javax.swing.JLabel jlcamizq1;
+    private javax.swing.JLabel jlcader2;
+    private javax.swing.JLabel jlcaida;
+    private javax.swing.JLabel jlcamizq2;
+    private javax.swing.JLabel jlcolision;
     private javax.swing.JLabel jlconfig;
     private javax.swing.JLabel jliniciar;
     private javax.swing.JLabel jlinicio;
     private javax.swing.JLabel jlinicio2;
+    private javax.swing.JLabel jlinicio3;
     private javax.swing.JLabel jllv2;
     private javax.swing.JLabel jllv3;
     private javax.swing.JLabel jllv4;
@@ -1101,12 +1276,13 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jlp;
     private javax.swing.JLabel jlp1;
     private javax.swing.JLabel jlp2;
-    private javax.swing.JLabel jlpausa;
-    private javax.swing.JLabel jlsaltar;
+    private javax.swing.JLabel jlsaltar1;
     private javax.swing.JLabel jlsig;
+    private javax.swing.JLabel jlsonido;
     private javax.swing.JLabel jlspenem;
     private javax.swing.JLabel jlsptit;
     private javax.swing.JLabel jltitulo;
+    private javax.swing.JPanel jpayuda;
     private javax.swing.JPanel jpbarrasup;
     private javax.swing.JPanel jpconfig;
     private javax.swing.JPanel jpp1;
@@ -1116,5 +1292,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jpselectcharacter;
     private javax.swing.JPanel jpselectlv;
     private javax.swing.JPanel jpventanas;
+    private javax.swing.JLabel subtitulo;
     // End of variables declaration//GEN-END:variables
 }

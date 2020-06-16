@@ -93,7 +93,7 @@ public class SelectJF extends JFrame implements GLEventListener {
         );
 
         //Se genera una instancia que dibuja al personaje
-        DrawJF jf = new DrawJF();
+        Dibujo_cangrejo jf = new Dibujo_cangrejo();
 
         //Mueve la escena en la psoicion de la matriz
         gl.glTranslatef(X_POSITION + 1.2f, Y_POSITION, Z_POSITION + 1.5f);
@@ -110,9 +110,8 @@ public class SelectJF extends JFrame implements GLEventListener {
         gl.glPopMatrix();
         
         
-        gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
-        gl.glTranslatef(0, 0, 0.5f);
-        jf.DIBU_jf(gl,'W');
+        gl.glTranslatef(0.0f, 1.5f, 0.0f);
+        jf.DIBU_jf(gl, true, false, false);
 
         gl.glFlush();
     }

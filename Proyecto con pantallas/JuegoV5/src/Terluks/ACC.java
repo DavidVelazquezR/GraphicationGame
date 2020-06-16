@@ -20,7 +20,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -29,68 +28,42 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLCanvas;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import levels.DibujaB;
-import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
 /**
  *
  * @author Alan
  */
-public class MainCangrejoJF extends JFrame implements GLEventListener,
+public class ACC extends JFrame implements GLEventListener,
         KeyListener, MouseListener, MouseMotionListener {
 
     int s = 0;
     float v = (float) 4.0;
     float l = (float) 0.0;
     private static int ban = 0;
-
-    private Animator ani;
     private float view_rotx = 0.01f;
     private float view_roty = 0.01f;
-    private float angle_rotZ = 90;
-
     private int oldMouseX;
     private int oldMouseY;
-
-    public static ImageIcon imagen = new ImageIcon("src/img/sample.jpg");
-    public static ImageIcon pastoImg = new ImageIcon("src/img/sample.jpg");
-
-    private static String f = "tortuga";
+    private static String f = "cueva";
     private static int mvt = 0;
-
     AudioStream audio;
-    static InputStream sonido;
-    DrawJF JF = new DrawJF();
-    public static char tecla = 'O';
-
+    InputStream sonidos;
     Texture t;
-    private Texture texture;
-    private boolean newTexture = true;
-
-    static String s1 = "src/sonidos/01.wav";
-    static String s2 = "src/sonidos/02.wav";
-    static String s3 = "src/sonidos/03.wav";
-    static String s4 = "src/sonidos/04.wav";
-    static String s5 = "src/sonidos/05.wav";
-    static String s6 = "src/sonidos/golpe.wav";
-    static String s7 = "src/sonidos/07.wav";
-    File clic = new File("src/sonidos/08.wav");
-    Clip clip;
-
     boolean[] keys = new boolean[256];
     private File arch;
+    private Texture texture;
+    private boolean newTexture = true;
+    Dibujo_cangrejo JF = new Dibujo_cangrejo();
 
     private static final float X_POSITION = 0f;
     private static final float Y_POSITION = -0.08f;
     private static final float Z_POSITION = 0f;
+    private Animator ani;
 
-    public MainCangrejoJF() {
+    public ACC() {
     }
 
     public void setVisible(boolean show) {
@@ -103,11 +76,14 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
         }
     }
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
+        // TODO code application logic here
         Frame frame = new Frame("JEFE");
         GLCanvas canvas = new GLCanvas();
-
-        canvas.addGLEventListener(new MainCangrejoJF());
+        canvas.addGLEventListener(new ACC());
         frame.add(canvas);
         frame.setSize(600, 600);
 
@@ -115,7 +91,9 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-
+                // Run this on another thread than the AWT event queue to
+                // make sure the call to Animator.stop() completes before
+                // exiting
                 new Thread(new Runnable() {
 
                     public void run() {
@@ -169,6 +147,16 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
         gl.glEnable(GL.GL_LIGHT0);
         gl.glEnable(GL.GL_DEPTH_TEST);
 
+        /*
+        try
+        {
+            File im = new File("src/Imagen/fondo.jpg");
+            t = TextureIO.newTexture(im, true);
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+         */
         gl.glClearColor(0.9f, 0.9f, 0.9f, 0.9f);
 
         gl.glShadeModel(GL.GL_SMOOTH);
@@ -185,27 +173,25 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
         gl.glMatrixMode(GL.GL_MODELVIEW);
         // Reset the current matrix to the "identity"
         gl.glLoadIdentity();
-        glu.gluLookAt(
-                0.1f, l, v,// eye
+        glu.gluLookAt(0.1f, l, v,// eye
                 l, 0.0f, 0.0f, // looking at
                 0.0f, 0.0f, 1.0f // is up
         );
 
-        //DrawJF rb = new DrawJF();
-
-        // mueve la escena en la posicion de la matriz
+        
+        // Move the whole scene
         gl.glTranslatef(X_POSITION, Y_POSITION, Z_POSITION);
-
         gl.glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
-        gl.glRotatef(angle_rotZ, 0.0f, 0.0f, 1.0f);
-
         gl.glRotatef(90, 0.0f, 0.0f, 1.0f);
-        texturaFondo(gl);
 
-       
-        DrawJF a = new DrawJF();
-        //a.DIBU_jf(gl,'O');
+        //we draw Stan in the window
+        JF.DIBU_jf(gl, keys['W'],
+                keys['J'],
+                keys['P']
+        );
+
+        // Flush all drawing operations to the graphics card
         gl.glFlush();
     }
 
@@ -232,6 +218,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
 
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode() < 250 && keys[ke.getKeyCode()] == false) {
+            //agregade otras funciones si se requiren 
             keys['O'] = false;//Figura original*
             keys['W'] = false;//Camina*
             keys['J'] = false;//Salta*
@@ -255,28 +242,26 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
 
             System.out.println("Presioanste la tecla " + ke.getKeyChar());
             switch (ke.getKeyCode()) {
-                case 'O'://original
-                    detenerAudio();
+                //original 
+                case 'O':
                     JF.co = 2;
-                    f = "tortuga";
+                    f = "cueva2";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
                     break;
-                case 'J'://saltar
+                case 'J':
                     JF.co = 2;
-                    detenerAudio();
-                    reproducir(s3);
-                    f = "aLandscape2";
+                    //reproducirAudio("src/Sonido/salto.wav");
+                    f = "salto";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
                     break;
-                case 'W':///caminar
+                case 'W':
                     JF.co = 2;
-                    detenerAudio();
-                    reproducir(s2);
-                    f = "aLandscape1";
+                    //reproducirAudio("src/Sonido/pasos.wav");
+                    f = "ciudad";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -284,14 +269,14 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
 
                 case 'R':
                     JF.co = 2;
-                    //f = "espacio";
+                    f = "espacio";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
                     break;
                 case 'F':
                     JF.co = 2;
-                    //f = "3000";
+                    f = "3000";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -299,7 +284,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'G':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s5.wav");
-                    //f = "enfrentamiento";
+                    f = "enfrentamiento";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -307,7 +292,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'T':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s6.wav");
-                    //f = "cosmos";
+                    f = "cosmos";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -315,7 +300,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'E':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s7.wav");
-                    //f = "biblioteca";
+                    f = "biblioteca";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -323,14 +308,14 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'X':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s8.wav");
-                    //f = "bosque";
+                    f = "bosque";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
                     break;
                 case 'Y':
                     JF.co = 2;
-                    //f = "playa";
+                    f = "playa";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -338,15 +323,15 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'Z':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s10.wav");
-                    //f = "sala";
+                    f = "sala";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
                     break;
                 case 'C':
                     JF.co = 2;
-//                    reproducirAudio("src/Sonido/Skullgirls OST 01 - Echoes.wav");
-//                    f = "paisaje";
+                    //reproducirAudio("src/Sonido/Skullgirls OST 01 - Echoes.wav");
+                    f = "paisaje";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -354,7 +339,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'V':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s13.wav");
-                    //f = "stanlee";
+                    f = "stanlee";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
@@ -362,7 +347,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'B':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s14.wav");
-                    //f = "tortuga";
+                    f = "tortuga";
                     v = (float) -4.0;
                     l = (float) 0.5;
                     newTexture = true;
@@ -370,7 +355,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'D':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s15.wav");
-                    //f = "spider";
+                    f = "spider";
                     newTexture = true;
                     v = (float) 2.0;
                     l = (float) -0.2;
@@ -378,7 +363,7 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'N':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s14.wav");
-                    //f = "tortuga";
+                    f = "tortuga";
                     v = (float) 1.0;
                     l = (float) 1.5;
                     newTexture = true;
@@ -386,23 +371,22 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
                 case 'M':
                     JF.co = 2;
                     //repAudio("src/Imagenes/s15.wav");
-                    //f = "ass";
+                    f = "ass";
                     newTexture = true;
                     v = (float) 2.0;
                     l = (float) -1.5;
                     break;
-                case 'P'://colision
+                case 'P':
                     JF.co = 2;
-                    detenerAudio();
-                    reproducir(s6);
-                    f = "aLandscape5";
+                    //reproducirAudio("src/Sonido/golpe.wav");
+                    f = "cueva2";
                     v = (float) 4.0;
                     l = (float) 0.0;
                     newTexture = true;
                     break;
                 case 'S':
                     if (s == 1) {
-                        detenerAudio();
+                        //detenerAudio();
                         s = 0;
                     } else {
                         //reproducirAudio("src/Sonido/Skullgirls OST 22 - Skull Heart Arrhythmia.wav");
@@ -422,7 +406,6 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
     }
 
     public void mouseClicked(MouseEvent me) {
-        Sonido(clic);
     }
 
     public void mousePressed(MouseEvent me) {
@@ -453,50 +436,6 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
 
     public void mouseMoved(MouseEvent me) {
     }
-
-    private void detenerAudio() {
-        if (audio != null) {
-            AudioPlayer.player.stop(audio);
-        }
-    }
-
-    private void reproducirAudio(String sonidos) {
-        try {
-            if (audio != null) {
-                AudioPlayer.player.stop(audio);
-            }
-            sonido = new FileInputStream(new File(sonidos));
-            audio = new AudioStream(sonido);
-            AudioPlayer.player.start(audio);
-        } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
-        }
-    }
-
-    public void Sonido(File sonidos) {
-        try {
-            sonido = new FileInputStream(sonidos);
-            audio = new AudioStream(sonido);
-            AudioPlayer.player.start(audio);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
-        }
-
-    }
-
-    public void reproducir(String efecto) {
-        try {
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(new File(efecto)));
-            clip.start();
-            clip.loop(1000);
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-////revisado 
 
     public void texturaFondo(GL gl) {
         arch = new File("src/Imagen/" + f + ".jpg");
@@ -604,5 +543,4 @@ public class MainCangrejoJF extends JFrame implements GLEventListener,
             texture.disable();
         }
     }
-    
 }

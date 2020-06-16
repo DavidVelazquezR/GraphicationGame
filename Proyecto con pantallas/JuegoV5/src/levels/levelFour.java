@@ -9,7 +9,7 @@ import Hygel.*;
 import Aria.GLRenderAria;
 import Aria.GLRenderBox;
 import Flogat.Flog;
-import Terluks.DrawJF;
+import Terluks.Dibujo_cangrejo;
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.texture.Texture;
 import com.sun.opengl.util.texture.TextureCoords;
@@ -300,13 +300,12 @@ public class levelFour extends JFrame implements GLEventListener, KeyListener, M
     }
     Flog flog1 = new Flog();
     Flog flog2 = new Flog();
-    DrawJF ca = new DrawJF();
     
     public void display(GLAutoDrawable drawable) {
         //Se genera una instancia que dibuja al personaje
 
         GLRenderBox box1 = new GLRenderBox();
-DrawJF ca = new DrawJF();
+        Dibujo_cangrejo ca = new Dibujo_cangrejo();
         Llave la = new Llave();
         DibujaB ban = new DibujaB();
 
@@ -425,10 +424,10 @@ DrawJF ca = new DrawJF();
         
         if (flagmoneda[0]==true || flagmoneda[1]==true||flagmoneda[2]==true||flagmoneda[3]==true) {
             gl.glPushMatrix();
-            gl.glTranslated(13.0f, -3.0f, 0f);
-            gl.glRotated(180, 0f, 0.5f, -0.1f);
+            gl.glTranslated(13.0f, -2.0f, 0f);
+            gl.glRotated(30, 0f, -1.0f, 0.0f);
             gl.glScaled(3.5, 3.5, 3.5);
-            ca.DIBU_jf(gl, 'O');
+            ca.DIBU_jf(gl, true,false,false);
             gl.glPopMatrix();
             enemigo2_cerca(13.0f, -5.2f);
         }
